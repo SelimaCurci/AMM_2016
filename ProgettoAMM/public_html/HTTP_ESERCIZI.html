@@ -1,3 +1,6 @@
+***ESERCITAZIONE PROTOCOLLO HTTP***
+02/03/2016
+
 TASK 1:
 telnet spano.sc.unica.it 80
 
@@ -5,8 +8,10 @@ GET /httpTest/index.php HTTP/1.1
 host: spano.sc.unica.it
 
 
+
 TASK 2:
 Set-Cookie: PHPSESSID=dnc8o8vlmck4brr4gnau8gklb4; path=/
+
 
 
 TASK 3:
@@ -20,13 +25,41 @@ host: www.google.com
 TASK 4:
 telnet spano.sc.unica.it 80
 
-GET /httpTest/index.php?alunno=selima&chiave=4 HTTP/1.1
+GET /httpTest/index.php?alunno=Selima&chiave=4 HTTP/1.1
 host: spano.sc.unica.it
 
 
 
 TASK 5:
-http://spano.sc.unica.it/httpTest/index.php?alunno=selima&chiave=4
+http://spano.sc.unica.it/httpTest/index.php?alunno=Selima&chiave=4
+
 
 
 TASK 6:
+POST /httpTest/index.php HTTP/1.1
+host: spano.sc.unica.it
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 22
+
+alunno=Selima&chiave=4
+
+
+
+TASK 7:
+http://spano.sc.unica.it/httpTest/checkBrowser.php
+
+Mimiamo Firefox:
+GET /httpTest/checkBrowser.php HTTP/1.1
+host: spano.sc.unica.it
+User-Agent: Mozilla/5.0 (Windows NT 6.2; WOW64; rv:18.0) Gecko/20100101 Firefox/18.0 
+
+Mimiamo Chrome:
+GET /httpTest/checkBrowser.php HTTP/1.1
+host: spano.sc.unica.it
+User-Agent: Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.22 (KHTML, like Gecko) Chrome/25.0.1364.97 Safari/537.22
+
+Mimiamo Internet Explorer:
+GET /httpTest/checkBrowser.php HTTP/1.1 
+host: spano.sc.unica.it
+User-Agent: Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; WOW64; Trident/6.0)
+
