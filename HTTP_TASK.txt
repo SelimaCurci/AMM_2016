@@ -1,0 +1,125 @@
+***ESERCITAZIONE PROTOCOLLO HTTP***
+02/03/2016
+
+TASK 1:
+Connessione al server spano.sc.unica.it tramite il comando: telnet spano.sc.unica.it 80
+Una volta connessi al server, digitare una semplice richiesta della pagina /httpTest/index.php sul server:
+GET /httpTest/index.php HTTP/1.1
+host: spano.sc.unica.it
+Dopo aver scritto la richiesta si invia premendo due volte invio.
+
+TASK 2:
+Risposta ottenuta:
+HTTP/1.1 200 OK
+Date: Thu, 03 Mar 2016 13:34:35 GMT
+Server: Apache/2.4.12 (Ubuntu)
+X-Powered-By: PHP/5.6.11-1ubuntu3.1
+Set-Cookie: PHPSESSID=tenjk499tt74ekjo7b5jgv4c15; path=/
+Expires: Thu, 19 Nov 1981 08:52:00 GMT
+Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0
+Pragma: no-cache
+Vary: Accept-Encoding
+Content-Length: 264
+Content-Type: text/html; charset=UTF-8
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Pagina di test per telnet</title>
+    </head>
+    <body>
+        <h1>Parametri ricevuti</h1>
+        <ul></ul>
+            </body>
+</html>
+
+Analizzando la risposta ottenuta alla richiesta precedente trovare quali cookies sono stati inviati dal server:
+Set-Cookie: PHPSESSID=tenjk499tt74ekjo7b5jgv4c15; path=/
+
+
+TASK 3:
+Ripetere la richiesta con un server a piacere. Variare il metodo di richiesta fra GET e HEAD e notare la differenza fra le risposte.
+Connessione a GOOGLE: telnet www.google.com 80
+Richiedo la pagina principale di GOOGLE prima con il metodo GET e poi con il metodo POST
+
+Richiesta con metodo GET :
+GET / HTTP/1.1
+host: www.google.com
+
+Richiesta con metoto HEAD:
+HEAD  / HTTP/1.1
+host: www.google.com
+Utilizzando il metodo GET si ottiene una risposta completa composta da riga di stato, headers e dati della risorsa richiesta; utilizzando il metodo HEAD, invece, in risposta si ottiene solamente la riga di stato e gli headers
+
+TASK 4:
+È possibile inviare dei parametri per la richiesta HTTP codificandoli nella URL. La pagina che abbiamo provato per i task precedenti stampa i parametri ricevuti all'interno dell'HTML.
+Inviare alla stessa risorsa dei task una richiesta con i parametri codificati nella URL, utilizzando la sintassi della query string vista a lezione.
+Connessione al server : telnet spano.sc.unica.it 80
+Richiesta:
+GET /httpTest/index.php?alunno=Selima&chiave=4 HTTP/1.1
+host: spano.sc.unica.it
+Risposta:
+HTTP/1.1 200 OK
+Date: Thu, 03 Mar 2016 13:44:51 GMT
+Server: Apache/2.4.12 (Ubuntu)
+X-Powered-By: PHP/5.6.11-1ubuntu3.1
+Set-Cookie: PHPSESSID=spoqsn1mklb2lt9apg5krtv4a7; path=/
+Expires: Thu, 19 Nov 1981 08:52:00 GMT
+Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0
+Pragma: no-cache
+Vary: Accept-Encoding
+Content-Length: 307
+Content-Type: text/html; charset=UTF-8
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Pagina di test per telnet</title>
+    </head>
+    <body>
+        <h1>Parametri ricevuti</h1>
+        <ul></ul>
+        <li>alunno: Selima</li>
+<li>chiave: 4</li>
+    </body>
+</html>
+Possiamo notare i parametri inviati al server all'interno della risposta.
+
+
+TASK 5:
+Ripetere la stessa richiesta scrivendo la url completa nella barra degli indirizzi di un browser e vedere il risultato. 
+Richiesta: http://spano.sc.unica.it/httpTest/index.php?alunno=Selima&chiave=4
+
+
+TASK 6:
+Gli stessi parametri alla pagina di prima possono anche essere mandati con una post:
+POST /httpTest/index.php HTTP/1.1
+host: spano.sc.unica.it
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 22
+
+alunno=Selima&chiave=4
+Il primo header serve a specificare come sono codificati i parametri (come nelle URL), mentre il secondo specifica la lunghezza dei dati. 
+
+
+TASK 7:
+In questo task sperimenterete come faccia un server a comprendere che tipo di browser sia utilizzato dall'utente tramite gli header HTTP. Aprire la pagina:
+http://spano.sc.unica.it/httpTest/checkBrowser.php
+ La pagina HTML visualizzata vi specificherà che tipo di browser stiate utilizzando. Il trucco sta nel leggere il valore dello header HTTP user-agent. Noi ora ci trasformeremo in hacker e cercherò di imbrogliare il server, utilizzando telnet. Invitare con telnet la seguente richiesta alla risorsa /httpTest/checkBrowser.php del server spano.sc.unica.it
+Mimiamo Firefox:
+GET /httpTest/checkBrowser.php HTTP/1.1
+host: spano.sc.unica.it
+User-Agent: Mozilla/5.0 (Windows NT 6.2; WOW64; rv:18.0) Gecko/20100101 Firefox/18.0 
+
+Mimiamo Chrome:
+GET /httpTest/checkBrowser.php HTTP/1.1
+host: spano.sc.unica.it
+User-Agent: Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.22 (KHTML, like Gecko) Chrome/25.0.1364.97 Safari/537.22
+
+Mimiamo Internet Explorer:
+GET /httpTest/checkBrowser.php HTTP/1.1 
+host: spano.sc.unica.it
+User-Agent: Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; WOW64; Trident/6.0)
+Come abbiamo potuto notare, a seconda dello user agent, vengono restituite risposte differenti.
