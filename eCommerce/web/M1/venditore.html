@@ -8,12 +8,34 @@ and open the template in the editor.
     <head>
         <title>Venditore</title>
         <meta charset="UTF-8">
-        <meta name="keywords" content="">
-        <meta name="description" content="">
+        <meta name="keywords" content="Vendita, Usato, Nuovo, Auto, Veicoli">
+        <meta name="description" content="Inserimento di un nuovo veicolo in vendita.">
         <meta name="author" content="Selima Curci">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
+         <a href="descrizione.html">Descrizione</a> 
+        <a href="login.html">Login</a> 
+        <br/><br/>
+        
+        <form action="venditore.html" method="post">
+            <label for="nomeoggetto">Nome oggetto</label>
+            <input type="text" name="nomeoggetto" id="nomeoggetto" value="" />
+            <br/><br/>
+            <label for="urlimagine">URL immmagine</label>
+            <input type="url" name="urlimagine" id="urlimagine" value="" />
+            <br/><br/>
+            <label for="descrizione">Descrizione</label>
+            <textarea rows="4" cols="20" name="descrizione" id="descrizione"></textarea>
+            <br/><br/>
+            <label for="prezzo">Prezzo</label>
+            <input type="text" name="prezzo" id="prezzo">
+            <br/><br/>
+            <label for="quantita">Quantità</label>
+            <input type="number" name="quantita" id="quantita" min="1" max="1000">
+            <br/><br/>
+            <input type="submit" value="Login" />
+        </form>
         
     </body>
 </html>
