@@ -1,209 +1,218 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html>
     <head>
         <title>Descrizione</title>
+        <!-- Metainformazioni sulla pagina -->
         <meta charset="UTF-8">
-        <meta name="keywords" content="Auto, Moto, Nuovo, Usato, Vendita, Autontheline.com">
+        <meta name="keywords" content="Auto, Moto, Nuovo, Usato, Vendita, Autontheline.com, Occasioni">
         <meta name="description" content="Sito per il commercio online di auto e veicoli nuovi e usati">
         <meta name="author" content="Selima Curci">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <nav>
+        <!-- Sezione di navigazione per raggiungere la pagina di login -->
+        <nav id="login">
              <a href="login.html">Login</a>
         </nav>
         
-        <h1 id="titolo">AUTONTHELINE.COM</h1>
-        <p>Vuoi vendere o comprare un auto? Autontheline.com sarà la tua risposta! Trova subito auto nuove e usate, moto, camper e veicoli commerciali.
-        Interfaccia utente intuitiva ed efficacie per esperti e venditori alle prime armi. Potrai accedere facilmente sia
-        come venditore che come cliente. I venditori potranno inserire i propri annunci in maniera completamente gratuita.
-        Sistema di logistica interattivo e multifunzionale per mettere in contatto e soddisfare le 
-        esigenze anche dei clienti più difficili e degli abitanti più sfortunati in termini di locazione geografica. 
-        Non sai come spendere i tuoi soldi? Oppure sei stanco di avere le tasche vuote? Noi trasformeremo il 
-        vecchio rottame di tuo nonno nel tappeto volante di qualcun altro, realizzando sogni irrealizzabili. 
-        Solo su AUTONTHELINE! Nella sezione Auto Usate trovi migliaia di annunci con foto di auto usate sicure con garanzia di concessionari e 
-        privati di tutte le marche in tutto il globo.
-        AUTONTHELINE nasce nel 1823 a.C. in Bosnia Erzegovina, fondata dal celebre monaco Chan 
-        Mindu Athelstan all'età di 11 anni in un collegio. La società ha intrapreso un profondo cammino 
-        spirituale verso la Cambogia per poi decidere che la Cina era più economica. Attualmete non è quotata in borsa 
-        e non intende esserlo in futoro. Per chi fosse interessato a lavorare con noi invii il curriculum e forse 
-        verrà preso in considerazione. Grazie per l'attenzione.</p>
+        <!-- Breve introduzione al sito -->
+        <div id="introduzione">
+            <h1 id="titolo">AUTONTHELINE.COM</h1>
+            <p>Vuoi vendere o comprare un auto? Autontheline.com sarà la tua risposta! Trova subito auto nuove e usate, moto, camper e veicoli commerciali.
+            Interfaccia utente intuitiva ed efficacie per esperti e venditori alle prime armi. Potrai accedere facilmente sia
+            come venditore che come cliente. I venditori potranno inserire i propri annunci in maniera completamente gratuita.
+            Sistema di logistica interattivo e multifunzionale per mettere in contatto e soddisfare le 
+            esigenze anche dei clienti più difficili e degli abitanti più sfortunati in termini di locazione geografica. 
+            Non sai come spendere i tuoi soldi? Oppure sei stanco di avere le tasche vuote? Noi trasformeremo il 
+            vecchio rottame di tuo nonno nel tappeto volante di qualcun altro, realizzando sogni irrealizzabili. 
+            Solo su AUTONTHELINE! Nella sezione Auto Usate trovi migliaia di annunci con foto di auto usate sicure con garanzia di concessionari e 
+            privati di tutte le marche in tutto il globo.
+            AUTONTHELINE nasce nel 1823 a.C. in Bosnia Erzegovina, fondata dal celebre monaco Chan 
+            Mindu Athelstan all'età di 11 anni in un collegio. La società ha intrapreso un profondo cammino 
+            spirituale verso la Cambogia per poi decidere che la Cina era più economica. Attualmete non è quotata in borsa 
+            e non intende esserlo in futoro. Per chi fosse interessato a lavorare con noi invii il curriculum e forse 
+            verrà preso in considerazione. Grazie per l'attenzione.</p>
+        </div>
         
-        <p>Consigli per i russi. <br/> Quando vendere una macchina? La pratica dimostra che il freddo è la situazione
-        più favorevole per la vendita di veicoli. 
-        Ciò è dovuto alla forte crescita della domanda per le auto, che sono necessarie per i cittadini per visitare i 
-        giardini e le aree suburbane periferiche. Allo stesso tempo, i conducenti possono vendere la vecchia macchina 
-        senza pneumatici invernali che l'acquirente non richiede nelle stagioni primaverili ed 
-        estivi. Queste applicazioni aggiuntive fanno si che possa essere redditizio vendere dopo l'inizio dell'inverno. </p>
+        <!-- Sommario con link interni alle sezioni-->
+        <div id="sommario">
+            <h2>Sommario</h2>
+            <ul>
+                <li>    <a href="#nuovo">Nuovo</a>
+                    <ul>
+                        <li><a href="#auto1">Auto</a></li>
+                        <li><a href="#moto1">Moto</a></li>
+                        <li><a href="#altro1">Altro</a></li>
+                    </ul>
+                </li>
+                <li> <a href="#usato">Usato</a>
+                    <ul>
+                        <li><a href="#auto2">Auto</a></li>
+                        <li><a href="#moto2">Moto</a></li>
+                        <li><a href="#altro2">Altro</a></li>
+                    </ul>
+                </li>    
+                <li> <a href="#accessori">Ricambi e accessori</a>
+                    <ul>
+                        <li><a href="#auto3">Auto</a></li>
+                        <li><a href="#moto3">Moto</a></li>
+                        <li><a href="#altro3">Altro</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+            
+        <!-- Sezione veicoli nuovi-->
+        <div id="sez_nuovo">
+            <h2 id='nuovo'>NUOVO</h2>
+            <p>Vendita veicoli nuovi e nuovissimi : auto, moto e 2-6-9-15 ruote per le persone più bisognose di ruote. 
+            Vedi un muro e vuoi salirci? La categoria ALTRO risponderà alle tue salite nel modo giusto. Vuoi verticalizzare
+            la tua vita in un piano orizzontale di strade catramate? Sgomma su AUTONTHELINE.COM, la via giusta per 
+            il viaggio sbagliato. Hai problemi di sonno? Su AUTONTHELINE.COM potrai svegliarti più tardi per andare a 
+            lavoro grazie alle moto più veloci del più veloce e-commerce veloce dell'alta velocità. Per te le migliori
+            offerte e occasioni rintracciabili sul pianeta, solo oggi, solo adesso, "only for you", chiama ora, dona, VIVI.</p>
+            <h3 id='auto1'>Auto</h3>
+            <p>Cerca la tua nuova auto tra i tanti modelli offerti da autontheline. Ogni giorno migliaia di offerte ti 
+            sorprenderano al punto tale che ti convincerai a cambiare auto in qualsiasi momento. Potrai pagare attraverso un 
+            nuovo circuito di moneta virtuale che renderà più semplice e più veloce ogni trattazione messa in atto all'interno
+            della piattaforma. Per chiarire quasiasi dubbio chiamate e scriveteci senza alcun problema (ma non esagerate). 
+            Tra i migliori marchi dei sette mari offerti solo per voi:</p>
+            <ul>
+                <li>Aixam</li> 
+                <li>Amphicar</li> 
+                <li>Borgward</li> 
+                <li>Casalini</li> 
+                <li>Chery</li> 
+                <li>Daimler</li> 
+                <li>DRmotor</li> 
+                <li>Fisker</li> 
+                <li>IsoRivolta</li> 
+                <li>Lifan</li> 
+                <li>Melex</li> 
+                <li>PGO</li> 
+                <li>Savel</li> 
+                <li>TownLife</li> 
+                <li>UAZ</li> 
+                <li>VAZ</li> 
+                <li>Zastova</li> 
+            </ul>
+
+            <h3 id='moto1'>Moto</h3>
+            <p>Sogni le due ruote? Su autontheline potrai volare via sulla tua moto nuova. Potrai provare l'acqua 
+            di montagna e i brividi sulla pelle, i moscerini negli occhi e il mal di schiena. Potrai impennare dove 
+            e quando vuoi, ricordati però di atterrare ogni volta. Soddisfatti o soddisfatti. </p>
+            <ul>
+                <li>Access</li>
+                <li>Adly</li>
+                <li>Baotian</li>
+                <li>ChinaBike</li>
+                <li>D-RAD</li>
+                <li>EcoMobile</li>
+                <li>Horex</li>
+                <li>IFA</li>
+                <li>Leonard</li>
+                <li>PGO</li>
+                <li>REX</li>
+                <li>XingFu</li>
+            </ul>
+
+            <h3 id='altro1'>Altro</h3>
+            <p>Hai le idee confuse? Cerca tra le stranezze proposte da autontheline. Troverai quel che cerchi ancora 
+            prima di sapere cosa stai cercando. In alcuni periodi dell'anno potresti riuscire ad acquistare un disco 
+            volante nuovo di zecca mai atterrato su un pianeta del nostro sistema solare. E tanto altro ancora. 
+            Per scoprire le novità più nuove del nuovo conosciuto segui la nostra pagina facebook : www.facebook.org.</p>
+        </div>
         
-        <p>Per qualsiasi informazione chiamate al numero verde 800-900-313 o scrivete a autontheline.rispme@v6mail.org.</p>
+        <!-- Sezione veicoli usati-->
+        <div id="sez_usato">
+            <h2 id='usato'>USATO</h2>
+            <p>Vendita veicoli usati. Cerca la tua auto d´occasione o vendi macchine private in tutto l'Universo conosciuto.
+            Hai il garage vuoto? Riempitelo. Hai il garage pieno? Svuotatelo. Hai pochi soldi? Non possiamo aiutarti. 
+            Ma se hai una macchina vecchia noi saremo la luce fuori dal tuo tunnel immenso e infinito, colmo di indecisione 
+            e sofferenza inaudita. Non avere paura di abbandonare il tuo catorcio per un nuovissimo catorcio peggiore del precedente. 
+            E' il momento, lasciati andare, segui l'onda dei milioni e milioni di milioni. Forse con euri in tasca riempi il 
+            garage, ma questa è solo una supposizione ipotizzata dalle più grandi menti astro-teoriche della fanta-fisica 
+            statistica. Per maggiori dettagli: studia.  </p>
+            <h3 id='auto2'>Auto</h3>
+            <p>Cerca la tua auto usata e riusata e strausata tra i tanti modelli offerti da furbi ma onestamente fraudolenti venditori. 
+            Tra i peggiori marchi del Bengala alle migliori offerte australiane:</p>
+             <ul>
+                <li>Aixam</li> 
+                <li>Amphicar</li> 
+                <li>Borgward</li> 
+                <li>Casalini</li> 
+                <li>Chery</li> 
+                <li>Daimler</li> 
+                <li>DRmotor</li> 
+                <li>Fisker</li> 
+                <li>IsoRivolta</li> 
+                <li>Lifan</li> 
+                <li>Melex</li> 
+                <li>PGO</li> 
+                <li>Savel</li> 
+                <li>TownLife</li> 
+                <li>UAZ</li> 
+                <li>VAZ</li> 
+                <li>Zastova</li> 
+            </ul>
+
+            <h3 id='moto2'>Moto</h3>
+            <p>Sogni le due ruote? Su autontheline vorresti volare via sulla tua moto nuova, ma non puoi; 
+            perciò accontentati di una usata perchè è la tua unica chance. Potrai provare l'acqua del deserto e i 
+            sudori sulla fronte, i moscerini negli occhi e il mal di testa. Potrai impennare dove e quando vuoi 
+            (più o meno), ricordati però di atterrare ogni volta. Soddisfatti o soddisfatti. Ci estraniamo da ogni 
+            responsabilità. </p>
+            <ul>
+                <li>Access</li>
+                <li>Adly</li>
+                <li>Baotian</li>
+                <li>ChinaBike</li>
+                <li>D-RAD</li>
+                <li>EcoMobile</li>
+                <li>Horex</li>
+                <li>IFA</li>
+                <li>Leonard</li>
+                <li>PGO</li>
+                <li>REX</li>
+                <li>XingFu</li>
+            </ul>
+
+            <h3 id='altro2'>Altro</h3>
+            <p>Hai le idee confuse? Cerca tra le stranezze proposte da autontheline. Troverai quel che cerchi ancora 
+            prima di sapere cosa stai cercando. In alcuni periodi dell'anno potresti riuscire ad acquistare un disco 
+            volante nuovo di zecca mai atterrato su un pianeta del nostro sistema solare. E tanto altro ancora. 
+            Per scoprire le novità più nuove del nuovo conosciuto segui la nostra pagina facebook : www.facebook.org.</p>
+        </div>
         
+        <!-- Sezione ricambi e accessori per veicoli -->
+        <div id="sez_acessori">
+            <h2 id='accessori'>RICAMBI E ACCESSORI</h2>
+            <p>Non puoi più volare via per un problemino, per un problemone, per una problematica o per qualsiasi sia 
+            il tuo reale problema ? AUTONTHELINE.COM non può aiutarti. Siamo profondamente dispiaciuti, al massimo possiamo 
+            offrirti qualche ricambio originale, di concorrenza o contraffatto, a seconda del tuo budget. Non aspettarti 
+            miracoli, ma solo ulteriori problemi, che ovviamente richiederanno ulteriori spese dispersive, espansive e 
+            compulsive, IVA inclusa ed esentasse. Non emettiamo fatture ma solide realtà.</p>
+            <h3 id='auto3'>Auto</h3>
+            <p>Acessori e ricambi di qualità per la tua auto.</p>
+            <h3 id='moto3'>Moto</h3>
+            <p>Acessori e ricambi di qualità per la tua moto.</p>
+            <h3 id='altro3'>Altro</h3>
+            <p>Acessori e ricambi di qualità per i veicoli più disparati. Occasioni introvabili e rare a portata di click.</p>
+        </div>
         
-        <h2>Sommario</h2>
-        <p>
-        <ul>
-            <li>    <a href="#nuovo">Nuovo</a>
-                <ul>
-                    <li><a href="#auto1">Auto</a></li>
-                    <li><a href="#moto1">Moto</a></li>
-                    <li><a href="#altro1">Altro</a></li>
-                </ul>
-            </li>
-            <li> <a href="#usato">Usato</a>
-                <ul>
-                    <li><a href="#auto2">Auto</a></li>
-                    <li><a href="#moto2">Moto</a></li>
-                    <li><a href="#altro2">Altro</a></li>
-                </ul>
-            </li>    
-            <li> <a href="#accessori">Ricambi e accessori</a>
-                <ul>
-                    <li><a href="#auto3">Auto</a></li>
-                    <li><a href="#moto3">Moto</a></li>
-                    <li><a href="#altro3">Altro</a></li>
-                </ul>
-            </li>
-        </ul>
-        </p>
-        
-        <h2 id='nuovo'>NUOVO</h2>
-        <p>Vendita veicoli nuovi e nuovissimi : auto, moto e 2-6-9-15 ruote per le persone più bisognose di ruote. 
-        Vedi un muro e vuoi salirci? La categoria ALTRO risponderà alle tue salite nel modo giusto. Vuoi verticalizzare
-        la tua vita in un piano orizzontale di strade catramate? Sgomma su AUTONTHELINE.COM, la via giusta per 
-        il viaggio sbagliato. Hai problemi di sonno? Su AUTONTHELINE.COM potrai svegliarti più tardi per andare a 
-        lavoro grazie alle moto più veloci del più veloce e-commerce veloce dell'alta velocità. Per te le migliori
-        offerte e occasioni rintracciabili sul pianeta, solo oggi, solo adesso, "only for you", chiama ora, dona, VIVI.</p>
-        <h3 id='auto1'>Auto</h3>
-        <p>Cerca la tua nuova auto tra i tanti modelli offerti da autontheline. Ogni giorno migliaia di offerte ti 
-        sorprenderano al punto tale che ti convincerai a cambiare auto in qualsiasi momento. Potrai pagare attraverso un 
-        nuovo circuito di moneta virtuale che renderà più semplice e più veloce ogni trattazione messa in atto all'interno
-        della piattaforma. Per chiarire quasiasi dubbio chiamate e scriveteci senza alcun problema (ma non esagerate). 
-        Tra i migliori marchi dei sette mari offerti solo per voi:</p>
-        <ul>
-            <li>Aixam</li> 
-            <li>Amphicar</li> 
-            <li>Borgward</li> 
-            <li>Casalini</li> 
-            <li>Chery</li> 
-            <li>Daimler</li> 
-            <li>DRmotor</li> 
-            <li>Fisker</li> 
-            <li>IsoRivolta</li> 
-            <li>Lifan</li> 
-            <li>Melex</li> 
-            <li>PGO</li> 
-            <li>Savel</li> 
-            <li>TownLife</li> 
-            <li>UAZ</li> 
-            <li>VAZ</li> 
-            <li>Zastova</li> 
-        </ul>
-        
-        <h3 id='moto1'>Moto</h3>
-        <p>Sogni le due ruote? Su autontheline potrai volare via sulla tua moto nuova. Potrai provare l'acqua 
-        di montagna e i brividi sulla pelle, i moscerini negli occhi e il mal di schiena. Potrai impennare dove 
-        e quando vuoi, ricordati però di atterrare ogni volta. Soddisfatti o soddisfatti. </p>
-        <ul>
-            <li>Access</li>
-            <li>Adly</li>
-            <li>Baotian</li>
-            <li>ChinaBike</li>
-            <li>D-RAD</li>
-            <li>EcoMobile</li>
-            <li>Horex</li>
-            <li>IFA</li>
-            <li>Leonard</li>
-            <li>PGO</li>
-            <li>REX</li>
-            <li>XingFu</li>
-        </ul>
-        
-        <h3 id='altro1'>Altro</h3>
-        <p>Hai le idee confuse? Cerca tra le stranezze proposte da autontheline. Troverai quel che cerchi ancora 
-        prima di sapere cosa stai cercando. In alcuni periodi dell'anno potresti riuscire ad acquistare un disco 
-        volante nuovo di zecca mai atterrato su un pianeta del nostro sistema solare. E tanto altro ancora. 
-        Per scoprire le novità più nuove del nuovo conosciuto segui la nostra pagina facebook : www.facebook.org.</p>
-        
-        <h2 id='usato'>USATO</h2>
-        <p>Vendita veicoli usati. Cerca la tua auto d´occasione o vendi macchine private in tutto l'Universo conosciuto.
-        Hai il garage vuoto? Riempitelo. Hai il garage pieno? Svuotatelo. Hai pochi soldi? Non possiamo aiutarti. 
-        Ma se hai una macchina vecchia noi saremo la luce fuori dal tuo tunnel immenso e infinito, colmo di indecisione 
-        e sofferenza inaudita. Non avere paura di abbandonare il tuo catorcio per un nuovissimo catorcio peggiore del precedente. 
-        E' il momento, lasciati andare, segui l'onda dei milioni e milioni di milioni. Forse con euri in tasca riempi il 
-        garage, ma questa è solo una supposizione ipotizzata dalle più grandi menti astro-teoriche della fanta-fisica 
-        statistica. Per maggiori dettagli: studia.  </p>
-        <h3 id='auto2'>Auto</h3>
-        <p>Cerca la tua auto usata e riusata e strausata tra i tanti modelli offerti da furbi ma onestamente fraudolenti venditori. 
-        Tra i peggiori marchi del Bengala alle migliori offerte australiane:</p>
-         <ul>
-            <li>Aixam</li> 
-            <li>Amphicar</li> 
-            <li>Borgward</li> 
-            <li>Casalini</li> 
-            <li>Chery</li> 
-            <li>Daimler</li> 
-            <li>DRmotor</li> 
-            <li>Fisker</li> 
-            <li>IsoRivolta</li> 
-            <li>Lifan</li> 
-            <li>Melex</li> 
-            <li>PGO</li> 
-            <li>Savel</li> 
-            <li>TownLife</li> 
-            <li>UAZ</li> 
-            <li>VAZ</li> 
-            <li>Zastova</li> 
-        </ul>
-        
-        <h3 id='moto2'>Moto</h3>
-        <p>Sogni le due ruote? Su autontheline vorresti volare via sulla tua moto nuova, ma non puoi; 
-        perciò accontentati di una usata perchè è la tua unica chance. Potrai provare l'acqua del deserto e i 
-        sudori sulla fronte, i moscerini negli occhi e il mal di testa. Potrai impennare dove e quando vuoi 
-        (più o meno), ricordati però di atterrare ogni volta. Soddisfatti o soddisfatti. Ci estraniamo da ogni 
-        responsabilità. </p>
-        <ul>
-            <li>Access</li>
-            <li>Adly</li>
-            <li>Baotian</li>
-            <li>ChinaBike</li>
-            <li>D-RAD</li>
-            <li>EcoMobile</li>
-            <li>Horex</li>
-            <li>IFA</li>
-            <li>Leonard</li>
-            <li>PGO</li>
-            <li>REX</li>
-            <li>XingFu</li>
-        </ul>
-        
-        <h3 id='altro2'>Altro</h3>
-        <p>Hai le idee confuse? Cerca tra le stranezze proposte da autontheline. Troverai quel che cerchi ancora 
-        prima di sapere cosa stai cercando. In alcuni periodi dell'anno potresti riuscire ad acquistare un disco 
-        volante nuovo di zecca mai atterrato su un pianeta del nostro sistema solare. E tanto altro ancora. 
-        Per scoprire le novità più nuove del nuovo conosciuto segui la nostra pagina facebook : www.facebook.org.</p>
-        
-        
-        <h2 id='accessori'>RICAMBI E ACCESSORI</h2>
-        <p>Non puoi più volare via per un problemino, per un problemone, per una problematica o per qualsiasi sia 
-        il tuo reale problema ? AUTONTHELINE.COM non può aiutarti. Siamo profondamente dispiaciuti, al massimo possiamo 
-        offrirti qualche ricambio originale, di concorrenza o contraffatto, a seconda del tuo budget. Non aspettarti 
-        miracoli, ma solo ulteriori problemi, che ovviamente richiederanno ulteriori spese dispersive, espansive e 
-        compulsive, IVA inclusa ed esentasse. Non emettiamo fatture ma solide realtà.</p>
-        <h3 id='auto3'>Auto</h3>
-        <p>Acessori e ricambi di qualità per la tua auto.</p>
-        <h3 id='moto3'>Moto</h3>
-        <p>Acessori e ricambi di qualità per la tua moto.</p>
-        <h3 id='altro3'>Altro</h3>
-        <p>Acessori e ricambi di qualità per i veicoli più disparati. Occasioni introvabili e rare a portata di click.</p>
-        
-        
-        <p>Per qualsiasi lamentela rivolgersi all'ufficio reclami.</br>
-        <a href="#titolo">Torna su<a></p>
-        
+        <!-- Sezione informazioni aggiuntive e contatti -->
+        <footer id="info">
+            <h2>Informazioni</h2>
+            <p>Consigli per i russi. <br/> Quando vendere una macchina? La pratica dimostra che il freddo è la situazione
+            più favorevole per la vendita di veicoli. 
+            Ciò è dovuto alla forte crescita della domanda per le auto, che sono necessarie per i cittadini per visitare i 
+            giardini e le aree suburbane periferiche. Allo stesso tempo, i conducenti possono vendere la vecchia macchina 
+            senza pneumatici invernali che l'acquirente non richiede nelle stagioni primaverili ed 
+            estivi. Queste applicazioni aggiuntive fanno si che possa essere redditizio vendere dopo l'inizio dell'inverno. </p>
+
+            <p>Per qualsiasi informazione chiamate al numero verde 800-900-313 o scrivete a autontheline.rispme@v6mail.org.
+            Per qualsiasi lamentela rivolgersi all'ufficio reclami.<br/>
+            <a href="#login">Torna su</a></p> <!-- Link interno che permette di tornare a inizio pagina -->
+        </footer>
     </body>
 </html>
