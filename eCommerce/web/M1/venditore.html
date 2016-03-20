@@ -1,41 +1,39 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html>
     <head>
         <title>Venditore</title>
+        <!-- Metainformazioni sulla pagina -->
         <meta charset="UTF-8">
         <meta name="keywords" content="Vendita, Usato, Nuovo, Auto, Veicoli">
-        <meta name="description" content="Inserimento di un nuovo veicolo in vendita.">
+        <meta name="description" content="Inserimento di un nuovo veicolo in vendita">
         <meta name="author" content="Selima Curci">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-         <a href="descrizione.html">Descrizione</a> 
-        <a href="login.html">Login</a> 
-        <br/><br/>
+        <!-- Sezione di navigazione -->
+        <nav>
+            <a href="descrizione.html">Descrizione</a> 
+            <a href="login.html">Login</a> 
+        </nav>
         
+        <!-- Form per l’inserimento di un nuovo oggetto all’interno della pagina venditore.html -->
         <form action="venditore.html" method="post">
             <label for="nomeoggetto">Nome oggetto</label>
             <input type="text" name="nomeoggetto" id="nomeoggetto" value="" />
-            <br/><br/>
+                
             <label for="urlimagine">URL immmagine</label>
             <input type="url" name="urlimagine" id="urlimagine" value="" />
-            <br/><br/>
+                
             <label for="descrizione">Descrizione</label>
             <textarea rows="4" cols="20" name="descrizione" id="descrizione"></textarea>
-            <br/><br/>
+                
             <label for="prezzo">Prezzo</label>
-            <input type="text" name="prezzo" id="prezzo">
-            <br/><br/>
+            <input type="number" step="0.01" min="0" name="prezzo" id="prezzo" >
+                
             <label for="quantita">Quantità</label>
             <input type="number" name="quantita" id="quantita" min="1" max="1000">
-            <br/><br/>
+                
             <input type="submit" value="Login" />
-        </form>
-        
+        </form>     
     </body>
 </html>
