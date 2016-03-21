@@ -1,28 +1,34 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html>
     <head>
         <title>Login</title>
+        <!-- Metainformazioni sulla pagina -->
         <meta charset="UTF-8">
-        <meta name="keywords" content="">
-        <meta name="description" content="">
+        <meta name="keywords" content="Login, Autontheline.com">
+        <meta name="description" content="Login su autontheline.com">
         <meta name="author" content="Selima Curci">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <form action="" method="post">
-        <label for="username">Username</label>
-        <input type="text" name="username"
-        id="username" value="" />
-        <br/><br/>
-        <label for="pswd">Password</label>
-        <input type="password" name="pswd” "
-        id="pswd" value="" />
-        <br/>
+        <!-- Sezione di navigazione -->
+        <nav>
+            <a href="descrizione.html">Descrizione</a> 
+            <a href="cliente.html">Cliente</a> 
+            <a href="venditore.html">Venditore</a>
+        </nav>
+        
+        <h1>Login al sito</h1>
+        <p>Inserisci le tue credenziali per accedere a tutti i servizi di AUTONTHELINE.com</p>
+        
+        <!-- Form per l'inserimento delle credenziali da parte dell'utente-->
+        <form action="login.html" method="post">
+            <label for="username">Username</label>
+            <input type="text" name="username" id="username" value="" />
+            
+            <label for="pswd">Password</label>
+            <input type="password" name="pswd" id="pswd" value="" />
+            
+            <input type="submit" value="Login" />
         </form>
     </body>
 </html>
