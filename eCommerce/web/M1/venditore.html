@@ -27,9 +27,11 @@
             <label for="urlimagine">URL immmagine</label>
             <input type="url" name="urlimagine" id="urlimagine" value="" />
                 
+            <!-- Per la descrizione uso una text area in quanto ci si aspetta un testo pseudo-lungo -->
             <label for="descrizione">Descrizione</label>
             <textarea rows="4" cols="20" name="descrizione" id="descrizione"></textarea>
                 
+            <!-- L'attributo step permette di inserire numeri decimali -->
             <label for="prezzo">Prezzo per unità</label>
             <input type="number" step="0.01" min="0" name="prezzo" id="prezzo" >
                 
@@ -37,7 +39,7 @@
             <input type="number" name="quantita" id="quantita" min="1" max="1000">
                 
             <input type="submit" value="Invia" />
-            <input type="reset" value="Reset" />
+            <input type="reset" value="Reset" /> <!-- Bottone di reset -->
         </form>     
     </body>
 </html>
