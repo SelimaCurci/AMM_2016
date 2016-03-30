@@ -1,0 +1,269 @@
+/* 
+    Created on : 23-mar-2016, 16.26.26
+    Author     : selima
+*/
+
+body{
+    background-color: #3B3B3B;
+    font-family: "Candara", Arial, serif;
+    font-size: 12pt;
+}
+
+
+#header{
+    clear: both;
+    border-bottom: 5px solid #3B3B3B;
+    height: 150px;
+    border-radius: 7px;
+}
+
+#footer{
+    border-top: 5px solid #3B3B3B; 
+    padding-top: 15px; 
+    height: 120px;
+    padding-bottom: 15px;
+}
+
+#header, #footer{
+    background-color: #A9A9A9;
+    box-shadow: 0 0 15px rgba(0,0,0,.2);
+    position: relative;
+    padding-left: 40px;
+    padding-right: 40px;
+    margin: 0 auto;
+    border-radius: 7px;
+}
+
+
+
+.clear{
+    clear: both; 
+    width: 0px; height: 0px;
+}
+.spazio{
+    clear: both; 
+    width: 0px; height: 8px;
+}
+
+h1, h2, h3 {
+    color: #3E3535;
+    margin: 0px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+h2{
+    font-size: 20pt;
+    padding-bottom: 2px;
+}
+
+p.sottosezione{
+    margin-top: -2px;
+    margin-bottom: 10px;
+}
+
+div#central h2:first-letter{
+    font-size: 25pt;
+    color: #9e1616;
+}
+
+h1:first-letter{
+    font-size: 25pt;
+    color: #9e1616;
+}
+
+/* Inserico l'immagine che rappresenta il logo del sito' */
+div#header{
+    background-image: url('images/logo.png');
+    background-repeat: no-repeat; 
+    background-position: center;
+}
+
+/* Paragrafo iformazioni alla fine della pagina descrizione.html */
+#footer p{
+    vertical-align: middle;
+    display: table-cell;
+}
+
+div#storia::after{
+    content: url("images/george.jpg");
+    display:block;
+    margin:0px auto;
+    text-align:center; 
+}
+
+/* Definisco lo stile dei link */
+a:visited, a:link{
+    color: #9e1616;
+    text-decoration: none;
+}
+a:hover{
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+/* Freccia che riporta all'inizio della pagina in descrizione.html' */
+a#su{
+     content: url("images/freccia_su.png");   
+     float: right;
+     margin-right: 20px;
+     margin-bottom: 10px;
+}
+
+ul.elenco>li {
+    float: left;
+    list-style: none;
+    padding: 0 2px;
+}
+
+ul.elenco li li {
+    list-style: square;
+}
+
+/* Colorazione alternata delle righe della tabella */
+tr:nth-child(2n){
+    background-color: #808080;
+}
+tr:nth-child(2n+1){
+    background-color: #80808f;
+}
+
+#central p{
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+#sidebar1 ul{
+    list-style: square;
+    margin-top: 5px;
+}
+
+#sidebar1 .categoria{
+    font-size: 13pt;
+}
+
+#sidebar1 p, #sidebar1 h2, #sidebar2 p{
+    margin-left: 10px;
+    margin-right: 10px;
+    text-align: justify;
+}
+
+fieldset{
+    border-radius: 10px;
+    padding: 10px;
+}
+label{
+    font-size: 12pt;
+    color: #3E3535;
+    width:40%;
+    float:left;
+    font-family: "Candara", Arial, serif;
+    display:block;
+    font-weight: bold;
+}
+
+input, textarea{
+    font-family: "Candara", Arial, serif;
+    color: #000000;
+    background: #CCCCCC;
+    border: 1px solid #000000;
+    border-radius: 5px;
+    padding-right: 6px;
+    padding-left: 6px;
+}
+input:focus, textarea:focus{
+    background: #DEDEDE;
+    border: 1px solid #9e1616;
+    border-radius: 5px;
+    outline: none;
+}
+
+#header #login{
+    float: right;
+    margin-right: -15px;
+    margin-top: 20px;
+    background-color: #DCDCDC;
+    box-shadow: 0 0 15px rgba(0,0,0,.2);
+    border-radius: 5px;
+    padding: 10px;
+} 
+
+#sidebar1{
+    width: 20%;
+    float: left;
+    margin-left: 0;
+    margin-top: 0;
+}
+
+#sidebar2{
+    width: 20%;
+    float:right;
+    margin-left: 0;
+    margin-top: 0;
+}
+
+#central{
+    padding-bottom: 10px;
+    padding-left: 10px;
+    margin-left: 20%;
+    margin-right: 20%;
+    background-color: #F5F5F5;
+}
+
+
+#page {
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 25px;
+        margin-bottom:25px;
+        box-shadow: 0 0 10px rgba(0,0,0,.2);
+        border-radius: 7px;
+        background-color: #DCDCDC;
+}
+
+
+
+#valida{
+    margin: 10px;
+    
+}
+
+/* social bar */
+
+    .social{
+        width: 20%;
+        float: right;
+    }
+
+    .social ul{
+        display: block;
+        float: right;
+        margin-right: 10px;
+    }
+
+    .social ul li{
+        display: inline-block;
+        width: 32px;
+        height: 32px;
+        overflow: hidden;
+    }
+
+    .social ul li a:link{
+        color: transparent;
+    }
+
+    #facebook{
+        background-image: url('images/facebook.png');
+        background-repeat: no-repeat;
+    }
+
+    #twitter{
+        background-image: url('images/twitter.png');
+        background-repeat: no-repeat;
+    }
+
+    #linkedin{
+        background-image: url('images/in.png');
+        background-repeat: no-repeat;
+    }
