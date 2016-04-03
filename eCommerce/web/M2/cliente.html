@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Cliente</title>
+        <title>Portale cliente</title>
         <!--Metainformazioni sulla pagina -->
         <meta charset="UTF-8">
         <meta name="keywords" content="Cliente, Offerte, Compra, Auto, Nuovo, Usato">
@@ -17,87 +17,90 @@
         <div id="page">
             <header>
               <div id="header"></div>
+              <!-- Sezione di navigazione -->
+                <nav>
+                    <ul>
+                        <li> <a href="login.html">Login</a> </li>
+                        <li> <a href="descrizione.html">Descrizione</a> </li>
+                        <li class="currentpage"> <a href="cliente.html">Cliente</a> </li>
+                        <li> <a href="venditore.html">Venditore</a> </li>
+                    </ul>
+                </nav>
             </header>
             
             <div id="sidebar1">
-                <!-- Sezione di navigazione -->
-                <nav>
-                    <a href="descrizione.html">Descrizione</a> 
-                    <a href="login.html">Login</a> 
-                </nav>
-            </div>
-            
-            <div id="sidebar2">
-          
+                
             </div>
 
             <div id="central">
                 <!-- Tabella con alcuni veicoli in vendita nel sito -->
+                <div id="tabella">
                 <table>
-                    <tr> 
+                    <tr class="intestazione"> 
                         <th> Nome </th> 
                         <th> Foto </th> 
                         <th> Disponibilità </th>
                         <th> Prezzo </th>
-                        <th> </th>
+                        <th> Compra</th>
                     </tr>
-                    <tr> 
+                    <tr class="dispari"> 
                         <td> Aixam GTO </td> 
                         <td><img title="GTO" alt="Foto dell'auto Aixam GTO" src="Images/Aixam_GTO.png" width="150" height="70" /></td> 
                         <td> 1 </td>
                         <td> € 12.650 </td>
-                        <td><a href="cliente.html"> Aggiungi </a></td>
+                        <td><a href="cliente.html"><img src="images/aggiungi.png" width="40" height="40" title="Aggiungi" alt="Aggiungi"/></a></td>
                     </tr>
-                    <tr> 
+                    <tr class="pari"> 
                         <td> BorgWard bx7 </td> 
                         <td><img title="bx7" alt="Foto dell'auto BorgWard bx7" src="Images/borgward_bx7.jpg" width="110" height="100" /></td> 
                         <td> 4 </td>
                         <td> da € 15.000 </td>
-                        <td><a href="cliente.html"> Aggiungi </a></td>
+                        <td><a href="cliente.html"><img src="images/aggiungi.png" width="40" height="40" title="Aggiungi" alt="Aggiungi"/></a></td>
                     </tr>
-                    <tr> 
+                    <tr class="dispari"> 
                         <td> Chery Tiggo </td> 
                         <td><img title="Tiggo" alt="Foto dell'auto Chery Tiggo" src="Images/Chery_tiggo.jpg" width="140" height="80" /></td> 
                         <td> 40 </td>
                         <td> da € 9.500 </td>
-                        <td><a href="cliente.html"> Aggiungi </a></td>
+                        <td><a href="cliente.html"><img src="images/aggiungi.png" width="40" height="40" title="Aggiungi" alt="Aggiungi"/></a></td>
                     </tr>
-                    <tr> 
+                    <tr class="pari"> 
                         <td> ChinaBike Cross125 </td> 
                         <td><img title="Cross125" alt="Foto della moto ChinaBike Cross125" src="Images/chinabike_cross125.jpg" width="140" height="100" /></td> 
                         <td> 6 </td>
                         <td> € 750 </td>
-                        <td><a href="cliente.html"> Aggiungi </a></td>
+                        <td><a href="cliente.html"><img src="images/aggiungi.png" width="40" height="40" title="Aggiungi" alt="Aggiungi"/></a></td>
                     </tr>
-                    <tr> 
+                    <tr class="dispari"> 
                         <td> Fisker Karma </td> 
                         <td><img title="Karma" alt="Foto dell'auto Fisker Karma" src="Images/fisker-karma.jpg" width="140" height="100" /></td> 
                         <td> 1 </td>
                         <td> € 125.000 </td>
-                        <td><a href="cliente.html"> Aggiungi </a></td>
+                        <td><a href="cliente.html"><img src="images/aggiungi.png" width="40" height="40" title="Aggiungi" alt="Aggiungi"/></a></td>
                     </tr>
-                    <tr> 
+                    <tr class="pari"> 
                         <td> Horex vr6 </td> 
                         <td><img title="vr6" alt="Foto della moto Horex vr6" src="Images/HOREX_vr6.jpg" width="140" height="100" /></td> 
                         <td> 20 </td>
                         <td> da € 30.000 </td>
-                        <td><a href="cliente.html"> Aggiungi </a></td>
+                        <td><a href="cliente.html"><img src="images/aggiungi.png" width="40" height="40" title="Aggiungi" alt="Aggiungi"/></a></td>
                     </tr>
-                    <tr> 
+                    <tr class="dispari"> 
                         <td> Isorivolta Grifo90 </td> 
                         <td><img title="Grifo90" alt="Foto dell'auto Isorivolta Grifo90" src="Images/ISORIVOLTA_grifo_90.jpg" width="140" height="100" /></td> 
                         <td> 1 </td>
                         <td> € 70.000 </td>
-                        <td><a href="cliente.html"> Aggiungi </a></td>
+                        <td><a href="cliente.html"><img src="images/aggiungi.png" width="40" height="40" title="Aggiungi" alt="Aggiungi"/></a></td>
                     </tr>
-                    <tr> 
+                    <tr class="pari"> 
                         <td> Panda 4x4 Sisley </td> 
                         <td><img title="Sisley4x4" alt="Foto dell'auto Panda4x4 Sisley" src="Images/panda4x4_sisley.jpg" width="140" height="100" /></td> 
                         <td> 1 </td>
                         <td> € 5.600 </td>
-                        <td><a href="cliente.html"> Aggiungi </a></td>
+                        <td><a href="cliente.html"><img src="images/aggiungi.png" width="40" height="40" title="Aggiungi" alt="Aggiungi"/></a></td>
                     </tr>
                 </table>
+                </div>
             </div>
             
             <div id="clear"></div>
@@ -107,7 +110,22 @@
                 <h3>Informazioni</h3>
                 <p>Per qualsiasi informazione chiamate al numero verde <strong>800-900-313</strong> o scrivete a 
                    <strong>autontheline.vr6@gmail.com</strong>. Per qualsiasi lamentela rivolgersi all'ufficio reclami.
-                <p></p>
+                </p>
+       
+                <div class="social">
+                    <ul> 
+                        <li id="facebook"><a href="https://www.facebook.com/">facebook</a></li>  
+                        <li id="twitter"><a href="https://twitter.com/?lang=it">twitter</a></li>  
+                        <li id="linkedin"><a href="https://it.linkedin.com/">linkedin</a></li> 
+                    </ul>
+                </div>
+                 <div id="valida">
+                    <a href="http://jigsaw.w3.org/css-validator/check/referer">
+                    <img style="border:0;width:88px;height:31px"
+                        src="http://jigsaw.w3.org/css-validator/images/vcss"
+                        alt="CSS Valido!" />
+                    </a>
+                </div>
             </footer>
         </div>
     </body>
