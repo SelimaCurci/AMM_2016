@@ -447,7 +447,7 @@ footer#valida{
         padding-bottom: 10px;
     }
     header h1{
-        font-size: 2em;
+        font-size: 2.3em;
         padding-top: 5px;
     }
     nav .menu{
@@ -457,10 +457,9 @@ footer#valida{
         position: absolute;
     }
     nav{
-        margin-top: 16px;
+        margin-top: 50px;
         position: relative;
         float: right;
-        display: inline-block;
     }
     nav ul{
         position: relative;
@@ -478,8 +477,8 @@ footer#valida{
          text-decoration: underline;
          font-weight: bold;
     }
-    
-    #valida{
+      
+    #valida, .menu{
         display: none;
     }
     .social{
