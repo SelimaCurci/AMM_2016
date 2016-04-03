@@ -3,41 +3,15 @@
     Author     : selima
 */
 
+/* Impostazioni degli stili più generali, colore del body e stile del testo */
 body{
     background-color: #3B3B3B;
     font-family: "Candara", Arial, serif;
-    font-size: 12pt;
+    font-size: 1em;
+    text-align: justify;
 }
 
-#header{
-    clear: both;
-    border-bottom: 4px solid #3B3B3B;
-    height: 150px;
-    border-top-left-radius: 7px;
-    border-top-right-radius: 7px;
-}
-
-#footer{
-    border-top: 4px solid #3B3B3B; 
-    padding-top: 15px; 
-    height: 120px;
-    box-shadow: 0 0 15px rgba(0,0,0,.2);
-    padding-bottom: 15px;
-    border-bottom-left-radius: 7px;
-    border-bottom-right-radius: 7px;
-}
-
-#header, #footer{
-    background-color: #A9A9A9;
-    position: relative;
-    padding-left: 40px;
-    padding-right: 40px;
-    margin: 0 auto;
-    
-}
-
-
-
+/* Div "pulizia" e "spazio" */
 .clear{
     clear: both; 
     width: 0px; height: 0px;
@@ -47,52 +21,66 @@ body{
     width: 0px; height: 8px;
 }
 
+/* Proprietà generali degli Headings  */
 h1, h2, h3 {
     color: #3E3535;
     margin: 0px;
     padding-top: 10px;
     padding-bottom: 10px;
+    padding-left: 15px;
 }
 
-h2{
-    font-size: 20pt;
+h2, h1{
+    font-size: 1.7em;
     padding-bottom: 2px;
 }
 
+/* Stile paragrafi*/
 p.sottosezione{
     margin-top: -2px;
     margin-bottom: 10px;
 }
+#central p{
+    padding-left: 20px;
+    padding-right: 20px;
+    font-size: 1em;
+}
 
+/* Colora di rosso la prima lettera degli headings h2 contenuti nel div central */
 div#central h2:first-letter{
-    font-size: 25pt;
+    font-size: 1.7em;
     color: #9e1616;
 }
 
+/* Colora di rosso la prima lettera degli headings h1 */
 h1:first-letter{
-    font-size: 25pt;
+    font-size: 1.6em;
     color: #9e1616;
 }
 
-/* Inserico l'immagine che rappresenta il logo del sito' */
-div#header{
+/* Inserico come sfondo dell'header l'immagine che rappresenta il logo del sito */
+header{
     background-image: url('images/logo.png');
     background-repeat: no-repeat; 
     background-position: center;
 }
 
 /* Paragrafo iformazioni alla fine della pagina descrizione.html */
-#footer p{
+footer p{
     vertical-align: middle;
     display: table-cell;
 }
 
-
-div#storia::after{
+/* Immaggine decorativa nella sidebar relativa alla storia dell'azienda (inserita come pseudo-elemento) */
+div#storia::before{
     content: url("images/george.jpg");
-    display:block;
-    margin:0px auto;
-    text-align:center; 
+    display: block;
+    margin: 0px auto;
+    text-align: center; 
+    margin-bottom: 40px;
+}
+div#storia{
+    margin-top: 60px;
 }
 
 /* Definisco lo stile dei link */
@@ -103,29 +91,32 @@ a:visited, a:link{
 a:hover{
     font-weight: bold
 }
+
 /* Freccia che riporta all'inizio della pagina in descrizione.html' */
 a#su{
-     content: url("images/freccia_su.png");   
-     float: right;
-     margin-right: 20px;
-     margin-top: -60px;
+    content: url("images/freccia_su.png");   
+    float: right;
+    margin-right: 20px;
+    margin-top: -60px;
 }
 
+/* Stile degli elenchi puntati della sezione principale */
 ul.elenco>li {
     float: left;
     list-style: none;
-    padding: 0 2px;
+    padding: 2px;
 }
-
 ul.elenco li li {
     list-style: square;
 }
 
+/* Stile della tabella in cliente.html */
 #tabella{
     margin-left: 8%;
     padding-top: 8%;
     padding-bottom: 8%;
     font-weight: bold;
+    font-size: 1.1em;
 }
 table {
     border: 1px solid #9e1616;
@@ -135,56 +126,60 @@ table {
     border-radius: 5px;
     text-align: center;
 }
-/* Colorazione alternata delle righe della tabella */
+/* Colorazione intestazione della tabella */
 tr.intestazione{
     background-color: #9e1616;
     color: #FFFFFF;
-    font-size: 13pt;
+    font-size: 1.2em;
 }
+/* Colorazione alternata delle righe della tabella */
 tr.pari{
-     background: rgba(158, 22, 22, 0.6);
+    background: rgba(158, 22, 22, 0.6);
 }
 tr.dispari{
-     background: rgba(158, 22, 22, 0.3);
+    background: rgba(158, 22, 22, 0.3);
 }
 td,th{
     padding: 5px;
     border: 1px solid #9e1616;
 }
 
-
-#central p{
-    margin-left: 5px;
-    margin-right: 5px;
-}
-
-#sidebar1 ul{
-    list-style: square;
+/* Stile del sommario della pagina descrizione.html */
+#sidebar1 ul.sezione{
+    list-style-type: none;
     margin-top: 5px;
 }
-
 #sidebar1 .categoria{
-    font-size: 13pt;
+    font-size: 1.2em;
 }
-
-#sidebar1 p, #sidebar1 h2, #sidebar2 p{
-    margin-left: 10px;
-    margin-right: 10px;
+#sidebar1 h4{
+    border-bottom: 1px solid #9e1616;
+    width: 180px;
+    margin-bottom: 15px;
+}
+#sidebar1 p{
+    margin-left: 20px;
+    margin-right: 20px;
     text-align: justify;
 }
+#sidebar1 ul.sottosezioni{  
+    list-style: circle;
+}
 
+
+/* Stile dei form */
 fieldset{
     border-radius: 10px;
     border: 2px solid #9e1616;
     padding: 5%;
-    padding-left: 15%;
+    padding-left: 25%;
     padding-right: 15%;
     margin-right: 4%;
     margin-left: 2%;
     margin-bottom: 3%;
 }
 label{
-    font-size: 12pt;
+    font-size: 1.1em;
     color: #3E3535;
     width: 40%;
     float: left;
@@ -192,7 +187,6 @@ label{
     display: block;
     font-weight: bold;
 }
-
 input, textarea{
     font-family: "Candara", Arial, serif;
     color: #000000;
@@ -204,6 +198,7 @@ input, textarea{
     width: 35%;
     margin-right: 20%;
 }
+/* Campi di input al momento del focus da parte dell'utente '*/
 input:focus, textarea:focus{
     background: #DEDEDE;
     border: 1px solid #9e1616;
@@ -211,8 +206,7 @@ input:focus, textarea:focus{
     outline: none;
 }
 
-
-/* Stile bottoni*/
+/* Stile bottoni dei form (reset e submit) */
 #bottone{
     margin-right: 22%;
     float: right;
@@ -242,29 +236,19 @@ input:focus, textarea:focus{
     background-color: rgba(158, 22, 22, 0.3);
     border: 2px solid rgba(158, 22, 22, 0.6);
     border-radius: 5px;
-    font-weight:bold;
-    margin-right:30%;
-    margin-top:3%;
+    font-weight: bold;
+    margin-right: 30%;
+    margin-top: 3%;
 }
+/* Definizione degli stili per i bottoni quando il mouse ci passa sopra */
 #bottone:hover, #reset:hover{
     background-color: rgba(158, 22, 22, 0.5);
 }
+/* Definizione degli stili per i bottoni quando vengono attivati (click del bottone) */
 #bottone:active, #reset:active {
   position: relative;
   top: 1px;
 }
-
-#header #login{
-    float: right;
-    margin-right: -15px;
-    margin-top: 20px;
-    background-color: #DCDCDC;
-    box-shadow: 0 0 15px rgba(0,0,0,.2);
-    border-radius: 5px;
-    padding: 10px;
-} 
-
-
 
 /* Barra di navigazione */
 header{
@@ -273,14 +257,14 @@ header{
 nav{
      position: absolute;
      right: 5%;
-     top: 99px;
+     top: 129px;
 }
 nav ul{
     border-bottom: 2px solid #3B3B3B;
     padding-left: 0;
 }
-
 nav ul li{
+    width: 100px;
     background-color: #DCDCDC;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
@@ -289,38 +273,36 @@ nav ul li{
     border-right: 3px solid #3B3B3B;
     border-left: 3px solid #3B3B3B;
     border-bottom: 3px solid #3B3B3B;
-    padding-right: 35px;
-    padding-left: 35px;
+    text-align: center;
     padding-top: 5px;
     padding-bottom: 5px;
     position: relative;  
     top: 4px;
 }
-
 .currentpage{
     background-color: #F5F5F5;
     top: 4px;
     border-bottom: 3px solid #F5F5F5;
 }
 
-
-
+/* Stile della barra laterale sinistra */
 #sidebar1{
-    width: 200px;
+    width: 250px;
     float: left;
     margin-left: 0;
     margin-top: 0;
 }
 
+/* Stile della sezione centrale della pagina */
 #central{
     margin-top: 0px;
     margin-bottom: 0;
     padding: 10px;
-    margin-left: 200px;
+    margin-left: 250px;
     background-color: #F5F5F5;
 }
 
-
+/* Stile del contenitore che rappresenta il corpo della pagina */
 #page {
         margin-left: 100px;
         margin-right: 100px;
@@ -331,46 +313,62 @@ nav ul li{
         background-color: #DCDCDC;
 }
 
-
-
-#valida{
+/* Stile dell'header e del footer della pagina */
+header{
+    clear: both;
+    border-bottom: 4px solid #3B3B3B;
+    height: 180px;
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+}
+footer{
+    border-top: 4px solid #3B3B3B; 
+    padding-top: 15px; 
+    height: 120px;
+    box-shadow: 0 0 15px rgba(0,0,0,.2);
+    padding-bottom: 15px;
+    border-bottom-left-radius: 7px;
+    border-bottom-right-radius: 7px;
+}
+header, footer{
+    background-color: #A9A9A9;
+    position: relative;
+    padding-left: 40px;
+    padding-right: 40px;
+    margin: 0 auto;
+}
+footer#valida{
     margin: 10px;   
 }
 
-/* social bar */
-    .social{
-        width: 200px;
-        float: right;
-    }
-
-    .social ul{
-        display: block;
-        float: right;
-        margin-right: 10px;
-    }
-
-    .social ul li{
-        display: inline-block;
-        width: 32px;
-        height: 32px;
-        overflow: hidden;
-    }
-
-    .social ul li a:link{
-        color: transparent;
-    }
-
-    #facebook{
-        background-image: url('images/facebook.png');
-        background-repeat: no-repeat;
-    }
-
-    #twitter{
-        background-image: url('images/twitter.png');
-        background-repeat: no-repeat;
-    }
-
-    #linkedin{
-        background-image: url('images/in.png');
-        background-repeat: no-repeat;
-    }
+/* Social bar */
+.social{
+    width: 200px;
+    float: right;
+}
+.social ul{
+    display: block;
+    float: right;
+    margin-right: 10px;
+}
+.social ul li{
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    overflow: hidden;
+}
+.social ul li a:link{
+    color: transparent;
+}
+#facebook{
+    background-image: url('images/facebook.png');
+    background-repeat: no-repeat;
+}
+#twitter{
+    background-image: url('images/twitter.png');
+    background-repeat: no-repeat;
+}
+#linkedin{
+    background-image: url('images/in.png');
+    background-repeat: no-repeat;
+}

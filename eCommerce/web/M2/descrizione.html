@@ -15,9 +15,7 @@
     </head>
     <body>
         <div id="page">
-            <header>
-                <!-- Breve introduzione al sito -->
-                <div id="header"></div>
+            <header id="header">
                 <!-- Sezione di navigazione -->
                 <nav>
                     <ul>
@@ -29,32 +27,32 @@
 
             <!-- Sommario con link interni alle sezioni-->
             <div id="sidebar1">
-                <h2>Sommario</h2>
-                <ul>
-                    <li><a href="#nuovo" class="categoria">Veicoli nuovi</a>
-                        <ul>
+                <ul class="sezione">
+                    <li><a href="#nuovo" class="categoria"><h4>Veicoli nuovi</h4></a>
+                        <ul class="sottosezioni">
                             <li><a href="#auto1">Auto</a></li>
                             <li><a href="#moto1">Moto</a></li>
                             <li><a href="#altro1">Altro</a></li>
                         </ul>
                     </li>
-                    <li> <a href="#usato" class="categoria">Veicoli usati</a>
-                        <ul>
+                    <li> <a href="#usato" class="categoria"><h4>Veicoli usati</h4></a>
+                        <ul class="sottosezioni">
                             <li><a href="#auto2">Auto</a></li>
                             <li><a href="#moto2">Moto</a></li>
                             <li><a href="#altro2">Altro</a></li>
                         </ul>
                     </li>    
-                    <li> <a href="#accessori" class="categoria">Ricambi e accessori</a>
-                        <ul>
+                    <li> <a href="#accessori" class="categoria"><h4>Ricambi e accessori</h4></a>
+                        <ul class="sottosezioni">
                             <li><a href="#auto3">Auto</a></li>
                             <li><a href="#moto3">Moto</a></li>
                             <li><a href="#altro3">Altro</a></li>
                         </ul>
                     </li>
-                    <li><a href="#info" class="categoria">Informazioni aggiuntive</a></li>
+                    <li><a href="#info" class="categoria"><h4>Informazioni</h4></a></li>
                 </ul>
                 
+                 <!-- Storia della società --> 
                 <div id="storia">
                     <p><em>AUTONTHELINE</em> nasce nel 1989 d.C. in Lituania, fondata da George Athelstan all'età di 19 anni.
                 La società ha intrapreso un profondo cammino verso il successo in Europa per poi decidere che la Cina era più economica. Attualmete non è quotata in borsa 
@@ -64,6 +62,7 @@
             </div>
 
             <div id="central">
+                 <!-- Introduzione e descrizione al sito -->
                 <div id="introduzione">
                 <p>Vuoi vendere o comprare un auto? <strong>Autontheline.com</strong> sarà la tua risposta! Trova subito auto nuove e usate, moto, camper e veicoli commerciali.
                 Interfaccia utente intuitiva ed efficacie per esperti e venditori alle prime armi. Potrai accedere facilmente sia
@@ -279,7 +278,7 @@
             
             <!-- Sezione informazioni aggiuntive e contatti -->
             <footer id="footer">
-                <h3>Informazioni</h3>
+                <h3 id="info">Informazioni</h3>
                 <p>Per qualsiasi informazione chiamate al numero verde <strong>800-900-313</strong> o scrivete a 
                    <strong>autontheline.vr6@gmail.com</strong>. Per qualsiasi lamentela rivolgersi all'ufficio reclami.
                 </p>
