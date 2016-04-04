@@ -15,12 +15,15 @@ body{
 {
      background-color: #DCDCDC;
 }
+
 #central{
      background-color: #F5F5F5;
 }
+
 header{
      border-bottom: 4px solid #3B3B3B;
 }
+
 header, footer{
     background-color: #A9A9A9;
     color: #000000;
@@ -81,14 +84,6 @@ footer p{
     margin-top: 0;
 }
 
-/* Immaggine decorativa nella sidebar relativa alla storia dell'azienda (inserita come pseudo-elemento) */
-div#storia::before{
-    content: url("images/george.jpg");
-    display: block;
-    margin: 0px auto;
-    text-align: center; 
-    margin-bottom: 40px;
-}
 div#storia{
     margin-top: 60px;
 }
@@ -102,13 +97,7 @@ a:hover{
     font-weight: bold
 }
 
-/* Freccia che riporta all'inizio della pagina in descrizione.html' */
-a#su{
-    content: url("images/freccia_su.png");   
-    float: right;
-    margin-right: 20px;
-    margin-top: -60px;
-}
+
 
 /* Stile degli elenchi puntati della sezione principale */
 ul.elenco>li {
@@ -169,15 +158,12 @@ table a img:hover {
 #sidebar1 ul.sezione{
     list-style-type: none;
     margin-top: 5px;
+    padding-left: 15%;
 }
 #sidebar1 .categoria{
     font-size: 1.2em;
 }
-#sidebar1 h4{
-    border-bottom: 1px solid #9e1616;
-    width: 180px;
-    margin-bottom: 15px;
-}
+
 #sidebar1 h4:hover{
     font-size: 1.1em; 
 }
@@ -419,9 +405,33 @@ footer#valida{
         top: 4px;
         border-bottom: 3px solid #F5F5F5;
     }
-
+ 
+    .menu{
+        display: none;
+    }   
     
+    /* Freccia che riporta all'inizio della pagina in descrizione.html' */
+    a#su{
+        content: url("images/freccia_su.png");   
+        float: right;
+        margin-right: 20px;
+        margin-top: -120px;
+    }
+    
+    #sidebar1 h4{
+        border-bottom: 1px solid #9e1616;
+        width: 180px;
+        margin-bottom: 15px;
+    }
 
+    /* Immaggine decorativa nella sidebar relativa alla storia dell'azienda (inserita come pseudo-elemento) */
+    div#storia::before{
+        content: url("images/george.jpg");
+        display: block;
+        margin: 0px auto;
+        text-align: center; 
+        margin-bottom: 40px;
+    }
 }
 
 @media only screen and (min-width: 480px) and (max-width: 1024px)
@@ -443,7 +453,7 @@ footer#valida{
     }
     #central {
         margin-left: 25%;
-        margin-right: 5px;
+        padding-top: 10px;
         padding-bottom: 10px;
     }
     header h1{
@@ -485,6 +495,30 @@ footer#valida{
         margin-top: -95px;
         margin-right: -15px;
     }
+    /* Freccia che riporta all'inizio della pagina in descrizione.html' */
+    a#su{
+        content: url("images/freccia_su.png");   
+        float: right;
+        margin-right: 20px;
+        margin-top: -110px;
+    }
+    
+    #sidebar1 h4{
+        border-bottom: 1px solid #9e1616;
+        width: 70%;
+        margin-bottom: 15px;
+    }
+    
+    div#storia::before{
+        content: url("images/george2.png");
+        display: block;
+        margin: 0px auto;
+        text-align: center; 
+        margin-bottom: 40px;
+    }
+    h4{
+        text-align: left;
+    }
 }
 @media only screen and (max-width: 480px)
 {
@@ -501,16 +535,58 @@ footer#valida{
         padding-top: 5px;
         text-align: center;
     }
+    #central{
+        margin-bottom: -10px;
+        padding-bottom: 15px;
+        margin-top: -10px;
+        padding-top: 10px;
+    }
     #sidebar1{
         display: none;
     }
-    nav ul{
+    nav{
         display: none;
     }
-    .menu{
+    .menu #barramenu{
         width: 100%;
+        border: 2px solid #3B3B3B;
+        background: #DCDCDC;
+        position: relative;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        text-align: center;
+    }
+    .menu ul{
+        margin: 0px;
+        padding: 0;
+        list-style-type: none;
+    }
+    .menu li ul
+    {
+        display: none
+    }
+    .menu li:hover ul
+    {
+        display: block;
+        position: absolute;
+        z-index: 1;
+        padding: 0;
+        width: 100%;
+        border: 1px solid #3B3B3B;
+        background: white;
+        margin-top: 6px;
+        margin-left: -1px;
     }
     
+    .menu li li{ 
+        padding-top: 5px;
+        padding-bottom: 5px; 
+        border: 1px solid #3B3B3B;
+    }
+    .menu li li:hover{ 
+        background: #DCDCDC;
+    }
+
     #valida, .social{
         display: none;
     }
