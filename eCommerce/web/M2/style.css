@@ -181,12 +181,11 @@ table a img:hover {
 fieldset{
     border-radius: 10px;
     border: 2px solid #9e1616;
-    padding: 5%;
-    padding-left: 25%;
-    padding-right: 15%;
     margin-right: 4%;
     margin-left: 2%;
     margin-bottom: 3%;
+    padding: 5%;
+    padding-left: 17%;
 }
 label{
     font-size: 1.1em;
@@ -312,7 +311,7 @@ footer#valida{
 
 @media only screen and (min-width: 1024px)
 {
-    nav .menu{
+    .menu, #sommario{
         display: none;
     }
     
@@ -405,10 +404,6 @@ footer#valida{
         top: 4px;
         border-bottom: 3px solid #F5F5F5;
     }
- 
-    .menu{
-        display: none;
-    }   
     
     /* Freccia che riporta all'inizio della pagina in descrizione.html' */
     a#su{
@@ -432,10 +427,18 @@ footer#valida{
         text-align: center; 
         margin-bottom: 40px;
     }
+    
+    fieldset{
+        padding-left: 25%;
+        padding-right: 15%;
+    }
 }
 
 @media only screen and (min-width: 480px) and (max-width: 1024px)
 {
+    #valida, .menu, #sommario{
+        display: none;
+    }
     header, footer{
         padding: 10px;
         height: 90px;
@@ -459,9 +462,6 @@ footer#valida{
     header h1{
         font-size: 2.3em;
         padding-top: 5px;
-    }
-    nav .menu{
-        display: none;
     }
     header .logo{
         position: absolute;
@@ -487,13 +487,13 @@ footer#valida{
          text-decoration: underline;
          font-weight: bold;
     }
-      
-    #valida, .menu{
-        display: none;
-    }
+     
     .social{
-        margin-top: -95px;
+        margin-top: -100px;
         margin-right: -15px;
+    }
+    footer p{
+        font-size: 0.9em;
     }
     /* Freccia che riporta all'inizio della pagina in descrizione.html' */
     a#su{
@@ -519,7 +519,21 @@ footer#valida{
     h4{
         text-align: left;
     }
+    
+    label{
+        font-size: 1em;
+        text-align: left;
+        width: 20%;
+        padding-right: 5px;
+    }
+    input, textarea{
+        width: 55%;
+    }
+    #bottone{
+        margin-right: 20%;
+    }
 }
+
 @media only screen and (max-width: 480px)
 {
     header, footer{
@@ -586,8 +600,23 @@ footer#valida{
     .menu li li:hover{ 
         background: #DCDCDC;
     }
-
+    .login{
+        float: right;
+        margin-right: 6px;
+        margin-top: -12px;
+        font-size: 1.1em;
+    }
     #valida, .social{
         display: none;
+    }
+    input{
+        width: 80%;
+    }
+    #bottone{
+        margin-right: 15%;
+    }
+    label{
+        font-size: 0.9em;
+        text-align: left;
     }
 }
