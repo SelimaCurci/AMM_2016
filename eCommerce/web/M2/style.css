@@ -188,19 +188,14 @@ table a img:hover {
 fieldset{
     border-radius: 10px;
     border: 2px solid #9e1616;
-    margin-right: 4%;
-    margin-left: 2%;
-    margin-bottom: 3%;
-    padding: 5%;
-    padding-left: 17%;
+    margin: 4%;
+    padding:5%;
+    padding-left: 12%;
 }
 label{
-    font-size: 1.1em;
+    font-size:1em;
     color: #3E3535;
-    width: 40%;
-    float: left;
     font-family: "Candara", Arial, serif;
-    display: block;
     font-weight: bold;
 }
 input, textarea{
@@ -211,8 +206,13 @@ input, textarea{
     border-radius: 5px;
     padding-right: 6px;
     padding-left: 6px;
-    width: 35%;
-    margin-right: 20%;
+    margin-right: 0;
+}
+input{
+    height: 20px;
+}
+textarea{
+    height: 50px;
 }
 /* Campi di input e textarea al momento del focus da parte dell'utente */
 input:focus, textarea:focus{
@@ -223,7 +223,6 @@ input:focus, textarea:focus{
 }
 /* Stile bottoni dei form (reset e submit) */
 #bottone{
-    margin-right: 22%;
     float: right;
     height: 28px;
     width: 50px;
@@ -232,12 +231,12 @@ input:focus, textarea:focus{
     vertical-align: middle;
     white-space: pre;
     outline: none;
-    margin-top:3%;
+    margin-top:15px;
     background-color: rgba(158, 22, 22, 0.3);
     border: 2px solid rgba(158, 22, 22, 0.6);
     border-radius: 5px;
     font-weight: bold;
-    clear: both;
+    margin-right: 12%;
 }
 #reset{
     float: left;
@@ -252,8 +251,8 @@ input:focus, textarea:focus{
     border: 2px solid rgba(158, 22, 22, 0.6);
     border-radius: 5px;
     font-weight: bold;
-    margin-right: 30%;
-    margin-top: 3%;
+    margin-right: 0;
+    margin-top: 15px;
 }
 /* Definizione degli stili per i bottoni quando il mouse ci passa sopra */
 #bottone:hover, #reset:hover{
@@ -425,10 +424,15 @@ configuazioni: larghezze maggiori o uguali a 1024px, larghezze minori o uguali a
         margin-bottom: 40px;
     }
     
-    fieldset{
-        padding-left: 25%;
-        padding-right: 15%;
+    label{
+        width: 35%;
+        float: left;
+        display: block;
     }
+    input, textarea{
+        width: 50%;
+    }
+    
     table{
         margin: 30px;
         width: 90%;
@@ -518,17 +522,23 @@ configuazioni: larghezze maggiori o uguali a 1024px, larghezze minori o uguali a
         font-size: 0.9em;
     }
     
+    fieldset{
+        padding-left: 20%;
+    }
     label{
         font-size: 1em;
         text-align: left;
-        width: 20%;
-        padding-right: 5px;
+        margin-bottom: 20px;   
+    }
+    label::after, label::before {
+        content: '\A';
+        white-space: pre;
     }
     input, textarea{
-        width: 55%;
+        width: 75%;
     }
     #bottone{
-        margin-right: 20%;
+        margin-right: 21%;
     }
     
     table{
@@ -630,29 +640,30 @@ configuazioni: larghezze maggiori o uguali a 1024px, larghezze minori o uguali a
         width: 80%;
     }
     #bottone{
-        margin-right: 15%;
-    }
-    #reset{
-        margin-right: 0;
+        margin-right: 14%;
     }
     label{
-        font-size: 0.9em;
+        margin-bottom: 5px;
         text-align: left;
     }
+    label::after, label::before {
+        content: '\A';
+        white-space: pre;
+    }
     
-     table{
+    table{
         width: 92%;
         margin: 12px;
         font-size: 0.8em;
     }
     
-   #central h3{
-       clear: both;
-   }
-   #footer{
-       font-size: 0.8em;
-   }
-   h2, h1{
-       padding-right: 15px;
-   }
+    #central h3{
+        clear: both;
+    }
+    #footer{
+        font-size: 0.8em;
+    }
+    h2, h1{
+        padding-right: 15px;
+    }
 }
