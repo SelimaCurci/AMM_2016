@@ -3,33 +3,29 @@
     Author     : selima
 */
 
-/* Impostazioni degli stili più generali, colore del body e stile del testo */
+/* Impostazioni degli stili più generali, colore dei contenitori principali (body, page..) e stile del testo */
 body{
     background-color: #3B3B3B;
     font-family: "Candara", Arial, serif;
     font-size: 1em;
     text-align: justify;
 }
-
 #page
 {
      background-color: #DCDCDC;
 }
-
 #central{
      background-color: #F5F5F5;
 }
-
 header{
      border-bottom: 4px solid #3B3B3B;
 }
-
 header, footer{
     background-color: #A9A9A9;
     color: #000000;
 }
 
-/* Div "pulizia" e "spazio" */
+/* Div "pulizia" che evita il sovrapporsi di due elementi, come nel caso del footer e del cotenuto centrale e div "spazio" */
 .clear{
     clear: both; 
     width: 0px; height: 0px;
@@ -47,13 +43,12 @@ h1, h2, h3 {
     padding-bottom: 10px;
     padding-left: 15px;
 }
-
 h2, h1{
     font-size: 1.7em;
     padding-bottom: 2px;
 }
 
-/* Stile paragrafi*/
+/* Stile paragrafi */
 p.sottosezione{
     margin-top: -2px;
     margin-bottom: 10px;
@@ -63,43 +58,43 @@ p.sottosezione{
     padding-right: 20px;
     font-size: 1em;
 }
-
-/* Colora di rosso la prima lettera degli headings h2 contenuti nel div central */
-div#central h2:first-letter{
-    font-size: 1.7em;
-    color: #9e1616;
-}
-
-/* Colora di rosso la prima lettera degli headings h1 */
-h1:first-letter{
-    font-size: 1.6em;
-    color: #9e1616;
-}
-
-/* Paragrafo iformazioni alla fine della pagina descrizione.html */
 footer p{
     vertical-align: middle;
     margin-left: 20px;
     margin-right: 20px;
     margin-top: 0;
 }
-
-div#storia{
-    margin-top: 60px;
+#sidebar1 p{
+    margin-left: 18px;
+    margin-right: 20px;
+    clear: right;
+    text-align: justify;
+    margin-top: 50px;
+    font-size: 0.9em;
 }
 
-/* Definisco lo stile dei link */
+/* Colora di rosso la prima lettera degli headings h2 contenuti nel div central */
+div#central h2:first-letter{
+    font-size: 1.7em;
+    color: #9e1616;
+}
+/* Colora di rosso la prima lettera degli headings h1 */
+h1:first-letter{
+    font-size: 1.6em;
+    color: #9e1616;
+}
+
+/* Definisco lo stile dei link in base alle diverse proprietà */
 a:visited, a:link{
     color: #9e1616;
     text-decoration: none;
 }
 a:hover{
-    font-weight: bold
+    font-weight: bold;
 }
 
-
-
-/* Stile degli elenchi puntati della sezione principale */
+/* Stile degli elenchi puntati della sezione principale per le varie marche di veicoli la lista viene suddivisa in più
+   sottoliste che sono posizionate orizzontalemente le une rispetto alle altre */
 ul.elenco>li {
     float: left;
     list-style: none;
@@ -108,8 +103,21 @@ ul.elenco>li {
 ul.elenco li li {
     list-style: square;
 }
+.marche_auto{
+    height: 120px; 
+    margin-bottom: 0px;
+}
+.marche_moto{
+    height: 80px; 
+    margin-bottom: 0px;
+}
+ul.elenco{
+    max-width: 100%;
+}
 
-/* Stile della tabella in cliente.html */
+
+/* Stile generale della tabella in cliente.html, alcuni dettagli relativi a margini, dimensioni e ridimensionamento
+   sono specificati in ogni fascia diversa di dimensioni dello schermo */
 table {
     border: 2px solid #9e1616;
     border-collapse: collapse;
@@ -118,6 +126,7 @@ table {
     text-align: center;
     font-weight: bold;
     word-wrap: break-word;
+    table-layout: fixed;
 }
 /* Colorazione intestazione della tabella */
 tr.intestazione{
@@ -136,9 +145,14 @@ td,th{
     padding-left: 2px;
     padding-right: 2px;
 }
+/* Impostando una largezza massima all'immagine il browser fa in modo che questa si adatti alla dimesione della cella
+   quando la tabella viene ridimensionata (non sporge) */
 td>img{
     max-width: 100%;
+    height: auto;
 }
+/* Quando l'utente posiziona il cursore in una determinata riga che corrisponde a un determinato veicolo in vendita la 
+   riga viene "evidenziata" diversamente rispetto alle altre */
 tr:hover {
      color: #FFFFFF;
 }
@@ -146,12 +160,14 @@ table a img {
     opacity: 0.4;
     filter: alpha(opacity=40); /* For IE8 and earlier */
 }
+/* Limmagine "cliccabile" che permette di aggiungere un prodotto al carrello diventa meno opaca quando ci si passa
+   sopra con in mouse */
 table a img:hover {
     opacity: 1.0;
     filter: alpha(opacity=100); /* For IE8 and earlier */
 }
 
-/* Stile del sommario della pagina descrizione.html */
+/* Stile del sommario della pagina descrizione.html (per dimensioni minime viene visualizzata una versione più semplice) */
 #sidebar1 ul.sezione{
     list-style-type: none;
     margin-top: 5px;
@@ -160,14 +176,8 @@ table a img:hover {
 #sidebar1 .categoria{
     font-size: 1.2em;
 }
-
 #sidebar1 h4:hover{
     font-size: 1.1em; 
-}
-#sidebar1 p{
-    margin-left: 20px;
-    margin-right: 20px;
-    text-align: justify;
 }
 #sidebar1 ul.sottosezioni{  
     list-style: circle;
@@ -204,14 +214,13 @@ input, textarea{
     width: 35%;
     margin-right: 20%;
 }
-/* Campi di input al momento del focus da parte dell'utente '*/
+/* Campi di input e textarea al momento del focus da parte dell'utente */
 input:focus, textarea:focus{
     background: #DEDEDE;
     border: 1px solid #9e1616;
     border-radius: 5px;
     outline: none;
 }
-
 /* Stile bottoni dei form (reset e submit) */
 #bottone{
     margin-right: 22%;
@@ -250,62 +259,53 @@ input:focus, textarea:focus{
 #bottone:hover, #reset:hover{
     background-color: rgba(158, 22, 22, 0.5);
 }
-/* Definizione degli stili per i bottoni quando vengono attivati (click del bottone) */
+/* Definizione degli stili per i bottoni quando vengono attivati (click del bottone), da l'effetto che il bottone
+   sia stato effettivamente cliccato */
 #bottone:active, #reset:active {
   position: relative;
   top: 1px;
 }
-
-
-
-
-
-
-
 
 footer#valida{
     margin-top: 15px;   
 }
 
 /* Social bar */
-    .social{
-        width: 200px;
-        float: right;
-    }
-    .social ul{
-        display: block;
-        float: right;
-        margin-right: 10px;
-        margin-top: 5px;
-    }
-    .social ul li{
-        display: inline-block;
-        width: 32px;
-        height: 32px;
-        overflow: hidden;
-    }
-    .social ul li a:link{
-        color: transparent;
-    }
-    #facebook{
-        background-image: url('images/facebook.png');
-        background-repeat: no-repeat;
-    }
-    #twitter{
-        background-image: url('images/twitter.png');
-        background-repeat: no-repeat;
-    }
-    #linkedin{
-        background-image: url('images/in.png');
-        background-repeat: no-repeat;
-    }
+.social{
+    width: 200px;
+    float: right;
+}
+.social ul{
+    display: block;
+    float: right;
+    margin-right: 10px;
+    margin-top: 5px;
+}
+.social ul li{
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    overflow: hidden;
+}
+.social ul li a:link{
+    color: transparent;
+}
+#facebook{
+    background-image: url('images/facebook.png');
+    background-repeat: no-repeat;
+}
+#twitter{
+    background-image: url('images/twitter.png');
+    background-repeat: no-repeat;
+}
+#linkedin{
+    background-image: url('images/in.png');
+    background-repeat: no-repeat;
+}
 
-
-
-
-
-
-
+/*Iniziano le media queries che permettono di impostare stili diversi in base ala dimensione dello schermo, in 
+  particolari sono definiti tre diversi punti di rottura in modo da ottenere un layout responsive. Le tre 
+configuazioni: larghezze maggiori o uguali a 1024px, larghezze minori o uguali a 480px e infine intervallo intermedio. */
 @media only screen and (min-width: 1024px)
 {
     .menu, #sommario{
@@ -315,7 +315,7 @@ footer#valida{
     /* Stile del contenitore che rappresenta il corpo della pagina */
    #page {
         width: 900px;
-       margin-left: auto;
+        margin-left: auto;
         margin-right: auto;
         margin-top: 30px;
         margin-bottom: 30px;
@@ -342,7 +342,8 @@ footer#valida{
     #sidebar1{
         width: 30%;
         float: left;
-        padding-left: 7px;
+        padding: 0px;
+        
     }
     /* Stile della sezione centrale della pagina */
     #central{
@@ -415,9 +416,8 @@ footer#valida{
         width: 180px;
         margin-bottom: 15px;
     }
-
     /* Immaggine decorativa nella sidebar relativa alla storia dell'azienda (inserita come pseudo-elemento) */
-    div#storia::before{
+    #sidebar1 p::before{
         content: url("images/george.jpg");
         display: block;
         margin: 0px auto;
@@ -459,8 +459,7 @@ footer#valida{
     #sidebar1 {
         float: left;
         width: 25%;
-        padding-left: 5px;
-        padding-right: 10px;
+        padding: 0px;
     }
     #central {
         margin-left: 25%;
@@ -515,17 +514,8 @@ footer#valida{
         border-bottom: 1px solid #9e1616;
         width: 70%;
         margin-bottom: 15px;
-    }
-    
-    div#storia::before{
-        content: url("images/george2.png");
-        display: block;
-        margin: 0px auto;
-        text-align: center; 
-        margin-bottom: 40px;
-    }
-    h4{
         text-align: left;
+        font-size: 0.9em;
     }
     
     label{
@@ -559,8 +549,9 @@ footer#valida{
         margin: 0px;
     } 
     header h1{
-        font-size: 2em;
+        font-size: 1.8em;
         padding-top: 5px;
+        padding-left: 0;
         text-align: center;
     }
     #central{
@@ -575,6 +566,19 @@ footer#valida{
     nav{
         display: none;
     }
+    #sommario h4{
+        margin-top: 5px;
+        margin-bottom: 10px;
+    }
+    #sommario{
+        padding-left: 0;
+        list-style: none;
+        text-align: center
+    }
+    a:hover{
+        text-decoration: underline;
+    }
+    
     .menu #barramenu{
         width: 100%;
         border: 2px solid #3B3B3B;
@@ -602,10 +606,9 @@ footer#valida{
         width: 100%;
         border: 1px solid #3B3B3B;
         background: white;
-        margin-top: 6px;
+        margin-top: 5px;
         margin-left: -1px;
     }
-    
     .menu li li{ 
         padding-top: 5px;
         padding-bottom: 5px; 
@@ -623,11 +626,14 @@ footer#valida{
     #valida, .social{
         display: none;
     }
-    input{
+    input, textarea{
         width: 80%;
     }
     #bottone{
         margin-right: 15%;
+    }
+    #reset{
+        margin-right: 0;
     }
     label{
         font-size: 0.9em;
@@ -639,4 +645,14 @@ footer#valida{
         margin: 12px;
         font-size: 0.8em;
     }
+    
+   #central h3{
+       clear: both;
+   }
+   #footer{
+       font-size: 0.8em;
+   }
+   h2, h1{
+       padding-right: 15px;
+   }
 }
