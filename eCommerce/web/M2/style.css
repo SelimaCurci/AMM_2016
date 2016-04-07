@@ -113,6 +113,7 @@ ul.elenco li li {
 }
 ul.elenco{
     max-width: 100%;
+    height: 100%;
 }
 
 
@@ -545,6 +546,11 @@ configuazioni: larghezze maggiori o uguali a 1024px, larghezze minori o uguali a
         width: 80%;
         margin: 10%;
         font-size: 0.9em;
+    }
+
+    .elenco{
+        width: 100%;
+        padding-left: 0;
     }
 }
 
