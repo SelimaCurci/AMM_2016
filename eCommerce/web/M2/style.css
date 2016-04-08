@@ -25,7 +25,8 @@ header, footer{
     color: #000000;
 }
 
-/* Div "pulizia" che evita il sovrapporsi di due elementi, come nel caso del footer e del cotenuto centrale e div "spazio" */
+/* Div "pulizia" che evita il sovrapporsi di due elementi, come nel caso del footer e del cotenuto centrale, 
+   div "spazio" per separarare due sezioni.*/
 .clear{
     clear: both; 
     width: 0px; height: 0px;
@@ -46,6 +47,16 @@ h1, h2, h3 {
 h2, h1{
     font-size: 1.7em;
     padding-bottom: 2px;
+}
+/* Colora di rosso la prima lettera degli headings h2 contenuti nel div central */
+div#central h2:first-letter{
+    font-size: 1.7em;
+    color: #9e1616;
+}
+/* Colora di rosso la prima lettera degli headings h1 */
+h1:first-letter{
+    font-size: 1.6em;
+    color: #9e1616;
 }
 
 /* Stile paragrafi */
@@ -71,17 +82,6 @@ footer p{
     text-align: justify;
     margin-top: 50px;
     font-size: 0.9em;
-}
-
-/* Colora di rosso la prima lettera degli headings h2 contenuti nel div central */
-div#central h2:first-letter{
-    font-size: 1.7em;
-    color: #9e1616;
-}
-/* Colora di rosso la prima lettera degli headings h1 */
-h1:first-letter{
-    font-size: 1.6em;
-    color: #9e1616;
 }
 
 /* Definisco lo stile dei link in base alle diverse proprietà */
@@ -512,7 +512,7 @@ configuazioni: larghezze maggiori o uguali a 1024px, larghezze minori o uguali a
         content: url("images/freccia_su.png");   
         float: right;
         margin-right: 20px;
-        margin-top: -110px;
+        margin-top: -115px;
     }
     
     #sidebar1 h4{
@@ -671,5 +671,16 @@ configuazioni: larghezze maggiori o uguali a 1024px, larghezze minori o uguali a
     }
     h2, h1{
         padding-right: 15px;
+    }
+    
+    .marche_auto, .marche_moto{
+        height: auto;
+    }
+    .elenco{
+        width: 50%;
+        padding-left: 25px;
+    }
+    .elenco ul{
+        margin-bottom: -5px;
     }
 }
