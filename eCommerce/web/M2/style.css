@@ -60,14 +60,14 @@ h1:first-letter{
 }
 
 /* Stile paragrafi */
-p.sottosezione{
-    margin-top: -2px;
-    margin-bottom: 10px;
-}
 #central p{
     padding-left: 20px;
     padding-right: 20px;
     font-size: 1em;
+}
+#central p.sottosezione{
+    margin-top: -2px;
+    margin-bottom: 10px;
 }
 footer p{
     vertical-align: middle;
@@ -118,7 +118,7 @@ ul.elenco{
 
 
 /* Stile generale della tabella in cliente.html, alcuni dettagli relativi a margini, dimensioni e ridimensionamento
-   sono specificati in ogni fascia diversa di dimensioni dello schermo */
+   sono specificati in ogni media query a seconda della diversa dimensione dello schermo */
 table {
     border: 2px solid #9e1616;
     border-collapse: collapse;
@@ -174,11 +174,12 @@ table a img:hover {
     margin-top: 5px;
     padding-left: 15%;
 }
-#sidebar1 .categoria{
-    font-size: 1.2em;
-}
-#sidebar1 h4:hover{
+#sidebar1 .categoria:hover{
     font-size: 1.1em; 
+}
+#sidebar1 h4{
+    border-bottom: 1px solid #9e1616;
+    margin-bottom: 15px;
 }
 #sidebar1 ul.sottosezioni{  
     list-style: circle;
@@ -223,40 +224,32 @@ input:focus, textarea:focus{
     outline: none;
 }
 /* Stile bottoni dei form (reset e submit) */
-#bottone{
+#submit{
     float: right;
-    height: 28px;
-    width: 50px;
-    cursor: pointer;	
-    text-align: center;
-    vertical-align: middle;
-    white-space: pre;
-    outline: none;
-    margin-top:15px;
-    background-color: rgba(158, 22, 22, 0.3);
-    border: 2px solid rgba(158, 22, 22, 0.6);
-    border-radius: 5px;
-    font-weight: bold;
     margin-right: 12%;
 }
 #reset{
     float: left;
-    height: 28px;
-    width: 50px;
-    cursor: pointer;
-    text-align: center;
-    vertical-align: middle;
-    white-space: pre;
-    outline: none;
+    margin-right: 0;
+    
+}
+#reset, #submit{
     background-color: rgba(158, 22, 22, 0.3);
     border: 2px solid rgba(158, 22, 22, 0.6);
-    border-radius: 5px;
+    outline: none;
+    vertical-align: middle;
+    cursor: pointer;	
+    text-align: center;
     font-weight: bold;
-    margin-right: 0;
+    height: 28px;
+    width: 50px;
+    white-space: pre;
     margin-top: 15px;
+    border-radius: 5px;
+   
 }
 /* Definizione degli stili per i bottoni quando il mouse ci passa sopra */
-#bottone:hover, #reset:hover{
+#submit:hover, #reset:hover{
     background-color: rgba(158, 22, 22, 0.5);
 }
 /* Definizione degli stili per i bottoni quando vengono attivati (click del bottone), da l'effetto che il bottone
@@ -266,11 +259,20 @@ input:focus, textarea:focus{
   top: 1px;
 }
 
+/* Freccia che riporta all'inizio della pagina in descrizione.html' */
+a#su{
+    content: url("images/freccia_su.png");   
+    float: right;
+    margin-right: 20px;
+    margin-top: -120px;
+}
+
+/* immagine che indica che la pagina contiene CSS valido */
 footer#valida{
     margin-top: 15px;   
 }
 
-/* Social bar */
+/* Social bar contenuta nel footer */
 .social{
     width: 200px;
     float: right;
@@ -292,23 +294,26 @@ footer#valida{
 }
 #facebook{
     background-image: url('images/facebook.png');
-    background-repeat: no-repeat;
 }
 #twitter{
     background-image: url('images/twitter.png');
-    background-repeat: no-repeat;
 }
 #linkedin{
     background-image: url('images/in.png');
+}
+#facebook, #twitter, #linkedin{
     background-repeat: no-repeat;
 }
 
+
+
 /*Iniziano le media queries che permettono di impostare stili diversi in base ala dimensione dello schermo, in 
   particolari sono definiti tre diversi punti di rottura in modo da ottenere un layout responsive. Le tre 
-configuazioni: larghezze maggiori o uguali a 1024px, larghezze minori o uguali a 480px e infine intervallo intermedio. */
+  configuazioni: larghezze maggiori o uguali a 1024px, larghezze minori o uguali a 480px e infine intervallo intermedio. */
 @media only screen and (min-width: 1024px)
 {
-    .menu, #sommario{
+    /* Per risoluzioni di almeno 1024 nascondo il menù, il sommario e il titolo riservati a risoluzoini inferiori */
+    .menu, #sommario, header h1{
         display: none;
     }
     
@@ -322,8 +327,13 @@ configuazioni: larghezze maggiori o uguali a 1024px, larghezze minori o uguali a
         box-shadow: 0 0 10px rgba(0,0,0,.2);
         border-radius: 7px;
     }
-    header h1{
-        display: none;
+    
+    /* Stile dei contenitori principali che compongono la pagina */
+    header{
+        clear: both;
+        height: 180px;
+        border-top-left-radius: 7px;
+        border-top-right-radius: 7px;
     }
     /* Inserico come sfondo dell'header l'immagine che rappresenta il logo del sito */
     header{
@@ -331,32 +341,21 @@ configuazioni: larghezze maggiori o uguali a 1024px, larghezze minori o uguali a
         background-repeat: no-repeat; 
         background-position: center;
     }
-    /* Stile dell'header e del footer della pagina */
-    header{
-        clear: both;
-        height: 180px;
-        border-top-left-radius: 7px;
-        border-top-right-radius: 7px;
-    }
-    /* Stile della barra laterale sinistra */
     #sidebar1{
         width: 30%;
         float: left;
-        padding: 0px;
-        
+        padding: 0px; 
     }
-    /* Stile della sezione centrale della pagina */
     #central{
         margin-top: 0px;
         margin-bottom: 0;
-        padding: 10px;
         margin-left: 30%;
+        padding: 10px;
     }
     footer{
         border-top: 4px solid #3B3B3B; 
         padding-top: 15px; 
         height: 120px;
-        box-shadow: 0 0 15px rgba(0,0,0,.2);
         padding-bottom: 15px;
         border-bottom-left-radius: 7px;
         border-bottom-right-radius: 7px;
@@ -369,9 +368,6 @@ configuazioni: larghezze maggiori o uguali a 1024px, larghezze minori o uguali a
     }
 
     /* Barra di navigazione */
-    header{
-        position: relative;
-    }
     nav{
          position: absolute;
          right: 5%;
@@ -382,40 +378,31 @@ configuazioni: larghezze maggiori o uguali a 1024px, larghezze minori o uguali a
         padding-left: 0;
     }
     nav ul li{
+        position: relative;  
+        display: inline-block;
         width: 100px;
         background-color: #DCDCDC;
         border-top-left-radius: 5px;
         border-top-right-radius: 5px;
-        display: inline-block;
-        border-top: 3px solid #3B3B3B;
-        border-right: 3px solid #3B3B3B;
-        border-left: 3px solid #3B3B3B;
-        border-bottom: 3px solid #3B3B3B;
+        border: 3px solid #3B3B3B;
         text-align: center;
         padding-top: 5px;
         padding-bottom: 5px;
-        position: relative;  
         top: 4px;
     }
+    /* Evidenzio la pagia corrente */
     .currentpage{
         background-color: #F5F5F5;
         top: 4px;
         border-bottom: 3px solid #F5F5F5;
     }
     
-    /* Freccia che riporta all'inizio della pagina in descrizione.html' */
-    a#su{
-        content: url("images/freccia_su.png");   
-        float: right;
-        margin-right: 20px;
-        margin-top: -120px;
+    /* Stile delle categorie principali nel sommario contenuto nella sidebar */
+    #sidebar1 h4{
+        width: 180px;
+        font-size: 1.2em;
     }
     
-    #sidebar1 h4{
-        border-bottom: 1px solid #9e1616;
-        width: 180px;
-        margin-bottom: 15px;
-    }
     /* Immaggine decorativa nella sidebar relativa alla storia dell'azienda (inserita come pseudo-elemento) */
     #sidebar1 p::before{
         content: url("images/george.jpg");
@@ -425,6 +412,7 @@ configuazioni: larghezze maggiori o uguali a 1024px, larghezze minori o uguali a
         margin-bottom: 40px;
     }
     
+    /* Rivisitazone di alcune caratteristiche relative ai form */
     label{
         width: 35%;
         float: left;
@@ -434,6 +422,7 @@ configuazioni: larghezze maggiori o uguali a 1024px, larghezze minori o uguali a
         width: 50%;
     }
     
+    /* Specifiche per lo stile della tabella in cliente.html */
     table{
         margin: 30px;
         width: 90%;
@@ -449,18 +438,26 @@ configuazioni: larghezze maggiori o uguali a 1024px, larghezze minori o uguali a
 
 @media only screen and (min-width: 480px) and (max-width: 1024px)
 {
+    /* Nascondo gli elementi che non fanno parte di questa risoluzione */
     #valida, .menu, #sommario{
         display: none;
     }
+    
+    /* Stile dei contenitori principali che compongono la pagina */
     header, footer{
+        position: relative;
         padding: 10px;
         height: 90px;
-        position: relative;
         padding-left: 20px;
         padding-right: 20px;
         margin: 0px;
     }
-
+    /* L'immagine logo viene sostituita da un h1 nella risoluzione intermedia */
+    header .logo{
+        font-size: 2.3em;
+        padding-top: 5px;
+        position: absolute;
+    }
     #sidebar1 {
         float: left;
         width: 25%;
@@ -471,35 +468,27 @@ configuazioni: larghezze maggiori o uguali a 1024px, larghezze minori o uguali a
         padding-top: 10px;
         padding-bottom: 10px;
     }
-    header h1{
-        font-size: 2.3em;
-        padding-top: 5px;
-    }
-    header .logo{
-        position: absolute;
-    }
+    
+    /* Modifico la visualizzazione della barra di navigazione  */
     nav{
         margin-top: 50px;
         position: relative;
         float: right;
     }
-    nav ul{
-        position: relative;
-        display: inline-block;
-        list-style: none;
-    }
     nav ul li{
-        position: relative;
+        list-style: none;
         display: inline-block;
         margin-left: 20px;  
         font-size: 1.2em;
     }
+    /* Evidenzio la pagina corrente in maniera diversa dalle altre */
     .currentpage a{
-         color: #3B3B3B;
-         text-decoration: underline;
-         font-weight: bold;
+        color: #3B3B3B;
+        text-decoration: underline;
+        font-weight: bold;
     }
-     
+    
+    /* Modifico i margini della barra dei social e la dimensione dei caratteri del paragrafo contenuto nel footer */
     .social{
         margin-top: -100px;
         margin-right: -15px;
@@ -507,22 +496,16 @@ configuazioni: larghezze maggiori o uguali a 1024px, larghezze minori o uguali a
     footer p{
         font-size: 0.9em;
     }
-    /* Freccia che riporta all'inizio della pagina in descrizione.html' */
-    a#su{
-        content: url("images/freccia_su.png");   
-        float: right;
-        margin-right: 20px;
-        margin-top: -115px;
-    }
     
+    /* Categorie principali del sommario nella sidebar */
     #sidebar1 h4{
-        border-bottom: 1px solid #9e1616;
-        width: 70%;
-        margin-bottom: 15px;
+        width: 80%;
         text-align: left;
-        font-size: 0.9em;
+        font-size: 1em;
+        padding-right: 15px;
     }
     
+    /* Rivisitazone di alcune caratteristiche relative ai form */
     fieldset{
         padding-left: 20%;
     }
@@ -537,17 +520,21 @@ configuazioni: larghezze maggiori o uguali a 1024px, larghezze minori o uguali a
     }
     input, textarea{
         width: 75%;
+        margin-top: 5px;
     }
-    #bottone{
+    #submit{
         margin-right: 21%;
     }
     
+    /* Specifiche per lo stile della tabella in cliente.html */
     table{
         width: 80%;
         margin: 10%;
         font-size: 0.9em;
     }
-
+    
+    /* Imposto che la lista delle marche deve occupare tutto il div che la contiene per fare in modo che restringendo
+       la finestra il paragrafo successivo non si addossi alla lista "flottante" */
     .elenco{
         width: 100%;
         padding-left: 0;
@@ -555,16 +542,23 @@ configuazioni: larghezze maggiori o uguali a 1024px, larghezze minori o uguali a
 }
 
 @media only screen and (max-width: 480px)
-{
+{   
+    /* Nascondo gli elementi che non sono previsti per questa risoluzione */
+    #sidebar1, nav, #a su, #valida, .social{
+        display: none;
+    }
+    
+    /* Stile dei contenitori principali che compongono la pagina */
     header, footer{
-        padding: 10px;
         min-height: 80px;
         position: relative;
+        padding: 10px;
         padding-left: 20px;
         padding-right: 20px;
         margin: 0px;
     } 
-    header h1{
+    /* L'immagine logo viene sostituita da un h1 nella risoluzione inferiore */
+    header .logo{
         font-size: 1.8em;
         padding-top: 5px;
         padding-left: 0;
@@ -576,12 +570,16 @@ configuazioni: larghezze maggiori o uguali a 1024px, larghezze minori o uguali a
         margin-top: -10px;
         padding-top: 10px;
     }
-    #sidebar1{
-        display: none;
+    #footer{
+        font-size: 0.8em;
     }
-    nav{
-        display: none;
+    
+    /*  Ridefinisco il padding degli headings h1 e h2 */
+    h2, h1{
+        padding-right: 15px;
     }
+    
+    /* Ridefinisco lo stile di un nuovo sommario in quanto la barra che contiene l'originale è nascosta */
     #sommario h4{
         margin-top: 5px;
         margin-bottom: 10px;
@@ -595,11 +593,12 @@ configuazioni: larghezze maggiori o uguali a 1024px, larghezze minori o uguali a
         text-decoration: underline;
     }
     
+    /* A questa risoluzione viene modifica anche la barra di navigazione che si trasforma in un menù a "tendina" */
     .menu #barramenu{
+        position: relative;
         width: 100%;
         border: 2px solid #3B3B3B;
         background: #DCDCDC;
-        position: relative;
         padding-top: 5px;
         padding-bottom: 5px;
         text-align: center;
@@ -609,16 +608,17 @@ configuazioni: larghezze maggiori o uguali a 1024px, larghezze minori o uguali a
         padding: 0;
         list-style-type: none;
     }
+    /* Il menù a tendina viene nascosto */
     .menu li ul
     {
         display: none
     }
+    /* Riappare quando l'utente ci passa sopra con il mouse*/
     .menu li:hover ul
     {
         display: block;
         position: absolute;
         z-index: 1;
-        padding: 0;
         width: 100%;
         border: 1px solid #3B3B3B;
         background: white;
@@ -633,23 +633,24 @@ configuazioni: larghezze maggiori o uguali a 1024px, larghezze minori o uguali a
     .menu li li:hover{ 
         background: #DCDCDC;
     }
+    
+    /* Modifico il link per accedere alla pagina di login per adattarlo alla nuova risoluzione */
     .login{
         float: right;
         margin-right: 6px;
         margin-top: -12px;
         font-size: 1.1em;
     }
-    #valida, .social{
-        display: none;
-    }
+    
+    /* Rivisitazone di alcune caratteristiche relative ai form */
     input, textarea{
         width: 80%;
+        margin-top: 5px;
     }
-    #bottone{
+    #submit{
         margin-right: 14%;
     }
     label{
-        margin-bottom: 5px;
         text-align: left;
     }
     label::after, label::before {
@@ -657,30 +658,27 @@ configuazioni: larghezze maggiori o uguali a 1024px, larghezze minori o uguali a
         white-space: pre;
     }
     
+    /* Specifiche per lo stile della tabella in cliente.html */
     table{
         width: 92%;
         margin: 12px;
         font-size: 0.8em;
     }
     
-    #central h3{
-        clear: both;
-    }
-    #footer{
-        font-size: 0.8em;
-    }
-    h2, h1{
-        padding-right: 15px;
-    }
-    
+    /* Imposto alcune proprietà relative alle liste delle marche dei veicoli */
     .marche_auto, .marche_moto{
         height: auto;
     }
     .elenco{
-        width: 50%;
+        width: 100px;
         padding-left: 25px;
     }
     .elenco ul{
         margin-bottom: -5px;
+    }
+    /* Imposto questa proprietà agli h3 nel contenuto centrale per fare in modo che le liste delle marche dei veicoli
+       "flottanti" si addossino ai paragrafi successivi*/
+    #central h3{
+        clear: both;
     }
 }
