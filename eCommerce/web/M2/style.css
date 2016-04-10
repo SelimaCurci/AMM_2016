@@ -434,10 +434,13 @@ footer#valida{
         font-size: 1.1em;
     }
     table th{
-         font-size: 1.2em;
+        font-size: 1.2em;
     }
     td,th{
         padding: 5px;
+    }
+    td{
+        height: 80px;
     }
 }
 
@@ -542,6 +545,9 @@ footer#valida{
         width: 80%;
         margin: 10%;
         font-size: 0.9em;
+    }
+    td{
+        height: 70px;
     }
     
     /* Imposto che la lista delle marche deve occupare tutto il div che la contiene per fare in modo che restringendo
@@ -674,6 +680,9 @@ footer#valida{
         width: 92%;
         margin: 12px;
         font-size: 0.8em;
+    }
+    td{
+        height: 50px;
     }
     
     /* Imposto alcune proprietà relative alle liste delle marche dei veicoli */
