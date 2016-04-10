@@ -171,15 +171,15 @@ table a img:hover {
 /* Stile del sommario della pagina descrizione.html (per dimensioni minime viene visualizzata una versione più semplice) */
 #sidebar1 ul.sezione{
     list-style-type: none;
-    margin-top: 5px;
+    margin-top: 20px;
     padding-left: 15%;
 }
-#sidebar1 .categoria:hover{
-    font-size: 1.1em; 
+#sidebar1 aside{
+    border-bottom: 1px solid #9e1616;  
 }
-#sidebar1 h4{
-    border-bottom: 1px solid #9e1616;
+.categoria{
     margin-bottom: 15px;
+    font-weight: bold;
 }
 #sidebar1 ul.sottosezioni{  
     list-style: circle;
@@ -366,7 +366,7 @@ footer#valida{
         padding-right: 40px;
         margin: 0 auto;
     }
-
+    
     /* Barra di navigazione */
     nav{
          position: absolute;
@@ -398,9 +398,14 @@ footer#valida{
     }
     
     /* Stile delle categorie principali nel sommario contenuto nella sidebar */
-    #sidebar1 h4{
-        width: 180px;
-        font-size: 1.2em;
+    #sidebar1 .categoria{
+        font-size: 1.1em;
+    }
+    #sidebar1 .categoria:hover{
+        font-size: 1.2em; 
+    }
+    #sidebar1 aside{
+        width: 180px;   
     }
     
     /* Immaggine decorativa nella sidebar relativa alla storia dell'azienda (inserita come pseudo-elemento) */
@@ -498,11 +503,17 @@ footer#valida{
     }
     
     /* Categorie principali del sommario nella sidebar */
-    #sidebar1 h4{
-        width: 80%;
-        text-align: left;
+    #sidebar1 .categoria{
         font-size: 1em;
         padding-right: 15px;
+    }
+    #sidebar1 .categoria:hover{
+        font-size: 1.1em;
+        padding-right: 15px;
+    }
+    #sidebar1 aside{
+        text-align: left;
+        width: 80%;   
     }
     
     /* Rivisitazone di alcune caratteristiche relative ai form */
@@ -580,7 +591,7 @@ footer#valida{
     }
     
     /* Ridefinisco lo stile di un nuovo sommario in quanto la barra che contiene l'originale è nascosta */
-    #sommario h4{
+    #sommario .categoria{
         margin-top: 5px;
         margin-bottom: 10px;
     }
@@ -680,5 +691,10 @@ footer#valida{
        "flottanti" si addossino ai paragrafi successivi*/
     #central h3{
         clear: both;
+    }
+    
+    /* Freccia che riporta all'inizio della pagina in descrizione.html' */
+    a#su{
+        margin-top: -150px;
     }
 }
