@@ -177,8 +177,8 @@ table a img:hover {
 #sidebar1 aside{
     border-bottom: 1px solid #9e1616;  
 }
-.categoria{
-    margin-bottom: 15px;
+aside{
+    margin-bottom: 6px;
     font-weight: bold;
 }
 #sidebar1 ul.sottosezioni{  
@@ -591,9 +591,9 @@ footer#valida{
     }
     
     /* Ridefinisco lo stile di un nuovo sommario in quanto la barra che contiene l'originale è nascosta */
-    #sommario .categoria{
+    #sommario li{
         margin-top: 5px;
-        margin-bottom: 10px;
+        margin-bottom: 6px;
     }
     #sommario{
         padding-left: 0;
