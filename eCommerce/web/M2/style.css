@@ -174,10 +174,8 @@ table a img:hover {
     margin-top: 20px;
     padding-left: 15%;
 }
-#sidebar1 aside{
+#sidebar1 li.categoria{
     border-bottom: 1px solid #9e1616;  
-}
-aside{
     margin-bottom: 6px;
     font-weight: bold;
 }
@@ -398,13 +396,13 @@ footer#valida{
     }
     
     /* Stile delle categorie principali nel sommario contenuto nella sidebar */
-    #sidebar1 .categoria{
+    #sidebar1 li.categoria{
         font-size: 1.1em;
     }
-    #sidebar1 .categoria:hover{
+    #sidebar1 li.categoria a:hover{
         font-size: 1.2em; 
     }
-    #sidebar1 aside{
+    #sidebar1 li.categoria{
         width: 180px;   
     }
     
@@ -506,17 +504,15 @@ footer#valida{
     }
     
     /* Categorie principali del sommario nella sidebar */
-    #sidebar1 .categoria{
+    #sidebar1 li.categoria{
         font-size: 1em;
         padding-right: 15px;
+        text-align: left;
+        width: 80%; 
     }
-    #sidebar1 .categoria:hover{
+    #sidebar1 li.categoria a:hover{
         font-size: 1.1em;
         padding-right: 15px;
-    }
-    #sidebar1 aside{
-        text-align: left;
-        width: 80%;   
     }
     
     /* Rivisitazone di alcune caratteristiche relative ai form */
@@ -597,14 +593,15 @@ footer#valida{
     }
     
     /* Ridefinisco lo stile di un nuovo sommario in quanto la barra che contiene l'originale è nascosta */
-    #sommario li{
+    #sommario li.categoria{
         margin-top: 5px;
         margin-bottom: 6px;
+        list-style: none;
+        text-align: center;
+        font-size: 1.2em;
     }
     #sommario{
-        padding-left: 0;
-        list-style: none;
-        text-align: center
+         padding-left: 0;
     }
     a:hover{
         text-decoration: underline;
