@@ -26,7 +26,7 @@ header, footer{
 }
 
 /* Div "pulizia" che evita il sovrapporsi di due elementi, come nel caso del footer e del cotenuto centrale, 
-   div "spazio" per separarare due sezioni.*/
+   div "spazio" per separarare due sezioni.*/ 
 .clear{
     clear: both; 
     width: 0px; height: 0px;
