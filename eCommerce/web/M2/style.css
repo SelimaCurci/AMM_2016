@@ -48,6 +48,9 @@ h2, h1{
     font-size: 1.7em;
     padding-bottom: 2px;
 }
+header h1{
+    color: #000000;
+}
 /* Colora di rosso la prima lettera degli headings h2 contenuti nel div central */
 div#central h2:first-letter{
     font-size: 1.7em;
