@@ -86,6 +86,28 @@ footer p{
     margin-top: 50px;
     font-size: 0.9em;
 }
+.errore{
+    color: #9e1616;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+.ok{
+    font-weight: bold;
+    color: green;
+    font-size: 1.2em;
+}
+.messaggio{
+    font-weight: bold;
+}
+.messaggio::before{
+    content: "\A";
+    white-space: pre;
+}
+/* Link per il logout */
+div#logout a{
+    float: right;
+    margin-top: 20px;
+}
 
 /* Definisco lo stile dei link in base alle diverse proprietà */
 a:visited, a:link{
@@ -224,17 +246,22 @@ input:focus, textarea:focus{
     border-radius: 5px;
     outline: none;
 }
+input:invalid{
+    background-color: rgba(158, 22, 22, 0.3);
+}
 /* Stile bottoni dei form (reset e submit) */
 #submit{
     float: right;
     margin-right: 12%;
+    width: 50px;
 }
 #reset{
     float: left;
     margin-right: 0;
+    width: 50px;
     
 }
-#reset, #submit{
+#reset, #submit, #conferma{
     background-color: rgba(158, 22, 22, 0.3);
     border: 2px solid rgba(158, 22, 22, 0.6);
     outline: none;
@@ -243,26 +270,30 @@ input:focus, textarea:focus{
     text-align: center;
     font-weight: bold;
     height: 28px;
-    width: 50px;
     white-space: pre;
     margin-top: 15px;
     border-radius: 5px;
-   
+}
+#conferma{
+    width: 100px;
+    float: right;
+    margin-top: -40px;
+    margin-right: 30px;
 }
 /* Definizione degli stili per i bottoni quando il mouse ci passa sopra */
-#submit:hover, #reset:hover{
+#submit:hover, #reset:hover, #conferma:hover{
     background-color: rgba(158, 22, 22, 0.5);
 }
 /* Definizione degli stili per i bottoni quando vengono attivati (click del bottone), da l'effetto che il bottone
    sia stato effettivamente cliccato */
-#bottone:active, #reset:active {
+#bottone:active, #reset:active, #conferma:active {
   position: relative;
   top: 1px;
 }
 
 /* Freccia che riporta all'inizio della pagina in descrizione.html' */
 a#su{
-    content: url("images/freccia_su.png");   
+    content: url("Images/freccia_su.png");   
     float: right;
     margin-right: 20px;
     margin-top: -120px;
@@ -294,13 +325,13 @@ footer#valida{
     color: transparent;
 }
 #facebook{
-    background-image: url('images/facebook.png');
+    background-image: url('Images/facebook.png');
 }
 #twitter{
-    background-image: url('images/twitter.png');
+    background-image: url('Images/twitter.png');
 }
 #linkedin{
-    background-image: url('images/in.png');
+    background-image: url('Images/in.png');
 }
 #facebook, #twitter, #linkedin{
     background-repeat: no-repeat;
@@ -338,7 +369,7 @@ footer#valida{
     }
     /* Inserico come sfondo dell'header l'immagine che rappresenta il logo del sito */
     header{
-        background-image: url('images/logo.png');
+        background-image: url('Images/logo.png');
         background-repeat: no-repeat; 
         background-position: center;
     }
@@ -411,7 +442,7 @@ footer#valida{
     
     /* Immaggine decorativa nella sidebar relativa alla storia dell'azienda (inserita come pseudo-elemento) */
     #sidebar1 p::before{
-        content: url("images/george.jpg");
+        content: url("Images/george.jpg");
         display: block;
         margin: 0px auto;
         text-align: center; 
@@ -442,6 +473,15 @@ footer#valida{
     }
     td{
         height: 80px;
+    }
+    
+    /* Immaggine decorativa per l'accesso negato a una  */
+    p#divieto::before{
+        content: url("Images/divieto.png");
+        display: block;
+        margin: 0px auto;
+        text-align: center; 
+        margin-bottom: 40px;
     }
 }
 
@@ -554,6 +594,10 @@ footer#valida{
     .elenco{
         width: 100%;
         padding-left: 0;
+    }
+    
+    .ok, .errore, .messaggio{
+        width: 160px;
     }
 }
 
@@ -705,5 +749,16 @@ footer#valida{
     /* Freccia che riporta all'inizio della pagina in descrizione.html' */
     a#su{
         margin-top: -150px;
+    }
+    
+    #conferma{
+        float: none;
+        margin-left: 30%;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+    
+    div#logout::after{
+       
     }
 }
