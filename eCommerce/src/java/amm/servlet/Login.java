@@ -67,6 +67,10 @@ public class Login extends HttpServlet {
                     for(Buyer c : listaClienti){
                         if(c.getUsername().equals(username) && c.getPassword().equals(password)){
                             session.setAttribute("utente", c);
+                            session.setAttribute("login", true);
+                            ArrayList<CarSale> listaAuto = CarSaleFactory.getInstance().getAutoSaleList(); 
+                            request.setAttribute("listaAuto", listaAuto);
+                            request.getRequestDispatcher("cliente.jsp").forward(request, response);
                         }
                     }
                     
@@ -76,27 +80,15 @@ public class Login extends HttpServlet {
                         for(Seller v : listaVenditori){
                             if(v.getUsername().equals(username) && v.getPassword().equals(password)){
                                 session.setAttribute("utente", v);
+                                session.setAttribute("login", true);
+                                request.getRequestDispatcher("venditore.jsp").forward(request, response);
                             }
                         }
                     
-                    /* Se l'utente esiste viene rimandato alla pagina che gli compete  */
-                    if(session.getAttribute("utente") != null){
-                        session.setAttribute("login", true);
-                        if((User)session.getAttribute("utente") instanceof Seller){
-                            //response.sendRedirect("venditore.html");
-                            request.getRequestDispatcher("venditore.jsp").forward(request, response);
-                        }
-                        else if((User)session.getAttribute("utente") instanceof Buyer){
-                            //response.sendRedirect("cliente.html");
-                            ArrayList<CarSale> listaAuto = CarSaleFactory.getInstance().getAutoSaleList(); 
-                            request.setAttribute("listaAuto", listaAuto);
-                            request.getRequestDispatcher("cliente.jsp").forward(request, response);
-                        }
-                    } // Altrimenti lo rimando al form e stampo un messaggio di errore
-                    else{
+                    
                         request.setAttribute("errore", true);
                         request.getRequestDispatcher("login.jsp").forward(request, response);   
-                    }
+                    
                 }
                 // Se le crredenziali sono nulle rimando al form di login con un messaggio di errore
                 else{
