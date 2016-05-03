@@ -91,7 +91,7 @@
                 
                 <!-- Mostro i dettagli dell'oggetto in una tabella
                  -->
-                 ${auto.nomeAuto} e ${auto.urlImmagine}
+                
                 <table>
                     <tr class="intestazione"> 
                         <th> Nome </th> 
