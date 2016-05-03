@@ -34,20 +34,7 @@ public class Descrizione extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
-        HttpSession session = request.getSession(false);
         
-        // Setto inizialmente l'attributo login a false
-        request.setAttribute("login", false);
-        
-        // Verifico se la sessione esiste e se è valida
-        if(session != null)
-            if(session.getAttribute("utente")!=null)
-            {
-                /* In caso affermativo setto inizialmente l'attributo login a false in modo da mostrare il link
-                   per il logout all'interno della jsp */
-                if(session.getAttribute("utente") != null)
-                   request.setAttribute("login", true);
-            }
         // forward alla jsp descrizione.jsp
         request.getRequestDispatcher("descrizione.jsp").forward(request, response);
     }

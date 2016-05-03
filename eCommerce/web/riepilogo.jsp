@@ -29,7 +29,7 @@
               <!-- Se la sessione è attiva e valida allora è possibile effettuare il logout da questo link, che 
                     richiamerà la servlet Logout
               -->
-              <c:if test="${login == true}">
+              <c:if test="${sessionScope.utente != null}">
                   <div id="logout"><a href="logout.html">Logout</a></div>
               </c:if>
               

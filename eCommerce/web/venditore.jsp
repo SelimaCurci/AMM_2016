@@ -26,9 +26,11 @@
         <div id="page">
             
             <header>
+              <c:if test="${sessionScope.utente != null}">
+                  <div id="logout"><a href="logout.html">Logout</a></div>
+              </c:if> 
+               
               <!-- Titolo usato per la risoluzione piccola e intermedia -->
-              <div id="logout"><a href="logout.html">Logout</a></div>    
-              
               <h1 class="logo">AUTONTHELINE</h1>
               
               <!-- Sezione di navigazione -->

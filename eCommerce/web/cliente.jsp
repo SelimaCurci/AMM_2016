@@ -29,7 +29,9 @@
               <!-- E' possibile effettuare il logout da questo link, che 
                    richiamerà la servlet Logout
               -->
-              <div id="logout"><a href="logout.html">Logout</a></div>
+              <c:if test="${sessionScope.utente != null}">
+                  <div id="logout"><a href="logout.html">Logout</a></div>
+              </c:if>
               
               <!-- Titolo usato per la risoluzione piccola e intermedia -->
               <h1 class="logo">AUTONTHELINE</h1>
