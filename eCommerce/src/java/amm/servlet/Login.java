@@ -63,7 +63,7 @@ public class Login extends HttpServlet {
                     
                     /* Controllo se le l'utente esiste nella lista dei clienti, in caso affermativo imposto la variabile
                        di sessione utente con l'oggetto che lo rappresenta, in modo da poter recuperare in seguito le
-                       informazioni che lo riguardano */
+                       informazioni che lo riguardano e lo rimando alla pagina cliente */
                     for(Buyer c : listaClienti){
                         if(c.getUsername().equals(username) && c.getPassword().equals(password)){
                             session.setAttribute("utente", c);
@@ -85,9 +85,10 @@ public class Login extends HttpServlet {
                             }
                         }
                     
-                    
-                        request.setAttribute("errore", true);
-                        request.getRequestDispatcher("login.jsp").forward(request, response);   
+                    /* Se arrivo qui significa che l'utente non esiste e quindi lo rimando al form di login e gli 
+                       stampo un messaggio di errore*/
+                    request.setAttribute("errore", true);
+                    request.getRequestDispatcher("login.jsp").forward(request, response);   
                     
                 }
                 // Se le crredenziali sono nulle rimando al form di login con un messaggio di errore
