@@ -41,7 +41,7 @@ public class CarSale {
          this.quantita = qta;
     }
     
-    /** Restituisce l'id dell'oggeeto;
+    /** Restituisce l'id dell'oggeeto
      *  @return the id
      */
     public int getId() {
