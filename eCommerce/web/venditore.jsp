@@ -64,7 +64,7 @@
                 
                 <h1>Aggiungi un veicolo in vendita</h1>
                 <p> Compilando il seguente form hai tre possibilità, a seconda di quale azione desideri intraprendere.<br>
-                    Se selezioni la voce nuovo  ecompili il form con tutte le informazioni riguardo il veicolo che desideri 
+                    Se selezioni la voce nuovo (se ti dimentichi fa lo stesso)  e compili il form con tutte le informazioni riguardo il veicolo che desideri 
                     vendere e poi clicchi sul bottone aggiungi, se i dati sono corretti, il tuo veicolo sarà messo in vendita. <br>
                     Se selezioni un oggetto dalla lista di quelli che attualmente hai in vendita e clicchi sul pulsante
                     elimina, l'oggetto verrà rimosso. <br>
@@ -92,15 +92,13 @@
                 <!-- Form per l’inserimento di un nuovo oggetto all’interno della pagina venditore.html -->
                 <form action="venditore.html" method="post">
                     <fieldset>
-                    <c:if test="${listaSize != 0}">
                         <label for="idoggetto">Seleziona oggetto</label>
                         <select name="idoggetto" id="idoggetto">
                             <option value="Nuovo">Nuovo</option>
                             <c:forEach var="obj" items="${listaAuto}" >
                                 <option value="${obj.id}"> ${obj.nomeAuto} </option>
                             </c:forEach>
-                        </select>    
-                     </c:if> 
+                        </select>   
                     <div class="spazio"></div>
                     
                     <label for="nomeoggetto">Nome</label>

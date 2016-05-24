@@ -56,8 +56,9 @@ public class Venditore extends HttpServlet {
         /* Se la condizione è vera significa che l'utente ha inviato i dati relativi all'inserimento di un nuovo
            oggetto in vendita. Quindi devo gestirli in modo appropriato. */
         if(request.getParameter("aggiungi") != null){
-                /* Se l'utemte non seleziona la voce nuovo, non gli permetto di inserirlo */    
-                if(!request.getParameter("idoggetto").equals("Nuovo")){
+                /* Inserisco l'oggetto se i campi sono tutti corretti a prescindere dal fatto che l'utente selezioni 
+                   nuovo */    
+                /*if(!request.getParameter("idoggetto").equals("Nuovo")){
                     request.setAttribute("errore", true);
                     request.setAttribute("messaggioErrore", "Errore nella selezione. Scegli \"Nuovo\" per inserire un nuovo oggetto.");
                     int id = ((User)session.getAttribute("utente")).getId();
@@ -68,7 +69,7 @@ public class Venditore extends HttpServlet {
                     else
                     request.setAttribute("listaSize", 0); 
                     request.getRequestDispatcher("venditore.jsp").forward(request, response);
-                }
+                }*/
                     
                 CarSale nuovaAuto = new CarSale();
                 int quantita = 0;
