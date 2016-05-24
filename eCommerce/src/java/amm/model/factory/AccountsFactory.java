@@ -6,7 +6,15 @@
 package amm.model.factory;
 
 import amm.model.Account;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -16,9 +24,23 @@ import java.util.ArrayList;
 public class AccountsFactory {
     /* Attributi */
     private static AccountsFactory singleton;
-    private ArrayList<Account> listaConti;
+    String connectionString; 
     
-    /* Garantisce la presenza di una sola istanza della classe Factory all'interno dell'applicazione */
+    /** Metodo set della la stringa utilizzata per la connessione al database 
+     *  @param path del db
+     */
+    public void setConnectionString(String s){
+	this.connectionString = s;
+    }
+    
+    /** Metodo get della la stringa utilizzata per la connessione al database 
+     *  @return path del db
+     */
+    public String getConnectionString(){
+            return this.connectionString;
+    } 
+    
+    /** Garantisce la presenza di una sola istanza della classe Factory all'interno dell'applicazione */
     public static AccountsFactory getInstance() {
         if (singleton == null) {
             singleton = new AccountsFactory();
@@ -26,55 +48,69 @@ public class AccountsFactory {
         return singleton;
     }
 
-    /* Costruttore vuoto */
+    /** Costruttore vuoto */
     private AccountsFactory() {
 
     }
 
-    /** Restituisce la lista di tutti i conti
+    /** Restituisce la lista di tutti i conti (inutile)
      *  @return lista dei conti
      */
     public ArrayList<Account> getContiList() {
-        // In questo modo la lista viene creata una sola volta
-        if(listaConti == null){
-            listaConti = new ArrayList<>();
-            
-            Account conto_1 = new Account();
-            conto_1.versa(100.0);
-            conto_1.setId(0);
-            listaConti.add(conto_1);
-
-            Account conto_2 = new Account();
-            conto_2.versa(230.0);
-            conto_2.setId(1);
-            listaConti.add(conto_2);
-
-            Account conto_3 = new Account();
-            conto_3.versa(150.0);
-            conto_3.setId(2);
-            listaConti.add(conto_3);
-
-            Account conto_4 = new Account();
-            conto_4.versa(1000000.0);
-            conto_4.setId(3);
-            listaConti.add(conto_4);
-
-            Account conto_5 = new Account();
-            conto_5.setId(4);
-            listaConti.add(conto_5);
+        ArrayList<Account> listaConti = new ArrayList<>();
+        
+        try(Connection conn = DriverManager.getConnection(connectionString, "selimacurci", "0000");
+            Statement stmt = conn.createStatement()) {
+            // Definisco la query per ottenere l'elenco di tutti i conti
+            String sql = "SELECT * FROM Account";
+            ResultSet set = stmt.executeQuery(sql);
+            while (set.next()) {
+                int idConto = set.getInt("id");
+                double saldo = set.getDouble("saldo");
+                Account account = new Account(idConto, saldo);
+                
+                listaConti.add(account);
+            }
+        } catch (SQLException ex) {
+            // nel caso la query fallisca (p.e. errori di sintassi)
+            // viene sollevata una SQLException
+            Logger.getLogger(AccountsFactory.class.getName()).
+            log(Level.SEVERE, null, ex);
         }
         
         return listaConti;
     } 
     
-    /** Restiuisce l'utente avente l’identificatore passato per parametro 
-     *  @return  restiuisce l'utente avente l’identificatore passato per parametro 
+    /** Restiuisce il conto avente l’identificatore passato per parametro 
+     *  @return  restiuisce il conto avente l’identificatore passato per parametro 
      */
     public Account getAccountById(int id){
-        for(Account c : getContiList()){
-            if(c.getId() == id)
-                return c;
+        Account account = null;
+        /* Definisco la query per restituire il conto dato l'id, essendo parametrica inserisco un ? al posto dell'id 
+           del conto, e poi lo setto dopo*/
+        String sql = "SELECT * FROM Account WHERE id = ?";
+        
+        /* Apro la connessione al db e creo il prepare Statement per la query usando un try with-resources, in questo
+           modo sono sicura che le risorse saranno chiuse in ogni caso */
+        try(Connection conn = DriverManager.getConnection(connectionString, "selimacurci", "0000");
+            PreparedStatement stmt = conn.prepareStatement(sql)) {
+            // Si associano valori e posizioni di placeholder
+            stmt.setInt(1, id);
+            // Eseguo la query
+            ResultSet set = stmt.executeQuery();
+            /* Se l'esecuzione ha prodotto un risultato, preparo il conto da restituire */
+            if(set.next()) {
+                int idConto = set.getInt("id");
+                double saldo = set.getDouble("saldo");
+                account = new Account(idConto, saldo);
+            }
+        } catch (SQLException ex) {
+            // nel caso la query fallisca (p.e. errori di sintassi)
+            // viene sollevata una SQLException
+            Logger.getLogger(AccountsFactory.class.getName()).
+            log(Level.SEVERE, null, ex);
         }
-        return null; // Se l'oggetto non è presente nella lista allora restituisco null
-    }        
+        /* Nel caso non fosse stata trovata nessuna corrispondenza a questo punto viene restituito null */
+        return account;
+    }       
 }

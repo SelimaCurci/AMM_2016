@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import amm.model.Buyer;
 import amm.model.factory.CarSaleFactory;
+import java.util.ArrayList;
 /**
  *
  * @author selim
@@ -51,68 +52,242 @@ public class Venditore extends HttpServlet {
             request.getRequestDispatcher("accessoNegato.jsp").forward(request, response);
         }
         
-        // Variabile usata per controllare i campi inviati dal venditore
-        boolean controllo = true;
        
         /* Se la condizione è vera significa che l'utente ha inviato i dati relativi all'inserimento di un nuovo
            oggetto in vendita. Quindi devo gestirli in modo appropriato. */
-        if(request.getParameter("submit") != null){
-                   CarSale nuovaAuto = new CarSale();
-                   int quantita = 0;
-                   double prezzo = 0.0;
+        if(request.getParameter("aggiungi") != null){
+                /* Se l'utemte non seleziona la voce nuovo, non gli permetto di inserirlo */    
+                if(!request.getParameter("idoggetto").equals("Nuovo")){
+                    request.setAttribute("errore", true);
+                    request.setAttribute("messaggioErrore", "Errore nella selezione. Scegli \"Nuovo\" per inserire un nuovo oggetto.");
+                    int id = ((User)session.getAttribute("utente")).getId();
+                    ArrayList<CarSale> listaAuto = CarSaleFactory.getInstance().getAutoSaleBySeller(id);
+                    request.setAttribute("listaAuto", listaAuto);
+                    if(listaAuto != null)
+                        request.setAttribute("listaSize", listaAuto.size());
+                    else
+                    request.setAttribute("listaSize", 0); 
+                    request.getRequestDispatcher("venditore.jsp").forward(request, response);
+                }
+                    
+                CarSale nuovaAuto = new CarSale();
+                int quantita = 0;
+                double prezzo = 0.0;
+                // Variabile usata per controllare i campi inviati dal venditore
+                boolean controllo = true;
                    
-                   /* Preparo il parametro auto da passare alla pagina di riepilogo verificando che tutti i campi siano
-                      corretti. In caso non fosse così l'inserimento non andrà a buon fine */         
-                   if(request.getParameter("nomeoggetto")!=null && request.getParameter("descrizione")!=null
-                           && request.getParameter("urlimmagine")!=null ){
-                       nuovaAuto.setNomeAuto(request.getParameter("nomeoggetto"));
-                       nuovaAuto.setDescrizione(request.getParameter("descrizione"));
-                       nuovaAuto.setUrlImmagine(request.getParameter("urlimmagine"));
-                   }else{
-                       controllo = false;
-                   }
-                   try{
-                       quantita = Integer.parseInt(request.getParameter("quantita"));
-                   }catch(RuntimeException e){
-                       controllo = false;
-                   }
-                   try{
-                       prezzo = Double.parseDouble(request.getParameter("prezzo"));
-                   }catch(RuntimeException e){
-                       controllo = false;
-                   }
+                /* Preparo il parametro auto da passare alla pagina di riepilogo verificando che tutti i campi siano
+                   corretti. In caso non fosse così l'inserimento non andrà a buon fine */         
+                if(!(request.getParameter("nomeoggetto").equals("")) && request.getParameter("nomeoggetto")!= null){
+                    nuovaAuto.setNomeAuto(request.getParameter("nomeoggetto"));
+                }else
+                    controllo = false;
+                    
+                if(!(request.getParameter("descrizione").equals("")) && request.getParameter("descrizione") != null){
+                    nuovaAuto.setDescrizione(request.getParameter("descrizione"));
+                }else
+                    controllo = false;
                    
-                   if(quantita > 0 )
-                       nuovaAuto.setQuantita(quantita);
-                   else
-                       controllo = false;
+                if(!(request.getParameter("urlimmagine").equals("")) && request.getParameter("urlimmagine") != null){
+                    nuovaAuto.setUrlImmagine(request.getParameter("urlimmagine"));
+                }else
+                    controllo = false;
                    
-                   if(prezzo > 0 )
-                       nuovaAuto.setPrezzoUnitario(prezzo);
-                   else
-                       controllo = false;
+                try{
+                    quantita = Integer.parseInt(request.getParameter("quantita"));
+                }catch(RuntimeException e){
+                    controllo = false;
+                }
                    
-                   // Se controllo è ancora true i campi sono stati tutti validati e posso inserire l'oggetto
-                   if(controllo == true){
-                       nuovaAuto.setIdVenditore(((User)session.getAttribute("utente")).getId());
-                       nuovaAuto.setId(CarSaleFactory.getInstance().getNewId());
-                       if(CarSaleFactory.getInstance().addAuto(nuovaAuto)){
-                           request.setAttribute("auto", nuovaAuto);
-                           request.setAttribute("conferma", true);
-                       }
-                       else{ 
-                           request.setAttribute("conferma", false);
-                       }
-                   } // In caso contario mostrerò un messaggio per avvertire l'utente dell'errore
-                   else{
-                       request.setAttribute("conferma", false);
-                   }
+                try{
+                    prezzo = Double.parseDouble(request.getParameter("prezzo"));
+                }catch(RuntimeException e){
+                    controllo = false;
+                }
                    
-                   request.setAttribute("utente", "venditore");
-                   request.getRequestDispatcher("riepilogo.jsp").forward(request, response);
-            }
+                if(quantita > 0 )
+                    nuovaAuto.setQuantita(quantita);
+                else
+                    controllo = false;
+                   
+                if(prezzo > 0 )
+                    nuovaAuto.setPrezzoUnitario(prezzo);
+                else
+                    controllo = false;
+                   
+                // Se controllo è ancora true i campi sono stati tutti validati e posso inserire l'oggetto
+                if(controllo == true){
+                    nuovaAuto.setIdVenditore(((User)session.getAttribute("utente")).getId());
+                    if(CarSaleFactory.getInstance().addAuto(nuovaAuto)){
+                        request.setAttribute("auto", nuovaAuto);
+                        request.setAttribute("conferma", true);
+                    }
+                    else{ 
+                        request.setAttribute("conferma", false);
+                    }
+                } // In caso contario mostrerò un messaggio per avvertire l'utente dell'errore
+                else{
+                    request.setAttribute("conferma", false);
+                }
+                   
+                request.setAttribute("utente", "venditore");
+                request.getRequestDispatcher("riepilogo.jsp").forward(request, response);
+        }
+           
+        /* Se la condizione è vera significa che l'utente ha inviato i dati relativi alla modifica di un 
+           oggetto in vendita. Quindi devo gestirli in modo appropriato. */
+        if(request.getParameter("modifica") != null){
+                int idAuto = 0;
+               
+                /* Devo verificare per prima cosa che il venditore abbia selezionato un oggetto valido e non la 
+                   voce "nuovo", se la selezione è erratta lo avviso con un messaggio di errore */
+                try{
+                    idAuto = Integer.parseInt(request.getParameter("idoggetto"));
+                }catch(RuntimeException e){
+                    request.setAttribute("errore", true);
+                    request.setAttribute("messaggioErrore", "Errore nella selezione dell'oggetto da modificare. Scegli un oggetto valido.");
+                    int id = ((User)session.getAttribute("utente")).getId();
+                    ArrayList<CarSale> listaAuto = CarSaleFactory.getInstance().getAutoSaleBySeller(id);
+                    request.setAttribute("listaAuto", listaAuto);
+                    if(listaAuto != null)
+                        request.setAttribute("listaSize", listaAuto.size());
+                    else
+                        request.setAttribute("listaSize", 0); 
+                        request.getRequestDispatcher("venditore.jsp").forward(request, response);
+                }
+                    
+                // Recupero il veicolo selezionato dal suo id
+                CarSale car = CarSaleFactory.getInstance().getAutoSaleById(idAuto);
+                /* Conto quanti campi sono stati compilati per la modifica */
+                int numeroCampi = 0; 
+                // Variabile usata per controllare i campi inviati dal venditore
+                boolean controllo = true;   
+                    
+                /* Modifico solo i campi compilati dal venditore, se validi, altrimenti i vecchi rimangono invariati */
+                if(!(request.getParameter("nomeoggetto").equals("")) && request.getParameter("nomeoggetto")!= null){
+                    car.setNomeAuto(request.getParameter("nomeoggetto"));
+                    numeroCampi++;
+                }
+                    
+                if(!(request.getParameter("descrizione").equals("")) && request.getParameter("descrizione") != null){
+                    car.setDescrizione(request.getParameter("descrizione"));
+                    numeroCampi++;
+                }
+                  
+                if(!(request.getParameter("urlimmagine").equals("")) && request.getParameter("urlimmagine") != null){
+                    car.setUrlImmagine(request.getParameter("urlimmagine"));
+                    numeroCampi++;
+                }
+                  
+                if(!(request.getParameter("quantita").equals("")) && request.getParameter("quantita") != null){
+                    try{
+                        int quantita = Integer.parseInt(request.getParameter("quantita"));
+                        if(quantita > 0 ){
+                            car.setQuantita(quantita);
+                            numeroCampi++;
+                        }
+                        else 
+                            controllo = false;
+                    }catch(RuntimeException e){
+                        controllo = false;
+                    }
+                }
+                    
+                if(!(request.getParameter("prezzo").equals("")) && request.getParameter("prezzo") != null){
+                    try{
+                        double prezzo = Double.parseDouble(request.getParameter("prezzo"));
+                        if(prezzo > 0 ){
+                            car.setPrezzoUnitario(prezzo);
+                            numeroCampi++;
+                        }
+                        else
+                            controllo = false;
+                        if(controllo ==false)throw new NullPointerException();
+                    }catch(RuntimeException e){
+                        controllo = false;
+                    }
+                }
+                    
+                /* Se non ha compilato nemmeno un campo non lo rimando nemmeno al riepilogo e l'avviso del fatto
+                   che non è stata eseguita nessuna modifica */
+                if(numeroCampi == 0){
+                    int id = ((User)session.getAttribute("utente")).getId();
+                    ArrayList<CarSale> listaAuto = CarSaleFactory.getInstance().getAutoSaleBySeller(id);
+                    request.setAttribute("listaAuto", listaAuto);
+                    request.setAttribute("modifica", false);
+                    if(listaAuto != null)
+                        request.setAttribute("listaSize", listaAuto.size());
+                    else
+                        request.setAttribute("listaSize", 0); 
+                    request.getRequestDispatcher("venditore.jsp").forward(request, response);
+                }
+                    
+                // Se controllo è ancora true i campi sono stati tutti validati e posso modificare l'oggetto
+                if(controllo == true){
+                    car.setIdVenditore(((User)session.getAttribute("utente")).getId());
+                    if(CarSaleFactory.getInstance().alterAuto(car)){
+                        request.setAttribute("auto", car);
+                        request.setAttribute("modifica", true);
+                    }
+                    else{ 
+                        request.setAttribute("modifica", false);
+                    } 
+                } // In caso contario mostrerò un messaggio per avvertire l'utente dell'errore
+                else{
+                    request.setAttribute("modifica", false);
+                }
+                   
+                request.setAttribute("utente", "venditore");
+                request.getRequestDispatcher("riepilogo.jsp").forward(request, response);
+        }
             
-             // jsp che mostra il form per l'inserimento
+        /* Se la condizione è vera significa che l'utente ha selezionato un oggetto da eliminare */
+        if(request.getParameter("elimina") != null){
+                int idAuto = 0;
+                /* Devo verificare per prima cosa che il venditore abbia selezionato un oggetto valido e non la 
+                   voce "nuovo", se la selezione è erratta lo avviso con un messaggio di errore */
+                try{
+                     idAuto = Integer.parseInt(request.getParameter("idoggetto"));
+                }catch(RuntimeException e){
+                    request.setAttribute("errore", true);
+                    request.setAttribute("messaggioErrore", "Errore nella selezione dell'oggetto da eliminare. Scegli un oggetto valido.");
+                    int id = ((User)session.getAttribute("utente")).getId();
+                    ArrayList<CarSale> listaAuto = CarSaleFactory.getInstance().getAutoSaleBySeller(id);
+                    request.setAttribute("listaAuto", listaAuto);
+                    if(listaAuto != null)
+                        request.setAttribute("listaSize", listaAuto.size());
+                    else
+                        request.setAttribute("listaSize", 0); 
+                    request.getRequestDispatcher("venditore.jsp").forward(request, response);
+                }
+                
+                /* Elimino l'oggetto e verifico che sia andata a buon fine l'eliminazione  */
+                if(CarSaleFactory.getInstance().removeAuto(idAuto)){
+                    request.setAttribute("elimina", true);
+                }else{
+                    request.setAttribute("errore", true);
+                    request.setAttribute("messaggioErrore", "Errore nell'eliminazione dell'oggetto.");
+                }
+                
+                request.setAttribute("utente", "venditore");
+                int id = ((User)session.getAttribute("utente")).getId();
+                ArrayList<CarSale> listaAuto = CarSaleFactory.getInstance().getAutoSaleBySeller(id);
+                request.setAttribute("listaAuto", listaAuto);
+                if(listaAuto != null)
+                    request.setAttribute("listaSize", listaAuto.size());
+                else
+                    request.setAttribute("listaSize", 0); 
+                request.getRequestDispatcher("venditore.jsp").forward(request, response);
+        }
+              
+            // jsp che mostra il form per l'inserimento
+            int id = ((User)session.getAttribute("utente")).getId();
+            ArrayList<CarSale> listaAuto = CarSaleFactory.getInstance().getAutoSaleBySeller(id);
+            request.setAttribute("listaAuto", listaAuto);
+            if(listaAuto != null)
+                request.setAttribute("listaSize", listaAuto.size());
+            else
+                request.setAttribute("listaSize", 0); 
             request.getRequestDispatcher("venditore.jsp").forward(request, response);
         
 }

@@ -16,8 +16,10 @@ import amm.model.CarSale;
 import amm.model.User;
 import amm.model.Buyer;
 import amm.model.Seller;
+import amm.model.factory.BuyersFactory;
 import amm.model.factory.CarSaleFactory;
 import amm.model.factory.SellersFactory;
+import java.sql.SQLException;
 import javax.servlet.http.HttpSession;
 
 /**
@@ -42,6 +44,7 @@ public class Cliente extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         
         HttpSession session = request.getSession(false);
+         ArrayList<CarSale> listaAuto = null;
         
         // Se la sessione non esiste mostro la jsp di accesso negato
         if(session == null){
@@ -56,8 +59,6 @@ public class Cliente extends HttpServlet {
             request.getRequestDispatcher("accessoNegato.jsp").forward(request, response);
         }
         else{
-            // Prelevo tutta la lista degli oggetti messi in vendita per stamparli in una tabella nella jsp
-            ArrayList<CarSale> listaAuto = CarSaleFactory.getInstance().getAutoSaleList(); 
             
             // Se l'utente clicca il tasto per confermare l'acquisto, lo gestisco 
             if( request.getParameter("conferma") != null)
@@ -72,6 +73,7 @@ public class Cliente extends HttpServlet {
                     }catch(RuntimeException e){
                       request.setAttribute("pagamento", false);
                       request.setAttribute("errore", true); 
+                      listaAuto = CarSaleFactory.getInstance().getAutoSaleList(); 
                       request.setAttribute("listaAuto", listaAuto);
                       request.getRequestDispatcher("cliente.jsp").forward(request, response);
                     }
@@ -83,6 +85,7 @@ public class Cliente extends HttpServlet {
                     if(autoSelezionata == null){
                       request.setAttribute("pagamento", false);
                       request.setAttribute("errore", true); 
+                      listaAuto = CarSaleFactory.getInstance().getAutoSaleList(); 
                       request.setAttribute("listaAuto", listaAuto);
                       request.getRequestDispatcher("cliente.jsp").forward(request, response);
                     }
@@ -93,24 +96,24 @@ public class Cliente extends HttpServlet {
 
                     request.setAttribute("utente", "cliente");
                     request.setAttribute("auto", autoSelezionata);
-                    /* Se il saldo del cliente è sufficiente imposto pagamento a true per poterlo comunicare all'utente,
-                       faccio un versamento al venditore dell'oggetto in questione e chiamo il metodo remove. Questo metodo
-                       elimina l'oggetto dalla lista se la sua quantità era pari a uno, altrimenti semplicemente scala di un
-                       unità il numero di esemplari disponibili */ 
-                    if(buyer.compra(autoSelezionata)){
-                       request.setAttribute("pagamento", true);
-                       seller.vendi(autoSelezionata);
-                       CarSaleFactory.getInstance().removeAuto(autoSelezionata.getId());
+                    
+                    int idAccountBuyer = buyer.getIdConto();
+                    int idAccountSeller = seller.getIdConto();
+                    double prezzo = autoSelezionata.getPrezzoUnitario();
+                    try{
+                        if(BuyersFactory.getInstance().transazione(id, idAccountBuyer, idAccountSeller))
+                            request.setAttribute("pagamento", true);
+                        else
+                            request.setAttribute("pagamento", false);
+                    }catch(SQLException e){
+                        request.setAttribute("errore", true); 
+                        request.setAttribute("pagamento", false);
                     }
-                    else{ // Se i soldi non sono sufficienti imposto pagamento a false, e poi avviserò con un messaggio il cliente
-                       request.setAttribute("pagamento", false); 
-                    }
-                   
                     /* Questo attributo mi serve nella jsp cliente per stampare o meno i messaggi relativi all'esito
                        della transazione */
                     request.setAttribute("conferma", true); 
-                    request.setAttribute("listaAuto", listaAuto); // Devo ripassare la lista auto alla jsp
-                    request.setAttribute("conto", buyer.getSaldoUtente());
+                    listaAuto = CarSaleFactory.getInstance().getAutoSaleList(); 
+                    request.setAttribute("listaAuto", listaAuto);
                     request.getRequestDispatcher("cliente.jsp").forward(request, response);
             }
             /* Se questa condizione è vera siamo nella fase di selezione del veicolo da acqiustare, è la fase precedente 
@@ -125,6 +128,7 @@ public class Cliente extends HttpServlet {
                   idAutoSelezionata = Integer.parseInt(request.getParameter("idAuto"));
                 }catch(RuntimeException e){ 
                   request.setAttribute("errore", true);
+                  listaAuto = CarSaleFactory.getInstance().getAutoSaleList(); 
                   request.setAttribute("listaAuto", listaAuto);
                   request.getRequestDispatcher("cliente.jsp").forward(request, response);
                 }
@@ -144,6 +148,7 @@ public class Cliente extends HttpServlet {
                     request.getRequestDispatcher("riepilogo.jsp").forward(request, response);
                 }
                 else{
+                    listaAuto = CarSaleFactory.getInstance().getAutoSaleList(); 
                     request.setAttribute("listaAuto", listaAuto);
                     request.getRequestDispatcher("cliente.jsp").forward(request, response);
                 }
@@ -151,7 +156,10 @@ public class Cliente extends HttpServlet {
             
             /* In condizioni "normali" passo semplicemente la lista degli oggetti in vendita alla jsp che si occupa di 
                visualizzarli in una tabella */
+            listaAuto = CarSaleFactory.getInstance().getAutoSaleList(); 
+            int size = listaAuto.size();
             request.setAttribute("listaAuto", listaAuto);
+            request.setAttribute("size", size);
             request.getRequestDispatcher("cliente.jsp").forward(request, response);
         }
     }

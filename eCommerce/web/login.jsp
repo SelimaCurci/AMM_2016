@@ -80,7 +80,7 @@
                          l'autenticazione dell'utente, questo viene avvertito con un messaggio
                     -->
                     <c:if test="${errore == true}">
-                       <p class="errore"> Login erratto, riprova! </p>
+                       <p class="errore"> Login erratto, riprova!</p>
                     </c:if>
                 </div>
                 

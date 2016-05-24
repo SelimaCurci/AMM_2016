@@ -82,7 +82,12 @@
                 
                 <c:choose>
                     <c:when test="${utente == 'venditore'}" >
-                         <h1>Riepilogo oggetto inserito</h1>
+                        <c:if test="${conferma != null}"> 
+                            <h1>Riepilogo oggetto inserito</h1>
+                        </c:if>
+                        <c:if test="${modifica != null}"> 
+                            <h1>Riepilogo oggetto modificato</h1>
+                        </c:if>
                     </c:when>
                     <c:otherwise>
                          <h1>Riepilogo oggetto da acquistare</h1>
@@ -101,7 +106,11 @@
                     </tr>
                         <tr> 
                             <td> ${auto.nomeAuto} </td> 
-                            <td><img title="${auto.nomeAuto}" alt="${auto.nomeAuto}" src="${auto.urlImmagine}" /></td> 
+                            <td> 
+                                <c:if test="${ auto.urlImmagine != null}">   
+                                  <img title="${auto.nomeAuto}" alt="${auto.nomeAuto}" src="${auto.urlImmagine}" />
+                                </c:if>
+                            </td> 
                             <td> 
                                 <!-- Se si tratta del riepilogo del cliente la quantita è pari a uno altrimenti mostro
                                      gli esemplari che il venditre rende disponibile dell'oggetto in questione
@@ -129,14 +138,27 @@
                      avvisarlo se l'inserimento è andato o meno a buon fine. Questo in base al valore dell'attributo
                      passato dalla servlet -->
                 <c:if test="${utente == 'venditore'}">
-                        <c:choose>
-                            <c:when test="${conferma == false}" >
-                                 <p class="errore"> L'oggetto non è stato inserito correttamente, riprova! </p>
-                            </c:when>
-                            <c:otherwise>
-                                 <p class="ok"> Inserimento avvenuto con successo! </p>
-                            </c:otherwise>
-                        </c:choose>
+                        <c:if test="${conferma != null}">        
+                            <c:choose>
+                                <c:when test="${conferma == false}" >
+                                     <p class="errore"> L'oggetto non è stato inserito correttamente, riprova! </p>
+                                </c:when>
+                                <c:otherwise>
+                                     <p class="ok"> Inserimento avvenuto con successo! </p>
+                                </c:otherwise>
+                            </c:choose>
+                        </c:if>
+                               
+                        <c:if test="${modifica != null}">        
+                            <c:choose>
+                                <c:when test="${modifica == false}" >
+                                     <p class="errore"> L'oggetto non è stato modificato correttamente, riprova! </p>
+                                </c:when>
+                                <c:otherwise>
+                                     <p class="ok"> Modifica avvenuta con successo! </p>
+                                </c:otherwise>
+                            </c:choose>
+                        </c:if>
                 </c:if>
               
                 <!-- Se il riepilogo è relativo al cliente mostro il pulsante per confermare l'acquisto -->

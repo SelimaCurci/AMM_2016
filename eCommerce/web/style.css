@@ -223,7 +223,7 @@ label{
     font-family: "Candara", Arial, serif;
     font-weight: bold;
 }
-input, textarea{
+input, textarea, select{
     font-family: "Candara", Arial, serif;
     color: #000000;
     background: #CCCCCC;
@@ -233,35 +233,40 @@ input, textarea{
     padding-left: 6px;
     margin-right: 0;
 }
-input{
+input, select, select{
     height: 20px;
 }
 textarea{
     height: 50px;
 }
 /* Campi di input e textarea al momento del focus da parte dell'utente */
-input:focus, textarea:focus{
+input:focus, textarea:focus, select:focus{
     background: #DEDEDE;
     border: 1px solid #9e1616;
     border-radius: 5px;
     outline: none;
 }
-input:invalid{
+/*
+/* Il validatore si lamenta per la peseudoclasse invalid, amche se in realtà esiste e funziona 
+   http://www.w3schools.com/cssref/sel_invalid.asp  
+input#quantita:invalid, input#prezzo:invalid{
     background-color: rgba(158, 22, 22, 0.3);
-}
+}*/
 /* Stile bottoni dei form (reset e submit) */
 #submit{
     float: right;
     margin-right: 12%;
     width: 50px;
 }
-#reset{
-    float: left;
-    margin-right: 0;
-    width: 50px;
-    
+#reset, #modifica, #elimina, #aggiungi{
+    margin-right: 15px;
+    float: right;
 }
-#reset, #submit, #conferma{
+.bottoni{
+    margin-right: 15%;
+}
+#reset, #submit, #conferma, #modifica, #elimina, #aggiungi{
+    width: 65px;
     background-color: rgba(158, 22, 22, 0.3);
     border: 2px solid rgba(158, 22, 22, 0.6);
     outline: none;
@@ -281,12 +286,12 @@ input:invalid{
     margin-right: 30px;
 }
 /* Definizione degli stili per i bottoni quando il mouse ci passa sopra */
-#submit:hover, #reset:hover, #conferma:hover{
+#submit:hover, #reset:hover, #conferma:hover, #aggiungi:hover, #elimina:hover, #modifica:hover{
     background-color: rgba(158, 22, 22, 0.5);
 }
 /* Definizione degli stili per i bottoni quando vengono attivati (click del bottone), da l'effetto che il bottone
    sia stato effettivamente cliccato */
-#bottone:active, #reset:active, #conferma:active {
+#bottone:active, #reset:active, #conferma:active, #aggiungi:active, #elimina:active, #modifica:active {
   position: relative;
   top: 1px;
 }
@@ -422,7 +427,7 @@ footer#valida{
         padding-bottom: 5px;
         top: 4px;
     }
-    /* Evidenzio la pagia corrente */
+    /* Evidenzio la pagina corrente */
     .currentpage{
         background-color: #F5F5F5;
         top: 4px;
@@ -455,8 +460,11 @@ footer#valida{
         float: left;
         display: block;
     }
-    input, textarea{
+    input, textarea, select{
         width: 50%;
+    }
+    select{
+        width: 53%;
     }
     
     /* Specifiche per lo stile della tabella in cliente.html */
@@ -575,8 +583,16 @@ footer#valida{
         width: 75%;
         margin-top: 5px;
     }
+    select{
+        width: 78%;
+        margin-top: 5px;
+    }
     #submit{
         margin-right: 21%;
+    }
+    #reset, #modifica, #elimina, #aggiungi{
+        margin-right: 15%;
+        float: right;
     }
     
     /* Specifiche per lo stile della tabella in cliente.html */
@@ -707,6 +723,10 @@ footer#valida{
     input, textarea{
         width: 80%;
         margin-top: 5px;
+    }
+    select{
+        width: 85%;
+        margin-top: 5px;    
     }
     #submit{
         margin-right: 14%;

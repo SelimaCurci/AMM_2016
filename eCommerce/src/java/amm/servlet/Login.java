@@ -9,11 +9,14 @@ import amm.model.CarSale;
 import amm.model.User;
 import amm.model.Seller;
 import amm.model.Buyer;
+import amm.model.factory.AccountsFactory;
 import amm.model.factory.CarSaleFactory;
 import amm.model.factory.BuyersFactory;
 import amm.model.factory.SellersFactory;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -26,9 +29,34 @@ import javax.servlet.http.HttpSession;
  * @author selima
  */
 /** Servlet che risponde alla url login.html */
-@WebServlet(name = "Login", urlPatterns = {"/login.html"})
+@WebServlet(name = "Login", urlPatterns = {"/login.html"}, loadOnStartup = 0)
 public class Login extends HttpServlet {
-
+    /* Costanti necessarie per generare la stringa di connessione */
+    private static final String JDBC_DRIVER = "org.apache.derby.jdbc.EmbeddedDriver";
+    private static final String DB_CLEAN_PATH = "../../web/WEB-INF/db/ammdb";
+    private static final String DB_BUILD_PATH = "WEB-INF/db/ammdb";
+    
+    /*L'inizializzazione del Driver va eseguita solo una volta per tutta la vita dell’applicazione. Per fare in modo che 
+      venga eseguita come prima cosa l'abbiamo inserita nel metodo init() della Servlet Login. Inoltre facciamo in modo
+      che la Servlet Login sia la prima ad essere caricata a prescindere dagli eventi. In questo modo siamo sicuri che 
+      il Driver venga inizializzato correttamente.*/
+    @Override 
+    public void init(){
+        /* Generazione della stringa usata per connettersi al database (path) */
+        String dbConnection = "jdbc:derby:" + this.getServletContext().getRealPath("/") + DB_BUILD_PATH;
+        try {
+            Class.forName(JDBC_DRIVER);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        /* Setto la stringa di connessione in tutte le classi factory che avranno bisogno di connettersi al database */
+        CarSaleFactory.getInstance().setConnectionString(dbConnection);
+        SellersFactory.getInstance().setConnectionString(dbConnection);
+        BuyersFactory.getInstance().setConnectionString(dbConnection);
+        AccountsFactory.getInstance().setConnectionString(dbConnection);
+    }
+    
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -57,33 +85,42 @@ public class Login extends HttpServlet {
                 
                 // Verifico che siano diverse da null
                 if (username != null && password != null ){
-                    // Prelevo le liste degli utenti (clienti e venditori)
-                    ArrayList<Buyer> listaClienti = BuyersFactory.getInstance().getListaClienti();
-                    ArrayList<Seller> listaVenditori = SellersFactory.getInstance().getListaVenditori();
                     
-                    /* Controllo se le l'utente esiste nella lista dei clienti, in caso affermativo imposto la variabile
+                    /* Controllo se le l'utente esista tra i clienti registrati, in caso affermativo imposto la variabile
                        di sessione utente con l'oggetto che lo rappresenta, in modo da poter recuperare in seguito le
                        informazioni che lo riguardano e lo rimando alla pagina cliente */
-                    for(Buyer c : listaClienti){
-                        if(c.getUsername().equals(username) && c.getPassword().equals(password)){
-                            session.setAttribute("utente", c);
-                            session.setAttribute("login", true);
-                            ArrayList<CarSale> listaAuto = CarSaleFactory.getInstance().getAutoSaleList(); 
-                            request.setAttribute("listaAuto", listaAuto);
-                            request.getRequestDispatcher("cliente.jsp").forward(request, response);
-                        }
+                    Buyer buyer = BuyersFactory.getInstance().findBuyer(username, password);
+                    if(buyer != null){
+                        session.setAttribute("utente", buyer);
+                        /* Preparo la lista di tutti i veicoli in vendita da passare alla jsp del cliente */
+                        ArrayList<CarSale> listaAuto = CarSaleFactory.getInstance().getAutoSaleList(); 
+                        int size = listaAuto.size();
+                        request.setAttribute("listaAuto", listaAuto);
+                        request.setAttribute("size", size);
+                        request.getRequestDispatcher("cliente.jsp").forward(request, response);
                     }
                     
-                    /* Se l'utente è gia stato trovato nella lista dei clienti non eseguo controlli ulteriori, in caso 
-                       contrario eseguo lo stesso procedimento sulla lista dei venditori */
-                    if(session.getAttribute("utente") == null)
-                        for(Seller v : listaVenditori){
-                            if(v.getUsername().equals(username) && v.getPassword().equals(password)){
-                                session.setAttribute("utente", v);
-                                session.setAttribute("login", true);
-                                request.getRequestDispatcher("venditore.jsp").forward(request, response);
-                            }
-                        }
+                    /* Se l'utente cìnon è un cliente, potrebbe essere un venditore, perciò devo anche verificare se è presente
+                       tra i venditori registrati. In caso affermativo imposto la variabile di sessione utente con l'oggetto 
+                       che lo rappresenta, in modo da poter recuperare in seguito le  informazioni che lo riguardano e lo 
+                       rimando al portale dei venditori */
+                    Seller seller = SellersFactory.getInstance().findSeller(username, password);
+                    if(seller != null){
+                        /* Preparo la lista di tutti i veicoli messi in vendita dal venditore autenticato da passare alla jsp 
+                           del venditore. Questa lista servirà per fare in modo che il venditore possa selezionare un'oggetto
+                           per eventuali modifiche o per l'eliminazione */
+                        ArrayList<CarSale> listaAuto = CarSaleFactory.getInstance().getAutoSaleBySeller(seller.getId());
+                        session.setAttribute("utente", seller);
+                        request.setAttribute("listaAuto", listaAuto);
+                        
+                        /* Se la lista è null significa che l'utente non ha oggetti in vendita, lo memorizzo così non gli
+                           mostro le funzionalità di modifica e eliminazione nella jsp*/
+                        if(listaAuto != null)
+                            request.setAttribute("listaSize", listaAuto.size());
+                        else
+                            request.setAttribute("listaSize", 0);  
+                        request.getRequestDispatcher("venditore.jsp").forward(request, response);
+                    }
                     
                     /* Se arrivo qui significa che l'utente non esiste e quindi lo rimando al form di login e gli 
                        stampo un messaggio di errore*/
@@ -91,7 +128,7 @@ public class Login extends HttpServlet {
                     request.getRequestDispatcher("login.jsp").forward(request, response);   
                     
                 }
-                // Se le crredenziali sono nulle rimando al form di login con un messaggio di errore
+                // Se le credenziali sono nulle rimando al form di login con un messaggio di errore
                 else{
                     request.setAttribute("errore", true);
                     request.getRequestDispatcher("login.jsp").forward(request, response);   
@@ -105,13 +142,22 @@ public class Login extends HttpServlet {
         else{
                 // Se l'utente è un venditpre viene rimandato alla jsp venditore.jsp
                 if((User)session.getAttribute("utente") instanceof Seller){
+                    int id = ((User)session.getAttribute("utente")).getId();
+                    ArrayList<CarSale> listaAuto = CarSaleFactory.getInstance().getAutoSaleBySeller(id);
+                    request.setAttribute("listaAuto", listaAuto);
+                    if(listaAuto != null)
+                            request.setAttribute("listaSize", listaAuto.size());
+                        else
+                            request.setAttribute("listaSize", 0); 
                     request.getRequestDispatcher("venditore.jsp").forward(request, response);
                 }
                 /* Se invece si tratta di un cliente, viene rimandato alla jsp cliente.jsp, alla quale passo la lista
                    delle auto in vendita per poterle stampare in una tabella*/
                 else{
                     ArrayList<CarSale> listaAuto = CarSaleFactory.getInstance().getAutoSaleList(); 
+                    int size = listaAuto.size();
                     request.setAttribute("listaAuto", listaAuto);
+                    request.setAttribute("size", size);
                     request.getRequestDispatcher("cliente.jsp").forward(request, response);
                 }
 

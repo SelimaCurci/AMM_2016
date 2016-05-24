@@ -26,7 +26,7 @@
         <div id="page">
             
             <header>
-              <c:if test="${sessionScope.utente != null}">
+              <c:if test="${sessionScope.utente != null}"> 
                   <div id="logout"><a href="logout.html">Logout</a></div>
               </c:if> 
                
@@ -63,11 +63,46 @@
             <div id="central">
                 
                 <h1>Aggiungi un veicolo in vendita</h1>
-                <p>Inserisci nel form tutte le informazioni riguardo il veicolo che desideri vendere.</p>
-
+                <p> Compilando il seguente form hai tre possibilità, a seconda di quale azione desideri intraprendere.<br>
+                    Se selezioni la voce nuovo  ecompili il form con tutte le informazioni riguardo il veicolo che desideri 
+                    vendere e poi clicchi sul bottone aggiungi, se i dati sono corretti, il tuo veicolo sarà messo in vendita. <br>
+                    Se selezioni un oggetto dalla lista di quelli che attualmente hai in vendita e clicchi sul pulsante
+                    elimina, l'oggetto verrà rimosso. <br>
+                    Se invece vuoi modificare qualche info sul tuo veicolo, lo selezioni,
+                    compili i campi che desideri modificare e infine premi modifica. Attenzione alla correttezza dei dati!</p>
+                
+                <c:if test="${listaSize == 0}">
+                    <p class="errore">Non hai nessun oggetto in vendita</p>
+                </c:if>
+                
+                <div class="spazio"></div>
+                
+                 <c:if test="${errore==true}">
+                    <p class="errore"> ${messaggioErrore} </p>
+                </c:if>
+                
+                <c:if test="${elimina==true}">
+                    <p class="ok"> Cancellazione avvenuta con successo! </p>
+                </c:if>
+                            
+                <c:if test="${modifica==false}">
+                    <p class="ok"> Non hai eseguito alcuna modifica all'oggetto selezionato!</p>
+                </c:if>
+                
                 <!-- Form per l’inserimento di un nuovo oggetto all’interno della pagina venditore.html -->
                 <form action="venditore.html" method="post">
                     <fieldset>
+                    <c:if test="${listaSize != 0}">
+                        <label for="idoggetto">Seleziona oggetto</label>
+                        <select name="idoggetto" id="idoggetto">
+                            <option value="Nuovo">Nuovo</option>
+                            <c:forEach var="obj" items="${listaAuto}" >
+                                <option value="${obj.id}"> ${obj.nomeAuto} </option>
+                            </c:forEach>
+                        </select>    
+                     </c:if> 
+                    <div class="spazio"></div>
+                    
                     <label for="nomeoggetto">Nome</label>
                     <input type="text" name="nomeoggetto" id="nomeoggetto" value="" />
                     <div class="spazio"></div>
@@ -84,9 +119,17 @@
                     <div class="spazio"></div>
                     <label for="quantita">Quantità</label>
                     <input type="number" name="quantita" id="quantita" min="1" max="1000">
-     
-                    <input type="submit" value="Invia" id="submit" name="submit"/>
-                    <input type="reset" value="Reset" id="reset"/> <!-- Bottone di reset -->
+                    <div class="spazio"></div>
+                    <div class="bottoni">
+                        <input type="submit" value="Aggiungi" id="aggiungi" name="aggiungi"/>
+                        <!-- Se il veenditore non ha ancora oggetti in vendita non ha nemmeno la possibilità
+                             di accedere alle funzionalità di eliminazione e modifica -->
+                        <c:if test="${listaSize != 0}"> 
+                            <input type="submit" value="Elimina" id="elimina" name="elimina"/>
+                            <input type="submit" value="Modifica" id="modifica" name="modifica"/>
+                        </c:if>
+                        <input type="reset" value="Reset" id="reset"/> <!-- Bottone di reset -->
+                    </div>
                     </fieldset>
                 </form>   
             </div>

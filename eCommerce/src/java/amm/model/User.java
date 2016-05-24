@@ -5,6 +5,8 @@
  */
 package amm.model;
 
+import amm.model.factory.AccountsFactory;
+
 /**
  *
  * @author selima
@@ -17,18 +19,22 @@ public abstract class User {
     private String cognome;
     private String username;
     private String password;
-    Account contoUtente;
+    private int idConto;
     
     
     /** Costruttore vuoto*/
-    public User()
+    public User(){
+    }
+    
+    /** Costruttore*/
+    public User(int id, String nome, String cognome, String username, String password, int idConto)
     {
-        this.id = 0;
-        this.nome = "";
-        this.cognome = "";
-        this.username="";
-        this.password="";
-        this.contoUtente = new Account();
+        this.id =id;
+        this.nome = nome;
+        this.cognome = cognome;
+        this.username= username;
+        this.password = password;
+        this.idConto = idConto;
     }
     
     /** Restituisce l'id dell'utente
@@ -104,35 +110,22 @@ public abstract class User {
     /** Restituisce il conto dell'utente
      *  @return conto dell'utente
      */
-    public Account getConto() {
-        return contoUtente;
+    public int getIdConto() {
+        return idConto;
     }
     
     /** Setta  il conto dell'utente al conto passata come parametro
      *  @param conto conto da settare
      */
-    public void setConto(Account conto) {
-        this.contoUtente =  conto;
+    public void setIdConto(int idConto) {
+        this.idConto =  idConto;
     }
     
     /** Restituisce il saldo dell'utente
      *  @return saldo dell'utente
      */
     public double getSaldoUtente() {
-        return contoUtente.getConto();
+        Account contoUtente = AccountsFactory.getInstance().getAccountById(idConto);
+        return contoUtente.getSaldo();
     }
-
-    /** Versa nel conto dell'utente la cifra passata come parametro
-     *  @param versamento cifra da versare
-     */
-    public void versa(double versamento) {
-        this.contoUtente.versa(versamento);
-    }
-    
-    /** Se possibile, preleva dal conto dell'utente la cifra passata come parametro
-     *  @param prelievo cifra da prelevare
-     */
-    public void preleva(double prelievo) {
-        this.contoUtente.preleva(prelievo);
-    } 
 }

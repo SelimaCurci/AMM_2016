@@ -6,8 +6,15 @@
 package amm.model.factory;
 
 import amm.model.CarSale;
-import amm.model.Seller;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -17,7 +24,21 @@ import java.util.ArrayList;
 public class CarSaleFactory {
     /* Attributi */
     private static CarSaleFactory singleton;   
-    private ArrayList<CarSale> listaAuto;
+    String connectionString; 
+    
+    /** Metodo set della la stringa utilizzata per la connessione al database 
+     *  @param path del db
+     */
+    public void setConnectionString(String s){
+	this.connectionString = s;
+    }
+    
+    /** Metodo get della la stringa utilizzata per la connessione al database 
+     *  @return path del db
+     */
+    public String getConnectionString(){
+            return this.connectionString;
+    } 
     
     /* Garantisce la presenza di una sola istanza della classe Factory all'interno dell'applicazione */
     public static CarSaleFactory getInstance() {
@@ -36,98 +57,36 @@ public class CarSaleFactory {
      *  @return lista degli oggetti
      */
     public ArrayList<CarSale> getAutoSaleList() {
-        // In questo modo la lista viene creata una sola volta
-        if(listaAuto == null){
-            listaAuto = new ArrayList<>();
+        ArrayList<CarSale> listaAuto = new ArrayList<>();
+        
+        /* Apro la connessione al db e creo lo Statement usando un try with-resources, in questo
+            modo sono sicura che le risorse saranno chiuse in ogni caso */
+        try(Connection conn = DriverManager.getConnection(connectionString, "selimacurci", "0000");
+            Statement stmt = conn.createStatement()) {
+            // Definisco la query per ottenere l'elenco di tutti gli oggetti in vendita
+            String sql = "SELECT * FROM CarSale";
             
-            // Oggetto 1
-            CarSale obj_1 = new CarSale();
-            obj_1.setNomeAuto("Aixam GTO");
-            obj_1.setUrlImmagine("Images/Aixam_GTO.png");
-            obj_1.setDescrizione("...");
-            obj_1.setPrezzoUnitario(12650);
-            obj_1.setQuantita(1);
-            obj_1.setId(0);
-            obj_1.setIdVenditore(0);
-            listaAuto.add(obj_1);
-
-            // Oggetto 2
-            CarSale obj_2 = new CarSale();
-            obj_2.setNomeAuto("BorgWard bx7");
-            obj_2.setUrlImmagine("Images/borgward_bx7.jpg");
-            obj_2.setDescrizione("...");
-            obj_2.setPrezzoUnitario(15000);
-            obj_2.setQuantita(4);
-            obj_2.setId(1);
-            obj_2.setIdVenditore(0);
-            listaAuto.add(obj_2);
-
-            // Oggetto 3
-            CarSale obj_3 = new CarSale();
-            obj_3.setNomeAuto("Chery Tiggo");
-            obj_3.setUrlImmagine("Images/Chery_tiggo.jpg");
-            obj_3.setDescrizione("...");
-            obj_3.setPrezzoUnitario(9500);
-            obj_3.setQuantita(2);
-            obj_3.setId(2);
-            obj_3.setIdVenditore(0);
-            listaAuto.add(obj_3);
-
-            // Oggetto 4
-            CarSale obj_4 = new CarSale();
-            obj_4.setNomeAuto("ChinaBike Cross125");
-            obj_4.setUrlImmagine("Images/chinabike_cross125.jpg");
-            obj_4.setDescrizione("...");
-            obj_4.setPrezzoUnitario(750);
-            obj_4.setQuantita(1);
-            obj_4.setId(3);
-            obj_4.setIdVenditore(0);
-            listaAuto.add(obj_4);
-
-            // Oggetto 5
-            CarSale obj_5 = new CarSale();
-            obj_5.setNomeAuto("Fisker Karma");
-            obj_5.setUrlImmagine("Images/fisker-karma.jpg");
-            obj_5.setDescrizione("...");
-            obj_5.setPrezzoUnitario(125000);
-            obj_5.setQuantita(1);
-            obj_5.setId(4);
-            obj_1.setIdVenditore(0);
-            listaAuto.add(obj_5);
-
-            // Oggetto 6
-            CarSale obj_6 = new CarSale();
-            obj_6.setNomeAuto("Horex vr6");
-            obj_6.setUrlImmagine("Images/HOREX_vr6.jpg");
-            obj_6.setDescrizione("...");
-            obj_6.setPrezzoUnitario(30000);
-            obj_6.setQuantita(3);
-            obj_6.setId(5);
-            obj_6.setIdVenditore(1);
-            listaAuto.add(obj_6);
-
-            // Oggetto 7
-            CarSale obj_7 = new CarSale();
-            obj_7.setNomeAuto("Isorivolta Grifo90");
-            obj_7.setUrlImmagine("Images/ISORIVOLTA_grifo_90.jpg");
-            obj_7.setDescrizione("...");
-            obj_7.setPrezzoUnitario(70000);
-            obj_7.setQuantita(1);
-            obj_7.setId(6);
-            obj_7.setIdVenditore(1);
-            listaAuto.add(obj_7);
-
-            // Oggetto 8
-            CarSale obj_8 = new CarSale();
-            obj_8.setNomeAuto("Panda 4x4 Sisley");
-            obj_8.setUrlImmagine("Images/panda4x4_sisley.jpg");
-            obj_8.setDescrizione("...");
-            obj_8.setPrezzoUnitario(5600);
-            obj_8.setQuantita(1);
-            obj_8.setId(7);
-            obj_8.setIdVenditore(2);
-            listaAuto.add(obj_8);
+            ResultSet set = stmt.executeQuery(sql);
+            /* Scorro tutti i risultati ottenuti aggiungendoli alla lista che poi sarà restituita al chiamante */
+            while (set.next()) {
+                int id = set.getInt("id");
+                String nomeAuto = set.getString("nomeAuto");
+                String urlImmagine = set.getString("urlImmagine");
+                String descrizione = set.getString("descrizione");
+                double prezzoUnitario = set.getDouble("prezzoUnitario");
+                int quantita = set.getInt("quantita");
+                int id_venditore = set.getInt("id_venditore");
+                CarSale car = new CarSale(id, id_venditore, nomeAuto, urlImmagine, descrizione, prezzoUnitario, quantita);
+                
+                listaAuto.add(car);
+            }
+        } catch (SQLException ex) {
+            // nel caso la query fallisca (p.e. errori di sintassi)
+            // viene sollevata una SQLException
+            Logger.getLogger(CarSaleFactory.class.getName()).
+            log(Level.SEVERE, null, ex);
         }
+        
         return listaAuto;
     }  
     
@@ -135,69 +94,192 @@ public class CarSaleFactory {
      *  @return  restiuisce l’oggetto avente l’identificatore passato per parametro 
      */
     public CarSale getAutoSaleById(int id){
-        for(CarSale auto : getAutoSaleList()){
-            if(auto.getId() == id)
-                return auto;
+        CarSale car = null;
+        // Definisco la query parametrica per selezionare un determinato veicolo dato l'id
+        String sql = "SELECT * FROM CarSale WHERE id = ?";
+        
+        /* Apro la connessione al db e creo il prepare Statement per la query usando un try with-resources, in questo
+           modo sono sicura che le risorse saranno chiuse in ogni caso */
+        try(Connection conn = DriverManager.getConnection(connectionString, "selimacurci", "0000");
+            PreparedStatement stmt = conn.prepareStatement(sql)) {
+            // Si associano valori e posizioni di placeholder
+            stmt.setInt(1, id);
+           
+            ResultSet set = stmt.executeQuery();
+            /* Se ho ottenuto un risultato allora preparo l'oggetto da restituire al chiamante */
+            if(set.next()) {
+                String nomeAuto = set.getString("nomeAuto");
+                String urlImmagine = set.getString("urlImmagine");
+                String descrizione = set.getString("descrizione");
+                double prezzoUnitario = set.getDouble("prezzoUnitario");
+                int quantita = set.getInt("quantita");
+                int id_venditore = set.getInt("id_venditore");
+                car = new CarSale(id, id_venditore, nomeAuto, urlImmagine, descrizione, prezzoUnitario, quantita);
+            }
+        } catch (SQLException ex) {
+            // nel caso la query fallisca (p.e. errori di sintassi)
+            // viene sollevata una SQLException
+            Logger.getLogger(CarSaleFactory.class.getName()).
+            log(Level.SEVERE, null, ex);
         }
-        return null; // Se l'oggetto non è presente nella lista allora restituisco null
+        
+        return car;
     }
     
     /** Restiuisce gli oggetti avente venditore passato per parametro 
      *  @return  restiuisce gli oggetti avente venditore passato per parametro 
      */
     public ArrayList<CarSale> getAutoSaleBySeller(int idVenditore){
-        Seller venditore;
         ArrayList<CarSale> lista = new ArrayList<>();
         
-        if(SellersFactory.getInstance().getSellerById(idVenditore) != null)
-            venditore = SellersFactory.getInstance().getSellerById(idVenditore);
+        /* Prima di eseguire la query per restituire la lista di veicoli venduti da un venditore verifico che l'id
+           passato come parametro sia corretto */
+        if(SellersFactory.getInstance().getSellerById(idVenditore) != null){
+            // Definisco la query per selezionare tutti i veicoli messi in vendita da un determinato venditore 
+            String sql = "SELECT * FROM CarSale WHERE id_venditore = ?";
+            
+            /* Apro la connessione al db e creo il prepare Statement per la query usando un try with-resources, in questo
+               modo sono sicura che le risorse saranno chiuse in ogni caso */
+            try(Connection conn = DriverManager.getConnection(connectionString, "selimacurci", "0000");
+                PreparedStatement stmt = conn.prepareStatement(sql)) {
+                // Si associano valori e posizioni di placeholder
+                stmt.setInt(1, idVenditore);
+               
+                ResultSet set = stmt.executeQuery();
+                /* Scorro tutti i risultati ottenuti aggiungendoli alla lista che poi sarà restituita al chiamante */
+                while (set.next()) {
+                    int id = set.getInt("id");
+                    String nomeAuto = set.getString("nomeAuto");
+                    String urlImmagine = set.getString("urlImmagine");
+                    String descrizione = set.getString("descrizione");
+                    double prezzoUnitario = set.getDouble("prezzoUnitario");
+                    int quantita = set.getInt("quantita");
+                    int id_venditore = set.getInt("id_venditore");
+                    CarSale car = new CarSale(id, id_venditore, nomeAuto, urlImmagine, descrizione, prezzoUnitario, quantita);
+
+                    lista.add(car);
+                }
+            } catch (SQLException ex) {
+                // nel caso la query fallisca (p.e. errori di sintassi)
+                // viene sollevata una SQLException
+                Logger.getLogger(CarSaleFactory.class.getName()).
+                log(Level.SEVERE, null, ex);
+            }
+        }       
         else
             return null;
         
-        for(CarSale auto : getAutoSaleList()){
-            if(auto.getIdVenditore() == idVenditore)
-                lista.add(auto);
-        }
         return lista;
     }
     
-    /** Questo metodo viene chiamato nel momento in cui, in una transazione, il pagamento è andato a buon fine. Se la
-     *  quantita è pari a uno l'oggetto viene eliminato, altrimenti viene dimuito di un unità il numero degli esemplari
+    /** Questo metodo è utilizzato per eliminare un veicolo
      *  @param idAuto id dell'auto da eliminare 
         @return true se l'oggetto è stato eliminato correttamente altrimenti false
     */
     public boolean removeAuto(int idAuto){
-        CarSale auto = getAutoSaleById(idAuto);
-        if(auto.getQuantita()== 1){
-            return listaAuto.remove(auto);
-        }
-        else{
-            auto.setQuantita(auto.getQuantita()-1);
-            return true;
-        }
+        boolean remove = false;
+        /* Definisco la query per eliminare il veicolo avente id passato come parametro dalla tabella*/
+        String sql = "DELETE FROM CarSale WHERE id = ?";
+        
+        /* Apro la connessione al db e creo il prepare Statement per la query usando un try with-resources, in questo
+           modo sono sicura che le risorse saranno chiuse in ogni caso */
+        try(Connection conn = DriverManager.getConnection(connectionString, "selimacurci", "0000");
+            PreparedStatement stmt = conn.prepareStatement(sql)) {
+            // Si associano valori e posizioni di placeholder
+            stmt.setInt(1, idAuto);
+            
+            int rows = stmt.executeUpdate();
+            /* Se il numero di righe restituite dalla query di update è pari a uno significa che l'operazione è andata
+               a buon fine, quindi setto il flag a true */
+            if(rows == 1) 
+                remove = true;
+        } catch (SQLException ex) {
+            // nel caso la query fallisca (p.e. errori di sintassi)
+            // viene sollevata una SQLException
+            Logger.getLogger(CarSaleFactory.class.getName()).
+            log(Level.SEVERE, null, ex);
+        } 
+        
+        /* Se il numero di righe restituite fosse diverso da uno il metodo resituisce false al chiamante */
+        return remove;
     }
     
     /** Inserisce un nuovo oggetto nella lista
      *  @param auto auto da aggiungere
         @return true se l'oggetto è stato inserito correttamente altrimenti false
     */
-    public boolean addAuto(CarSale auto){
-        return listaAuto.add(auto);
+    public boolean addAuto(CarSale car){
+        boolean insert = false;
+        /* Definisco la query per aggiungere un nuovo veicolo */
+        String query = "INSERT INTO CarSale "
+                        + "(id, nomeAuto, urlImmagine, descrizione, prezzoUnitario, quantita, id_venditore) VALUES "
+                        + "(default, ?, ?, ?, ?, ?, ?)";
+        
+        /* Apro la connessione al db e creo il prepare Statement per la query usando un try with-resources, in questo
+           modo sono sicura che le risorse saranno chiuse in ogni caso */
+        try(Connection conn = DriverManager.getConnection(connectionString, "selimacurci", "0000");
+            PreparedStatement stmt = conn.prepareStatement(query)) {
+            // Si associano valori e posizioni di placeholder
+            stmt.setString(1, car.getNomeAuto());
+            stmt.setString(2, car.getUrlImmagine());
+            stmt.setString(3, car.getDescrizione());
+            stmt.setDouble(4, car.getPrezzoUnitario());
+            stmt.setInt(5, car.getQuantita());
+            stmt.setInt(6, car.getIdVenditore());
+            
+            int rows = stmt.executeUpdate();
+            /* Se il numero di righe restituite dalla query di update è pari a uno significa che l'operazione è andata
+               a buon fine, quindi setto il flag a true */
+            if(rows == 1)
+                insert = true; 
+        }catch(SQLException ex){
+            Logger.getLogger(CarSaleFactory.class.getName()).
+            log(Level.SEVERE, null, ex);  
+        }
+        
+         /* Se il numero di righe restituite fosse diverso da uno il metodo resituisce false al chiamante */
+        return insert;
     }
     
-    /** Clacola il nuovo id per un nuovo oggetto da inserire in modo che sia diverso dagli altri
-     *  @return id per il nuovo oggetto da inserire
-     */
-    public int getNewId(){
-        int nuovoId = -1;
+    /** Metodo per la modifica di un oggetto in vendita
+     *  @param idAuto id dell'auto da eliminare 
+        @return true se l'oggetto è stato modificato correttamente altrimenti false
+    */
+    public boolean alterAuto(CarSale car){
+        boolean alter = false;
+        /* Definisco la query per modificare l'oggetto, vengono sempre modificati tutti i campi, quelli che l'utente non
+           ha specificato sono reimpostati uguali ai precedenti, in modo da eseguire una uery che vada bene sempre */
+        String sql = " UPDATE CarSale "
+                    + "SET nomeAuto = ?, urlImmagine = ?, descrizione = ?, prezzoUnitario = ?,"
+                    + "quantita = ?, id_venditore = ? "
+                    + "WHERE id = ? ";
         
-        if(listaAuto == null)
-            CarSaleFactory.getInstance().getAutoSaleList();
+        /* Apro la connessione al db e creo il prepare Statement per la query usando un try with-resources, in questo
+           modo sono sicura che le risorse saranno chiuse in ogni caso */
+        try(Connection conn = DriverManager.getConnection(connectionString, "selimacurci", "0000");
+            PreparedStatement stmt = conn.prepareStatement(sql)) {
+            // Si associano valori e posizioni di placeholder
+            stmt.setString(1, car.getNomeAuto());
+            stmt.setString(2, car.getUrlImmagine());
+            stmt.setString(3, car.getDescrizione());
+            stmt.setDouble(4, car.getPrezzoUnitario());
+            stmt.setInt(5, car.getQuantita());
+            stmt.setInt(6, car.getIdVenditore());
+            stmt.setInt(7, car.getId());
+            
+            int rows = stmt.executeUpdate();
+            /* Se il numero di righe restituite dalla query di update è pari a uno significa che l'operazione è andata
+               a buon fine, quindi setto il flag a true */
+            if(rows == 1) 
+                alter = true;
+        } catch (SQLException ex) {
+            // nel caso la query fallisca (p.e. errori di sintassi)
+            // viene sollevata una SQLException
+            Logger.getLogger(CarSaleFactory.class.getName()).
+            log(Level.SEVERE, null, ex);
+        } 
         
-        for(CarSale c: listaAuto){
-           if(c.getId() > nuovoId)
-                nuovoId = c.getId();
-        }
-        return nuovoId+1;
+         /* Se il numero di righe restituite fosse diverso da uno il metodo resituisce false al chiamante */
+        return alter;
     }
 }

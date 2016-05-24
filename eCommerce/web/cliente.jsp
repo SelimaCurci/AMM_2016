@@ -80,7 +80,7 @@
                         </c:otherwise>
                     </c:choose>
                 </c:if>
-                            
+                         
                 <!-- Se ci sono stati errori durante il pagamento o la selezione, per colpa di parametri erratti avviso il cliente
                 -->           
                 <c:if test="${errore == true}" >
@@ -109,6 +109,11 @@
                         </tr>
                     </c:forEach>
                 </table>
+                
+                <c:if test="${size == 0}">
+                    <p class="errore">Non ci sono oggetti in vendita ! Siamo dispiaciuti.</p>
+                </c:if>
+                
             </div>
             
             <!-- Icludo la jsp che contiene il footer (comune a tutte le pagine) -->

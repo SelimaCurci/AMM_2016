@@ -5,6 +5,7 @@
  */
 package amm.model;
 
+import amm.model.factory.AccountsFactory;
 import amm.model.factory.CarSaleFactory;
 import java.util.ArrayList;
 
@@ -15,9 +16,14 @@ import java.util.ArrayList;
 /** Classe che rappresenta un venditore */
 public class Seller extends User{
     /* Attributi */
-    /* Costruttore vuoto*/
-    public Seller(){
-        super();
+    
+    /** Costruttore */
+    public Seller(int id, String nome, String cognome, String username, String password, int idConto){
+        super(id, nome, cognome, username, password, idConto);
+    }
+
+    public Seller() {
+    
     }
     
     /* Metodi */
@@ -33,7 +39,8 @@ public class Seller extends User{
      *  versato al venditore  
      *  @param auto oggetto che l'utente desidera comprare
     */
-    public void vendi(CarSale auto) {
-        this.contoUtente.versa(auto.getPrezzoUnitario());
-    }
+    /*public void vendi(CarSale auto) {
+        Account contoUtente = AccountsFactory.getInstance().getAccountById(getIdConto());
+        contoUtente.versa(auto.getPrezzoUnitario());
+    }*/
 }

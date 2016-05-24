@@ -13,16 +13,20 @@ package amm.model;
 public class Buyer extends User {
     /* Attributi */
     
-    /* Costruttore vuoto */
-    public Buyer(){
-        super();
+    /** Costruttore  */
+    public Buyer(int id, String nome, String cognome, String username, String password, int idConto){
+        super(id, nome, cognome, username, password, idConto);
+    }
+
+    public Buyer() {
     }
 
     /** Se il cliente ha abbastanza soldi allora gli viene scalato un importo pari al prezzo unitario del veicolo
      *  selezionato
      *  @param auto oggetto che l'utente desidera comprare
      */
-    public boolean compra(CarSale auto) {
-        return this.contoUtente.preleva(auto.getPrezzoUnitario());
-    }
+    /*public boolean compra(CarSale auto) {
+        Account contoUtente = AccountsFactory.getInstance().getAccountById(getIdConto());
+        return contoUtente.preleva(auto.getPrezzoUnitario());
+    }*/
 }
