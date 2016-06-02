@@ -282,4 +282,43 @@ public class CarSaleFactory {
          /* Se il numero di righe restituite fosse diverso da uno il metodo resituisce false al chiamante */
         return alter;
     }
+    
+    /** Restituisce la lista di tutti gli oggetti che contengono la stringa passata come parametro nel nome o nella 
+     *  descrizione
+     *  @param pattern pattern da ricercare
+     *  @return lista degli oggetti
+     */
+    public ArrayList<CarSale> getAutoSaleListByPattern(String pattern) {
+        ArrayList<CarSale> lista = new ArrayList<>();
+        
+        String sql = "SELECT *" +
+                     "FROM studente " + 
+                     "WHERE studente.nome LIKE ? OR studente.cognome LIKE ?";         
+        try(Connection conn = DriverManager.getConnection(connectionString, "selimacurci", "0000");
+            PreparedStatement stmt = conn.prepareStatement(sql)) {
+            // Assegna dati
+            pattern = "%"+pattern+"%";
+            stmt.setString(1, pattern);
+            stmt.setString(2, pattern);
+            ResultSet set = stmt.executeQuery();
+            
+            while (set.next()) {
+                int id = set.getInt("id");
+                String nomeAuto = set.getString("nomeAuto");
+                String urlImmagine = set.getString("urlImmagine");
+                String descrizione = set.getString("descrizione");
+                double prezzoUnitario = set.getDouble("prezzoUnitario");
+                int quantita = set.getInt("quantita");
+                int id_venditore = set.getInt("id_venditore");
+                CarSale car = new CarSale(id, id_venditore, nomeAuto, urlImmagine, descrizione, prezzoUnitario, quantita);
+                
+                lista.add(car);
+            }
+        }catch(SQLException ex) {
+           Logger.getLogger(CarSaleFactory.class.getName()).
+            log(Level.SEVERE, null, ex);
+        }
+        
+        return lista;
+    }  
 }

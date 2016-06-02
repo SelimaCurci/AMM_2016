@@ -223,6 +223,10 @@ label{
     font-family: "Candara", Arial, serif;
     font-weight: bold;
 }
+label.filter{
+        width: 10%;
+        margin-left: 20%;
+}
 input, textarea, select{
     font-family: "Candara", Arial, serif;
     color: #000000;
@@ -460,6 +464,10 @@ footer#valida{
         float: left;
         display: block;
     }
+    label.filter{
+        width: 10%;
+        margin-left: 20%;
+    }
     input, textarea, select{
         width: 50%;
     }
@@ -575,7 +583,15 @@ footer#valida{
         text-align: left;
         margin-bottom: 20px;   
     }
-    label::after, label::before {
+    label.filter{
+        width: 10px;
+        margin-left: 45%;
+    }
+    input.filter{
+        margin-left: 20%;
+        width: 60%;
+    }
+    label::after:not(.filter), label::before:not(.filter) {
         content: '\A';
         white-space: pre;
     }
@@ -734,7 +750,15 @@ footer#valida{
     label{
         text-align: left;
     }
-    label::after, label::before {
+    label.filter{
+        width: 10px;
+        margin-left: 45%;
+    }
+    input.filter{
+        margin-left: 20%;
+        width: 60%;
+    }
+    label::after:not(.filter), label::before:not(.filter) {
         content: '\A';
         white-space: pre;
     }

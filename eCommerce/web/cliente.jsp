@@ -21,6 +21,8 @@
         <link href="style.css" rel="stylesheet" type="text/css" media="screen">
         <!-- Icona del sito -->
         <link rel="icon" href="Images/auto.jpeg" type="image/jpeg" />
+        <script type="text/javascript" src="js/jquery-1.12.4.min.js"></script>
+        <script type="text/javascript" src="js/filter.js"></script>
     </head>
     <body>
         <div id="page">
@@ -86,9 +88,19 @@
                 <c:if test="${errore == true}" >
                     <p class="errore"> Si è verificato un errore nel pagamento, riprova! </p>
                 </c:if>
-                
+                 
+                <!--
+                   Quanto l’utente scrive nel textfield, ad ogni pressione di un tasto la pagina deve inviare una richiesta
+                   ajax all’indirizzo filter.json, passando un parametro con chiave q e come valore la stringa inserita 
+                   dall’utente
+                -->
+                <div class="spazio"></div>
+                <label class="filter "for="filtra">Filtra</label>
+                <input class="filter" type="text" name="filtra" id="filtra" value="" />
+                <div class="spazio"></div> 
+                <p id="avviso"></p>
                 <!-- Tabella con i veicoli in vendita nel sito -->
-                <table>
+                <table id="tabella">
                     <tr class="intestazione"> 
                         <th> Nome </th> 
                         <th> Foto </th> 

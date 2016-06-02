@@ -11,7 +11,8 @@
         <!-- Link al foglio di stile comune a tutte le pagine -->
         <link href="style.css" rel="stylesheet" type="text/css" media="screen">
         <!-- Icona del sito -->
-        <link rel="icon" href="images/auto.jpeg" type="image/jpeg" />
+        <link rel="icon" href="Images/auto.jpeg" type="image/jpeg" />
+         <script src="popola.js"></script>
     </head>
     <body>
         <div id="page">
@@ -48,9 +49,11 @@
             </div>
 
             <div id="central">
+                <button onclick="mostra(event)">Mostra tabella</button>
+                <p id="avviso"></p>
                 <h1>Lista dei veicoli in vendita</h1>
                 <!-- Tabella con alcuni veicoli in vendita nel sito -->
-                <table>
+                <table id="tabella">
                     <tr class="intestazione"> 
                         <th> Nome </th> 
                         <th> Foto </th> 
@@ -58,7 +61,7 @@
                         <th> Prezzo </th>
                         <th> Compra</th>
                     </tr>
-                    <tr class="dispari"> 
+                    <!-- <tr class="dispari"> 
                         <td> Aixam GTO </td> 
                         <td><img title="GTO" alt="Foto dell'auto Aixam GTO" src="Images/Aixam_GTO.png" width="150" height="70" /></td> 
                         <td> 1 </td>
@@ -113,7 +116,7 @@
                         <td> 1 </td>
                         <td> € 5.600 </td>
                         <td><a href="cliente.html"><img src="images/aggiungi.png" width="40" height="40" title="Aggiungi" alt="Aggiungi"/></a></td>
-                    </tr>
+                    </tr> -->
                 </table>
             </div>
             

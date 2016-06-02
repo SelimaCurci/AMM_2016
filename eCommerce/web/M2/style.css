@@ -262,7 +262,7 @@ input:focus, textarea:focus{
 
 /* Freccia che riporta all'inizio della pagina in descrizione.html' */
 a#su{
-    content: url("images/freccia_su.png");   
+    content: url("Images/freccia_su.png");   
     float: right;
     margin-right: 20px;
     margin-top: -120px;
@@ -294,13 +294,13 @@ footer#valida{
     color: transparent;
 }
 #facebook{
-    background-image: url('images/facebook.png');
+    background-image: url('Images/facebook.png');
 }
 #twitter{
-    background-image: url('images/twitter.png');
+    background-image: url('Images/twitter.png');
 }
 #linkedin{
-    background-image: url('images/in.png');
+    background-image: url('Images/in.png');
 }
 #facebook, #twitter, #linkedin{
     background-repeat: no-repeat;
@@ -338,7 +338,7 @@ footer#valida{
     }
     /* Inserico come sfondo dell'header l'immagine che rappresenta il logo del sito */
     header{
-        background-image: url('images/logo.png');
+        background-image: url('Images/logo.png');
         background-repeat: no-repeat; 
         background-position: center;
     }
@@ -411,7 +411,7 @@ footer#valida{
     
     /* Immaggine decorativa nella sidebar relativa alla storia dell'azienda (inserita come pseudo-elemento) */
     #sidebar1 p::before{
-        content: url("images/george.jpg");
+        content: url("Images/george.jpg");
         display: block;
         margin: 0px auto;
         text-align: center; 
