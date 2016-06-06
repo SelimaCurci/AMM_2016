@@ -11,11 +11,13 @@
     <c:forEach var="auto" items="${listaAuto}">
         <json:object>
             <json:property name="nomeAuto" value="${auto.nomeAuto}"/>
-            <json:property name="url" value="${auto.urlImmagine}"/>
-            <json:property name="quantita" value="${auto.quantita}"/>
-            <json:property name="prezzo" value="${auto.prezzoUnitario}"/>
-            <json:property name="id" value="${auto.id}"/>
+            <json:property name="urlImmagine" value="${auto.urlImmagine}"/>
             <json:property name="descrizione" value="${auto.descrizione}"/>
+            <json:property name="prezzoUnitario" value="${auto.prezzoUnitario}"/>
+            <json:property name="quantita" value="${auto.quantita}"/>
+            <json:property name="id" value="${auto.id}"/>
         </json:object>
     </c:forEach>
 </json:array>
+
+

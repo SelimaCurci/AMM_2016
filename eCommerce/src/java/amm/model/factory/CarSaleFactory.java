@@ -292,8 +292,8 @@ public class CarSaleFactory {
         ArrayList<CarSale> lista = new ArrayList<>();
         
         String sql = "SELECT *" +
-                     "FROM studente " + 
-                     "WHERE studente.nome LIKE ? OR studente.cognome LIKE ?";         
+                     "FROM CarSale " + 
+                     "WHERE nomeAuto LIKE ? OR descrizione LIKE ?";         
         try(Connection conn = DriverManager.getConnection(connectionString, "selimacurci", "0000");
             PreparedStatement stmt = conn.prepareStatement(sql)) {
             // Assegna dati
@@ -318,7 +318,7 @@ public class CarSaleFactory {
            Logger.getLogger(CarSaleFactory.class.getName()).
             log(Level.SEVERE, null, ex);
         }
-        
+        System.out.println(lista);
         return lista;
     }  
 }

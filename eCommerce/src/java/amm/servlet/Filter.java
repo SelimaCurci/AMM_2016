@@ -6,8 +6,6 @@
 package amm.servlet;
 
 import amm.model.CarSale;
-import amm.model.Seller;
-import amm.model.User;
 import amm.model.factory.CarSaleFactory;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -17,7 +15,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -39,20 +36,7 @@ public class Filter extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
-        HttpSession session = request.getSession(false);
         
-        // Se la sessione non esiste mostro la jsp di accesso negato
-        if(session == null){
-           request.setAttribute("utente", "Cliente");
-           //response.setStatus(403);
-           request.getRequestDispatcher("accessoNegato.jsp").forward(request, response);
-        }
-        
-        // Se l'utente è un venditore non può accedere a questa pagina
-        if(((User)session.getAttribute("utente") instanceof Seller) || session.getAttribute("utente") == null){
-            request.setAttribute("utente", "Cliente");
-            request.getRequestDispatcher("accessoNegato.jsp").forward(request, response);
-        }
         
         
         String command = request.getParameter("cmd");
@@ -65,7 +49,7 @@ public class Filter extends HttpServlet {
                 
                 // Esegue la ricerca
                 ArrayList<CarSale> listaAuto = CarSaleFactory.getInstance()
-                        .getAutoSaleListByPattern(request.getParameter("pattern"));
+                        .getAutoSaleListByPattern(request.getParameter("text"));
                 // Imposto la lista come attributo della request, come facevamo per l'HTML
                 request.setAttribute("listaAuto", listaAuto);
                 
