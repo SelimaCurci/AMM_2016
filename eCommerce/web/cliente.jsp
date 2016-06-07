@@ -122,7 +122,7 @@
                     </c:forEach>
                 </table>
                 
-               
+                <div id="noelements"></div>
                 <c:if test="${size == 0}">
                     <p class="errore">Non ci sono oggetti in vendita ! Siamo dispiaciuti.</p>
                 </c:if>
