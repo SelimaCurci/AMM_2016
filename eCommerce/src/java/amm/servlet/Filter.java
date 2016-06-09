@@ -37,20 +37,16 @@ public class Filter extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         
         
-        
-        
         String command = request.getParameter("cmd");
         if (command != null) 
         {
-            // Verifica che commando e id siano stati impostati
-            if (command.equals("search")) 
+            // Verifica che commando e stringa siano stati impostati
+            if (command.equals("search") && request.getParameter("text")!=null ) 
             {
-                // ID professore
-                
-                // Esegue la ricerca
+                // Esegue la ricerca di tutti i veicoli che contengono il pattern nel nome o nella descrizione
                 ArrayList<CarSale> listaAuto = CarSaleFactory.getInstance()
                         .getAutoSaleListByPattern(request.getParameter("text"));
-                // Imposto la lista come attributo della request, come facevamo per l'HTML
+                // Imposto la lista come attributo della request
                 request.setAttribute("listaAuto", listaAuto);
                 
                 // Quando si restituisce del json e' importante segnalarlo ed evitare il caching

@@ -290,10 +290,14 @@ public class CarSaleFactory {
      */
     public ArrayList<CarSale> getAutoSaleListByPattern(String pattern) {
         ArrayList<CarSale> lista = new ArrayList<>();
-        
+        /* Questa query seleziona tutti i veicoli del databese che contengono il pattern passato come parametro 
+           nel nome o nella descrizione */
         String sql = "SELECT *" +
                      "FROM CarSale " + 
                      "WHERE nomeAuto LIKE ? OR descrizione LIKE ?";         
+        
+        /* Apro la connessione al db e creo il prepare Statement per la query usando un try with-resources, in questo
+           modo sono sicura che le risorse saranno chiuse in ogni caso */
         try(Connection conn = DriverManager.getConnection(connectionString, "selimacurci", "0000");
             PreparedStatement stmt = conn.prepareStatement(sql)) {
             // Assegna dati
@@ -301,7 +305,7 @@ public class CarSaleFactory {
             stmt.setString(1, pattern);
             stmt.setString(2, pattern);
             ResultSet set = stmt.executeQuery();
-            
+            /* Scorro tutti i risultati ottenuti aggiungendoli alla lista che poi sarà restituita al chiamante */
             while (set.next()) {
                 int id = set.getInt("id");
                 String nomeAuto = set.getString("nomeAuto");
@@ -318,7 +322,7 @@ public class CarSaleFactory {
            Logger.getLogger(CarSaleFactory.class.getName()).
             log(Level.SEVERE, null, ex);
         }
-        System.out.println(lista);
+       
         return lista;
     }  
 }

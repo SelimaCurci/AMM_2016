@@ -90,9 +90,8 @@
                 </c:if>
                  
                 <!--
-                   Quanto l’utente scrive nel textfield, ad ogni pressione di un tasto la pagina deve inviare una richiesta
-                   ajax all’indirizzo filter.json, passando un parametro con chiave q e come valore la stringa inserita 
-                   dall’utente
+                   Quanto l’utente scrive nel textfield, ad ogni pressione di un tasto la pagina invia una richiesta
+                   ajax all’indirizzo filter.json, passando come parametro la stringa inserita dall’utente
                 -->
                 <div class="spazio"></div>
                 <label class="filter "for="filtra">Filtra</label>
@@ -123,6 +122,7 @@
                 </table>
                 
                 <div id="noelements"></div>
+                
                 <c:if test="${size == 0}">
                     <p class="errore">Non ci sono oggetti in vendita ! Siamo dispiaciuti.</p>
                 </c:if>
