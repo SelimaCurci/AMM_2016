@@ -11,7 +11,7 @@ $(document).ready(function ()
    $("#filtra").keyup(function()
     {  
         // Preleva il valore inserito nel campo input
-        var text = $("#filtra").val();
+        var q = $("#filtra").val();
        
         // Congigurazione della richiesta ajax
         $.ajax(
@@ -19,7 +19,7 @@ $(document).ready(function ()
             url: "filter.json",
             data:{
               cmd: "search",
-              text: text
+              q: q
             },
             dataType: 'json',
             success : function(data, state){
