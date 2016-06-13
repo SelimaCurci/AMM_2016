@@ -94,9 +94,10 @@
                    ajax all’indirizzo filter.json, passando come parametro la stringa inserita dall’utente
                 -->
                 <div class="spazio"></div>
-                <label class="filter "for="filtra">Filtra</label>
+                <label class="filter" for="filtra">Filtra</label>
                 <input class="filter" type="text" name="filtra" id="filtra" value="" />
                 <div class="spazio"></div> 
+                
                 <p id="avviso"></p>
                 <!-- Tabella con i veicoli in vendita nel sito -->
                 <table id="tabella">
