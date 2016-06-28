@@ -124,11 +124,29 @@ public class Venditore extends HttpServlet {
                         request.setAttribute("conferma", true);
                     }
                     else{ 
-                        request.setAttribute("conferma", false);
-                    }
+                        request.setAttribute("errore", true);
+                        request.setAttribute("messaggioErrore", "L'oggetto non è stato inserito correttamente, riprova!");
+                        int id = ((User)session.getAttribute("utente")).getId();
+                        ArrayList<CarSale> listaAuto = CarSaleFactory.getInstance().getAutoSaleBySeller(id);
+                        request.setAttribute("listaAuto", listaAuto);
+                        if(listaAuto != null)
+                            request.setAttribute("listaSize", listaAuto.size());
+                        else
+                            request.setAttribute("listaSize", 0); 
+                        request.getRequestDispatcher("venditore.jsp").forward(request, response);
+                        }
                 } // In caso contario mostrerò un messaggio per avvertire l'utente dell'errore
                 else{
-                    request.setAttribute("conferma", false);
+                    request.setAttribute("errore", true);
+                    request.setAttribute("messaggioErrore", "L'oggetto non è stato inserito correttamente, riprova!");
+                    int id = ((User)session.getAttribute("utente")).getId();
+                    ArrayList<CarSale> listaAuto = CarSaleFactory.getInstance().getAutoSaleBySeller(id);
+                    request.setAttribute("listaAuto", listaAuto);
+                    if(listaAuto != null)
+                        request.setAttribute("listaSize", listaAuto.size());
+                    else
+                        request.setAttribute("listaSize", 0); 
+                    request.getRequestDispatcher("venditore.jsp").forward(request, response);
                 }
                    
                 request.setAttribute("utente", "venditore");
@@ -154,7 +172,7 @@ public class Venditore extends HttpServlet {
                         request.setAttribute("listaSize", listaAuto.size());
                     else
                         request.setAttribute("listaSize", 0); 
-                        request.getRequestDispatcher("venditore.jsp").forward(request, response);
+                    request.getRequestDispatcher("venditore.jsp").forward(request, response);
                 }
                     
                 // Recupero il veicolo selezionato dal suo id
@@ -235,7 +253,16 @@ public class Venditore extends HttpServlet {
                     } 
                 } // In caso contario mostrerò un messaggio per avvertire l'utente dell'errore
                 else{
-                    request.setAttribute("modifica", false);
+                    request.setAttribute("errore", true);
+                    request.setAttribute("messaggioErrore", "L'oggetto non è stato modificato correttamente, riprova!");
+                    int id = ((User)session.getAttribute("utente")).getId();
+                    ArrayList<CarSale> listaAuto = CarSaleFactory.getInstance().getAutoSaleBySeller(id);
+                    request.setAttribute("listaAuto", listaAuto);
+                    if(listaAuto != null)
+                        request.setAttribute("listaSize", listaAuto.size());
+                    else
+                        request.setAttribute("listaSize", 0); 
+                    request.getRequestDispatcher("venditore.jsp").forward(request, response);
                 }
                    
                 request.setAttribute("utente", "venditore");

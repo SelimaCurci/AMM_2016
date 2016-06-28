@@ -102,21 +102,21 @@
                     <div class="spazio"></div>
                     
                     <label for="nomeoggetto">Nome</label>
-                    <input type="text" name="nomeoggetto" id="nomeoggetto" value="" />
+                    <input type="text" name="nomeoggetto" id="nomeoggetto" value="${param["nomeoggetto"]}" />
                     <div class="spazio"></div>
                     <label for="urlimmagine">URL immmagine</label>
-                    <input type="text" name="urlimmagine" id="urlimmagine" value="" />
+                    <input type="text" name="urlimmagine" id="urlimmagine" value="${param["urlimmagine"]}" />
                     <div class="spazio"></div>
                     <!-- Per la descrizione uso una text area in quanto ci si aspetta un testo pseudo-lungo -->
                     <label for="descrizione">Descrizione</label>
-                    <textarea rows="4" cols="20" name="descrizione" id="descrizione"></textarea>
+                    <textarea rows="4" cols="20" name="descrizione" id="descrizione" value="${param["descrizione"]}"></textarea>
                     <div class="spazio"></div>
                     <!-- L'attributo step permette di inserire numeri decimali -->
                     <label for="prezzo">Prezzo per unità</label>
-                    <input type="number" step="0.01" min="5" name="prezzo" id="prezzo" >
+                    <input type="number" step="0.01" min="5" name="prezzo" id="prezzo" value="${param["prezzo"]}">
                     <div class="spazio"></div>
                     <label for="quantita">Quantità</label>
-                    <input type="number" name="quantita" id="quantita" min="1" max="1000">
+                    <input type="number" name="quantita" id="quantita" min="1" max="1000" value="${param["quantita"]}">
                     <div class="spazio"></div>
                     <div class="bottoni">
                         <input type="submit" value="Aggiungi" id="aggiungi" name="aggiungi"/>

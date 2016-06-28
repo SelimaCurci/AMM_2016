@@ -139,25 +139,17 @@
                      passato dalla servlet -->
                 <c:if test="${utente == 'venditore'}">
                         <c:if test="${conferma != null}">        
-                            <c:choose>
-                                <c:when test="${conferma == false}" >
-                                     <p class="errore"> L'oggetto non è stato inserito correttamente, riprova! </p>
-                                </c:when>
-                                <c:otherwise>
+                             <c:if test="${conferma == true}">     
                                      <p class="ok"> Inserimento avvenuto con successo! </p>
-                                </c:otherwise>
-                            </c:choose>
+                             </c:if>
                         </c:if>
                                
                         <c:if test="${modifica != null}">        
-                            <c:choose>
-                                <c:when test="${modifica == false}" >
-                                     <p class="errore"> L'oggetto non è stato modificato correttamente, riprova! </p>
-                                </c:when>
-                                <c:otherwise>
+                            <c:if test="${modifica != null}">        
+                               <c:if test="${modifica == true}">     
                                      <p class="ok"> Modifica avvenuta con successo! </p>
-                                </c:otherwise>
-                            </c:choose>
+                               </c:if>
+                            </c:if>
                         </c:if>
                 </c:if>
               
